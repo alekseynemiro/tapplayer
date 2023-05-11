@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  x:Class="TapPlayer.Maui.MainPage"
+  Title="{Binding Title}"
+>
+  <Grid>
+    <ActivityIndicator
+      Scale="0.25"
+      IsRunning="{Binding ShowActivityIndicator}"
+    />
+    <Grid
+      x:Name="MainGrid"
+      VerticalOptions="Fill"
+      HorizontalOptions="Fill"
+      IsVisible="{Binding ShowTiles}"
+    />
+    <VerticalStackLayout
+      Spacing="8"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      IsVisible="{Binding ShowCreateOrOpenProject}"
+    >
+      <Label
+        Text="{markup:Localization Key=OpenOrCreateProjectToStart}"
+        HorizontalTextAlignment="Center"
+        LineBreakMode="WordWrap"
+      />
+      <Button
+        Text="{markup:Localization Key=OpenProject}"
+        Command="{Binding OpenProjectCommand}"
+      />
+      <Button
+        Text="{markup:Localization Key=CreateProject}"
+        Command="{Binding CreateProjectCommand}"
+      />
+    </VerticalStackLayout>
+    <VerticalStackLayout
+      Spacing="8"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      IsVisible="{Binding ShowCreateProject}"
+    >
+      <Label
+        Text="{markup:Localization YouDontHaveAnyProjectsYet}"
+        HorizontalTextAlignment="Center"
+        LineBreakMode="WordWrap"
+      />
+      <Button
+        Text="{markup:Localization Key=CreateProject}"
+        Command="{Binding CreateProjectCommand}"
+      />
+    </VerticalStackLayout>
+  </Grid>
+</ContentPage>

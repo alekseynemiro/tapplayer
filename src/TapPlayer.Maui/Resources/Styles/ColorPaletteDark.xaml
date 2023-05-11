@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+>
+  <Color x:Key="DarkPrimary">#635985</Color>
+  <Color x:Key="DarkSecondary">#443C68</Color>
+  <Color x:Key="DarkGridBorder">#E1E1E1</Color>
+  <Color x:Key="DarkText">#C8C8C8</Color>
+  <Color x:Key="DarkPrimaryText">White</Color>
+  <Color x:Key="DarkSecondaryText">White</Color>
+  <Color x:Key="DarkInputText">White</Color>
+</ResourceDictionary>

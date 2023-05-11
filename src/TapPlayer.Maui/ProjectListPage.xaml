@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  x:Class="TapPlayer.Maui.ProjectListPage"
+  Title="{markup:Localization Key=Projects}"
+>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="ImageButton">
+        <Setter Property="Padding" Value="{OnPlatform 4, Android=0}" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <Grid
+    StyleClass="WithPadding"
+  >
+    <dg:DataGrid
+      IsRefreshing="{Binding ShowRefreshing}"
+      ItemsSource="{Binding Projects}"
+      SelectionEnabled="False"
+      HeaderBackground="Transparent"
+      BorderColor="{StaticResource GridBorder}"
+      BorderThickness="0,1"
+      HeaderBordersVisible="False"
+      HorizontalOptions="Fill"
+      VerticalOptions="Start"
+      Refreshing="DataGrid_Refreshing"
+    >
+      <dg:DataGrid.Columns>
+        <dg:DataGridColumn
+        PropertyName="Name"
+        VerticalContentAlignment="Center"
+        HorizontalContentAlignment="Start"
+      />
+        <dg:DataGridColumn
+          Width="{OnPlatform Android='64', Default='42'}"
+        >
+          <dg:DataGridColumn.CellTemplate>
+            <DataTemplate>
+              <ImageButton
+                Source="play.png"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command="{Binding OpenCommand}"
+                CommandParameter="{Binding Id}"
+                WidthRequest="{OnPlatform Android='64', Default='42'}"
+                HeightRequest="{OnPlatform Android='64', Default='42'}"
+                Padding="{OnPlatform Android='4,6', Default='2'}"
+              />
+            </DataTemplate>
+          </dg:DataGridColumn.CellTemplate>
+        </dg:DataGridColumn>
+        <dg:DataGridColumn
+          Width="{OnPlatform Android='64', Default='42'}"
+        >
+          <dg:DataGridColumn.CellTemplate>
+            <DataTemplate>
+              <ImageButton
+                Source="settings.png"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command="{Binding EditCommand}"
+                CommandParameter="{Binding Id}"
+                WidthRequest="{OnPlatform Android='64', Default='42'}"
+                HeightRequest="{OnPlatform Android='64', Default='42'}"
+                Padding="{OnPlatform Android='4,6', Default='2'}"
+              />
+            </DataTemplate>
+          </dg:DataGridColumn.CellTemplate>
+        </dg:DataGridColumn>
+        <dg:DataGridColumn
+          Width="{OnPlatform Android='64', Default='42'}"
+        >
+          <dg:DataGridColumn.CellTemplate>
+            <DataTemplate>
+              <ImageButton
+                Source="delete.png"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command="{Binding DeleteCommand}"
+                CommandParameter="{Binding Id}"
+                WidthRequest="{OnPlatform Android='64', Default='42'}"
+                HeightRequest="{OnPlatform Android='64', Default='42'}"
+                Padding="{OnPlatform Android='4,6', Default='2'}"
+              />
+            </DataTemplate>
+          </dg:DataGridColumn.CellTemplate>
+        </dg:DataGridColumn>
+      </dg:DataGrid.Columns>
+      <dg:DataGrid.RowsBackgroundColorPalette>
+        <dg:PaletteCollection>
+          <Color>#FFFFFF</Color>
+        </dg:PaletteCollection>
+      </dg:DataGrid.RowsBackgroundColorPalette>
+    </dg:DataGrid>
+    <VerticalStackLayout
+      Spacing="8"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      IsVisible="{Binding ShowNoProjects}"
+    >
+      <Label
+        Text="{markup:Localization Key=YouDontHaveAnyProjectsYet}"
+        HorizontalTextAlignment="Center"
+        LineBreakMode="WordWrap"
+      />
+      <Button
+        Text="{markup:Localization Key=CreateProject}"
+        Command="{Binding CreateCommand}"
+      />
+    </VerticalStackLayout>
+  </Grid>
+</ContentPage>

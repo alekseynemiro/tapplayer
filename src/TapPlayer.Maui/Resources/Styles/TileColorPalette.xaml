@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+>
+  <Color x:Key="Color1">#EE82EE</Color>
+  <Color x:Key="Color2">#CA82EE</Color>
+  <Color x:Key="Color3">#A682EE</Color>
+  <Color x:Key="Color4">#8D5BA7</Color>
+  <Color x:Key="Color5">#745BA7</Color>
+  <Color x:Key="Color6">#4D4375</Color>
+
+  <Color x:Key="Color7">#EE8282</Color>
+  <Color x:Key="Color8">#E46868</Color>
+  <Color x:Key="Color9">#DA5C4F</Color>
+  <Color x:Key="Color10">#C83C2D</Color>
+  <Color x:Key="Color11">#BC240F</Color>
+  <Color x:Key="Color12">#84190B</Color>
+
+  <Color x:Key="Color13">#EEBE82</Color>
+  <Color x:Key="Color14">#DCAA6C</Color>
+  <Color x:Key="Color15">#C4904F</Color>
+  <Color x:Key="Color16">#C4A94F</Color>
+  <Color x:Key="Color17">#B69937</Color>
+  <Color x:Key="Color18">#8D7217</Color>
+
+  <Color x:Key="Color19">#82C266</Color>
+  <Color x:Key="Color20">#69A74D</Color>
+  <Color x:Key="Color21">#338D26</Color>
+  <Color x:Key="Color22">#3D7623</Color>
+  <Color x:Key="Color23">#19660D</Color>
+  <Color x:Key="Color24">#083F00</Color>
+
+  <Color x:Key="Color25">#65B3A9</Color>
+  <Color x:Key="Color26">#4D938A</Color>
+  <Color x:Key="Color27">#3C8B81</Color>
+  <Color x:Key="Color28">#39949D</Color>
+  <Color x:Key="Color29">#2B7D85</Color>
+  <Color x:Key="Color30">#1A5D64</Color>
+
+  <Color x:Key="Color31">#8982EE</Color>
+  <Color x:Key="Color32">#6671CE</Color>
+  <Color x:Key="Color33">#4D57AF</Color>
+  <Color x:Key="Color34">#3B459F</Color>
+  <Color x:Key="Color35">#27328F</Color>
+  <Color x:Key="Color36">#151E6C</Color>
+</ResourceDictionary>

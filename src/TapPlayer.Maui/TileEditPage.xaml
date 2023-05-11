@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:converters="clr-namespace:TapPlayer.Maui.Converters"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  x:Class="TapPlayer.Maui.TileEditPage"
+  Title="{markup:Localization Key=TitleSettings}"
+>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:FileViewModelConverter x:Key="FileViewModelConverter" />
+      <converters:ColorPaletteToButtonStyleConverter x:Key="ColorPaletteToButtonStyleConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <VerticalStackLayout
+    Spacing="16"
+    StyleClass="WithPadding"
+  >
+    <Border StyleClass="FormField" Padding="8">
+      <Grid ColumnDefinitions="Auto,*">
+        <Button
+          Grid.Column="0"
+          Text="{markup:Localization Key=SelectFile}"
+          Margin="0,0,4,0"
+          Clicked="SelectFile_Clicked"
+        />
+        <Label
+          Text="{Binding File, Converter={StaticResource FileViewModelConverter}, Mode=OneWay}"
+          VerticalTextAlignment="Center"
+          VerticalOptions="Fill"
+          LineBreakMode="MiddleTruncation"
+          Grid.Column="1"
+        >
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer Tapped="SelectFile_Clicked" />
+          </Label.GestureRecognizers>
+        </Label>
+      </Grid>
+    </Border>
+
+    <HorizontalStackLayout Spacing="8">
+      <RadioButton
+        Content="{markup:Localization Key=PlayOnce}"
+        IsChecked="{Binding PlayOnce}"
+      />
+      <RadioButton
+        Content="{markup:Localization Key=Loop}"
+        IsChecked="{Binding PlayLoop}"
+      />
+    </HorizontalStackLayout>
+
+    <HorizontalStackLayout>
+      <CheckBox
+        VerticalOptions="Center"
+        IsChecked="{Binding IsBackground}"
+      />
+      <Label
+        VerticalOptions="Center"
+        Text="{markup:Localization Key=Background}"
+      >
+        <Label.GestureRecognizers>
+          <TapGestureRecognizer Tapped="IsBackground_Tapped" />
+        </Label.GestureRecognizers>
+      </Label>
+    </HorizontalStackLayout>
+
+    <HorizontalStackLayout>
+      <Button
+        Text="{markup:Localization Key=SelectColor}"
+        Clicked="SelectColor_Clicked"
+      />
+      <Border
+        StrokeThickness="1"
+        BackgroundColor="{Binding ., Source={StaticResource Black}}"
+        Padding="2"
+      >
+        <Button
+          Style="{Binding Color, Converter={StaticResource ColorPaletteToButtonStyleConverter}}"
+          WidthRequest="42"
+          HeightRequest="42"
+        />
+      </Border>
+    </HorizontalStackLayout>
+
+    <VerticalStackLayout>
+      <Label Text="{markup:Localization Key=TileName}" />
+      <Border StyleClass="FormField">
+        <Editor
+          Text="{Binding Name}"
+          MinimumWidthRequest="100"
+        />
+      </Border>
+    </VerticalStackLayout>
+
+    <BoxView StyleClass="Separator" />
+
+    <HorizontalStackLayout Margin="0" Spacing="8">
+      <Button
+        Text="{markup:Localization Key=Save}"
+        Command="{Binding SaveCommand}"
+      />
+      <Button
+        Text="{markup:Localization Key=Cancel}"
+        StyleClass="SecondaryButton"
+        Command="{Binding CancelCommand}"
+      />
+    </HorizontalStackLayout>
+  </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:components="clr-namespace:TapPlayer.Maui.Components"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  x:Class="TapPlayer.Maui.AboutPage"
+  Title="{markup:Localization Key=About}"
+>
+  <VerticalStackLayout
+    Padding="16"
+    Spacing="8"
+  >
+    <HorizontalStackLayout
+      Spacing="4"
+    >
+      <ImageButton
+        Source="tapplayer.png"
+        HorizontalOptions="Center"
+        VerticalOptions="Start"
+        MaximumWidthRequest="64"
+        MaximumHeightRequest="64"
+        Margin="0,0,8,0"
+      />
+      <VerticalStackLayout Spacing="4">
+        <HorizontalStackLayout Spacing="4">
+          <Label
+            Text="TapPlayer"
+          />
+          <Label
+            Text="{Binding Version}"
+          />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="4">
+          <Label Text="Author:" />
+          <Label Text="Aleksey Nemiro" />
+        </HorizontalStackLayout>
+      </VerticalStackLayout>
+    </HorizontalStackLayout>
+    <BoxView StyleClass="Separator" />
+    <components:Hyperlink Text="https://aleksey.nemiro.ru" Url="https://aleksey.nemiro.ru" />
+    <components:Hyperlink Text="https://vk.com/aleksey.nemiro" Url="https://vk.com/aleksey.nemiro" />
+    <components:Hyperlink Text="https://github.com/alekseynemiro" Url="https://github.com/alekseynemiro" />
+    <BoxView StyleClass="Separator" />
+    <Button
+      Text="Ok"
+      Command="{Binding OkCommand}"
+      StyleClass="SecondaryButton"
+      HorizontalOptions="Start"
+      MinimumWidthRequest="75"
+    />
+  </VerticalStackLayout>
+</ContentPage>

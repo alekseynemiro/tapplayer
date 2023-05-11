@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:converters="clr-namespace:TapPlayer.Maui.Converters"
+  xmlns:components="clr-namespace:TapPlayer.Maui.Components"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  x:Class="TapPlayer.Maui.Components.ProjectEdit"
+  x:Name="Me"
+  BindingContextChanged="ProjectEdit_BindingContextChanged"
+>
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <converters:GridSizeConverter x:Key="GridSizeConverter" />
+      <converters:ColorPaletteToButtonStyleConverter x:Key="ColorPaletteToButtonStyleConverter" />
+      <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <components:RefreshView
+    IsRefreshing="{Binding ShowRefreshing}"
+    VerticalOptions="Fill"
+    HorizontalOptions="Fill"
+    Refreshing="ContentPage_Refreshing"
+  >
+    <ScrollView
+      x:Name="MainScrollView"
+      HorizontalScrollBarVisibility="Never"
+      VerticalScrollBarVisibility="Default"
+      HorizontalOptions="Fill"
+      VerticalOptions="Fill"
+      StyleClass="WithPadding"
+      IsVisible="{Binding ShowRefreshing, Converter={StaticResource InvertedBoolConverter}}"
+      SizeChanged="MainScrollView_SizeChanged"
+    >
+      <VerticalStackLayout
+        Spacing="8"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"
+      >
+        <Label Text="{markup:Localization Key=ProjectNameField}" />
+        <Border StyleClass="FormField">
+          <Entry
+            Text="{Binding ProjectName}"
+           />
+        </Border>
+
+        <Label Text="{markup:Localization Key=TilesField}" />
+        <Border StyleClass="FormField">
+          <Picker
+            x:Name="GridSize"
+            ItemsSource="{Binding AvailableGridSizes}"
+            ItemDisplayBinding="{Binding ., Converter={StaticResource GridSizeConverter}}"
+            SelectedItem="{Binding GridSize}"
+            SelectedIndexChanged="GridSize_SelectedIndexChanged"
+          />
+        </Border>
+
+        <Label Text="{markup:Localization Key=TapToConfig}" />
+        <Border
+          Padding="2"
+          HorizontalOptions="Start"
+          VerticalOptions="Start"
+          WidthRequest="{Binding TilesGridWidth}"
+          HeightRequest="{Binding TilesGridHeight}"
+        >
+          <Grid
+            x:Name="TilesGrid"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+          />
+        </Border>
+
+        <BoxView StyleClass="Separator" />
+
+        <HorizontalStackLayout Margin="0" Spacing="8">
+          <Button
+            Text="{markup:Localization Key=Save}"
+            Command="{Binding SaveCommand}"
+          />
+          <Button
+            Text="{markup:Localization Key=Cancel}"
+            StyleClass="SecondaryButton"
+            Command="{Binding CancelCommand}"
+          />
+        </HorizontalStackLayout>
+      </VerticalStackLayout>
+    </ScrollView>
+  </components:RefreshView>
+</ContentView>

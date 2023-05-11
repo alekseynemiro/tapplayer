@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+  x:Class="TapPlayer.Maui.AppShell"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:local="clr-namespace:TapPlayer.Maui"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  Shell.FlyoutBehavior="Flyout"
+  Shell.TabBarIsVisible="False"
+  Title="{Binding Title}"
+>
+  <Shell.MenuItemTemplate>
+    <DataTemplate>
+      <Label
+        Text="{Binding Text}"
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill"
+        VerticalTextAlignment="Center"
+        Padding="{OnPlatform Android='18,12', Default='6'}"
+      />
+    </DataTemplate>
+  </Shell.MenuItemTemplate>
+
+  <ShellContent
+    ContentTemplate="{DataTemplate local:MainPage}"
+    Route="MainPage"
+    Shell.FlyoutItemIsVisible="False"
+  />
+  <MenuItem
+    Text="{markup:Localization Key=CreateProject}"
+    Command="{Binding CreateProjectCommand}"
+  />
+  <MenuItem
+    Text="{markup:Localization Key=OpenProject}"
+    Command="{Binding OpenProjectCommand}"
+  />
+  <MenuItem
+    Text="{markup:Localization Key=ProjectSettings}"
+    Command="{Binding ProjectSettingsCommand}"
+  />
+  <MenuItem
+    Text="{markup:Localization Key=About}"
+    Command="{Binding AboutCommand}"
+  />
+  <MenuItem
+    Text="{markup:Localization Key=Exit}"
+    Command="{Binding ExitCommand}"
+  />
+</Shell>

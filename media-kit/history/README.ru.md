@@ -6,6 +6,7 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.developer?w=wall-96983816_163 - Анонс первой бета-версии
 * https://vk.com/aleksey.developer?w=wall-96983816_162 - Проверка подписи apk-файлов
 * https://vk.com/aleksey.developer?w=wall-96983816_158 - Странности с AppInfo и собственная реализация
 * https://vk.com/aleksey.developer?w=wall-96983816_154 - Результат первого запуска приложения на физическом уйстройстве Android

@@ -1,3 +1,3 @@
 # TapPlayer Logo
 
-!(TapPlayer logo)[logo.png]
+![TapPlayer logo](logo.svg)

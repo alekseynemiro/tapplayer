@@ -1,6 +1,6 @@
 # 2023-02-26
 
-![Windows Main](2023-02-26-Windows-Main.pngg)
+![Windows Main](2023-02-26-Windows-Main.png)
 
 ![Windows Project Editor](2023-02-26-Windows-ProjectEditor.png)
 

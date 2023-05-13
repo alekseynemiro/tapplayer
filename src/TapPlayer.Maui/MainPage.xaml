@@ -19,9 +19,10 @@
     />
     <VerticalStackLayout
       Spacing="8"
-      HorizontalOptions="Center"
+      HorizontalOptions="Fill"
       VerticalOptions="Center"
       IsVisible="{Binding ShowCreateOrOpenProject}"
+      Padding="24,0"
     >
       <Label
         Text="{markup:Localization Key=OpenOrCreateProjectToStart}"

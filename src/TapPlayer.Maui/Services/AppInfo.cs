@@ -10,9 +10,9 @@ internal class AppInfo : IAppInfo
 
   public string Name => MauiAppInfo.Name;
 
-  public string VersionString => $"{Version.Major}.{Version.Minor}-beta";
+  public string VersionString => $"{Version.Major}.{Version.Minor}.{Version.Revision} (beta)";
 
-  public Version Version => new Version(1, 0);
+  public Version Version => new Version(1, 0, 0, 1);
 
   public string BuildString => "0";
 

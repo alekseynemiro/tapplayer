@@ -2,8 +2,8 @@
 <manifest
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:versionCodeMajor="1"
-  android:versionCode="1"
-  android:versionName="1.0-beta"
+  android:versionCode="20230513"
+  android:versionName="1.0.1-beta"
 >
   <application
     android:allowBackup="true"

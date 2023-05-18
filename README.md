@@ -2,6 +2,8 @@
 
 This is small an Android app that allows you to play music files when you click (tap) on a tile.
 
+![TapPlayer](media-kit/banner1024x500.png)
+
 ## Install
 
 Find the latest version in the Releases section:

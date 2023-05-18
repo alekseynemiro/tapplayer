@@ -2,9 +2,15 @@
 
 This is small an Android app that allows you to play music files when you click (tap) on a tile.
 
+![TapPlayer](media-kit/banner1024x500.png)
+
 ## Install
 
-You can install the application through RuStore:
+Find the latest version in the Releases section:
+
+https://github.com/alekseynemiro/TapPlayer/releases
+
+or install the application through RuStore:
 
 https://apps.rustore.ru/app/ru.nemiro.apps.tapplayer
 

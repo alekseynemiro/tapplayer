@@ -6,6 +6,11 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.developer?w=wall-96983816_179 - AndroidSDK съедает место на диске
+* https://vk.com/aleksey.developer?w=wall-96983816_178 - Пробую добавить TapPlayer в Google Play %)
+* https://vk.com/aleksey.developer?w=wall-96983816_176 - Зарегистрировался в Google Play в качестве разработчика
+* https://vk.com/aleksey.developer?w=wall-96983816_170 - Анонс исходного кода
+* https://vk.com/aleksey.developer?w=wall-96983816_168 - Попытка настройить в GitHub рабочий процесс в стиле JIRA
 * https://vk.com/aleksey.developer?w=wall-96983816_163 - Анонс первой бета-версии
 * https://vk.com/aleksey.developer?w=wall-96983816_162 - Проверка подписи apk-файлов
 * https://vk.com/aleksey.developer?w=wall-96983816_158 - Странности с AppInfo и собственная реализация

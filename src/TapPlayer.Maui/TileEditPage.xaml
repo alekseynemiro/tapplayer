@@ -86,7 +86,7 @@
     <VerticalStackLayout>
       <Label Text="{markup:Localization Key=TileName}" />
       <Border StyleClass="FormField">
-        <Editor
+        <Entry
           Text="{Binding Name}"
           MinimumWidthRequest="100"
         />

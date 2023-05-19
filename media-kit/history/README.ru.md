@@ -6,6 +6,7 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.developer?w=wall-96983816_183 - Google Play не поддерживает android:versionCodeMajor o_O
 * https://vk.com/aleksey.developer?w=wall-96983816_180 - AndroidSDK съедает место на диске
 * https://vk.com/aleksey.developer?w=wall-96983816_178 - Пробую добавить TapPlayer в Google Play %)
 * https://vk.com/aleksey.developer?w=wall-96983816_176 - Зарегистрировался в Google Play в качестве разработчика

@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using System.ComponentModel;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Converters;
@@ -13,11 +14,25 @@ public partial class ProjectEdit : ContentView
   public ProjectEdit()
   {
     InitializeComponent();
+
+    // TODO: I don't like this solution. Too confusing.
+    // We need to find a way to update the Grid when the model changes, through binding.
+    // https://github.com/alekseynemiro/TapPlayer/issues/21
+    WeakReferenceMessenger.Default.Register<IProjectEditViewModel>(
+      this,
+      (r, m) =>
+      {
+        if (m.IsLoaded)
+        {
+          GridSize_SelectedIndexChanged(GridSize, default);
+        }
+      }
+    );
   }
 
   protected void ProjectEdit_BindingContextChanged(object sender, EventArgs e)
   {
-    GridSize_SelectedIndexChanged(GridSize, default(EventArgs));
+    GridSize_SelectedIndexChanged(GridSize, default);
   }
 
   protected void GridSize_SelectedIndexChanged(object sender, EventArgs e)

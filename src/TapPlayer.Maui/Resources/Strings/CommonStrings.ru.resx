@@ -134,6 +134,15 @@
   <data name="ClickToColorForSelect" xml:space="preserve">
     <value>Кликните по цвету, чтобы выбрать его:</value>
   </data>
+  <data name="CloseProjectEditor" xml:space="preserve">
+    <value>Закрыть настройки проекта без сохранения изменений.</value>
+  </data>
+  <data name="CloseSelectColor" xml:space="preserve">
+    <value>Закрыть диалог выбора цвета.</value>
+  </data>
+  <data name="CloseTileEditor" xml:space="preserve">
+    <value>Закрыть настройки плитки без сохранения изменений.</value>
+  </data>
   <data name="ColorPalette" xml:space="preserve">
     <value>Палитра</value>
   </data>
@@ -188,8 +197,17 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="SaveProject" xml:space="preserve">
+    <value>Сохранить изменения настроек проекта и закрыть диалог.</value>
+  </data>
+  <data name="SaveTile" xml:space="preserve">
+    <value>Сохранить изменения настроек плитки и закрыть диалог.</value>
+  </data>
   <data name="SelectColor" xml:space="preserve">
     <value>Выбрать цвет</value>
+  </data>
+  <data name="SelectedColor" xml:space="preserve">
+    <value>Выбраный цвет</value>
   </data>
   <data name="SelectFile" xml:space="preserve">
     <value>Выбрать файл</value>
@@ -202,6 +220,9 @@
   </data>
   <data name="TilesField" xml:space="preserve">
     <value>Выберите размер сетки:</value>
+  </data>
+  <data name="TileX" xml:space="preserve">
+    <value>Плитка {0}</value>
   </data>
   <data name="TitleSettings" xml:space="preserve">
     <value>Параметры плитки</value>

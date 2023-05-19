@@ -106,6 +106,33 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Close the project editor without saving changes..
+        /// </summary>
+        internal static string CloseProjectEditor {
+            get {
+                return ResourceManager.GetString("CloseProjectEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Close the color selection dialog..
+        /// </summary>
+        internal static string CloseSelectColor {
+            get {
+                return ResourceManager.GetString("CloseSelectColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Close the tile editor without saving changes..
+        /// </summary>
+        internal static string CloseTileEditor {
+            get {
+                return ResourceManager.GetString("CloseTileEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Color palette.
         /// </summary>
         internal static string ColorPalette {
@@ -268,11 +295,38 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Save changes of project settings..
+        /// </summary>
+        internal static string SaveProject {
+            get {
+                return ResourceManager.GetString("SaveProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save changes of tile settings..
+        /// </summary>
+        internal static string SaveTile {
+            get {
+                return ResourceManager.GetString("SaveTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Select color.
         /// </summary>
         internal static string SelectColor {
             get {
                 return ResourceManager.GetString("SelectColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Selected color.
+        /// </summary>
+        internal static string SelectedColor {
+            get {
+                return ResourceManager.GetString("SelectedColor", resourceCulture);
             }
         }
         
@@ -309,6 +363,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         internal static string TilesField {
             get {
                 return ResourceManager.GetString("TilesField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tile {0}.
+        /// </summary>
+        internal static string TileX {
+            get {
+                return ResourceManager.GetString("TileX", resourceCulture);
             }
         }
         

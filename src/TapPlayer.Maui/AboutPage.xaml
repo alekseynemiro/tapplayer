@@ -21,6 +21,7 @@
         MaximumWidthRequest="64"
         MaximumHeightRequest="64"
         Margin="0,0,8,0"
+        SemanticProperties.Description="TapPlayer logo"
       />
       <VerticalStackLayout Spacing="4">
         <HorizontalStackLayout Spacing="4">

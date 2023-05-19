@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using TapPlayer.Maui.Converters;
 using TapPlayer.Maui.Extensions;
+using TapPlayer.Maui.Resources.Strings;
 using TapPlayer.Maui.Services;
 using TapPlayer.Maui.ViewModels;
 
@@ -56,6 +57,11 @@ public partial class MainPage : ContentPage
     );
 
     button.PropertyChanged += Tile_PropertyChanged;
+
+    SemanticProperties.SetDescription(
+      button,
+      string.Format(CommonStrings.TileX, tile.Index + 1)
+    );
 
     return button;
   }

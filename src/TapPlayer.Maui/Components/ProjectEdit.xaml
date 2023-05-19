@@ -41,7 +41,8 @@
         <Border StyleClass="FormField">
           <Entry
             Text="{Binding ProjectName}"
-           />
+            SemanticProperties.Description="{markup:Localization Key=ProjectNameField}"
+          />
         </Border>
 
         <Label Text="{markup:Localization Key=TilesField}" />
@@ -52,6 +53,7 @@
             ItemDisplayBinding="{Binding ., Converter={StaticResource GridSizeConverter}}"
             SelectedItem="{Binding GridSize}"
             SelectedIndexChanged="GridSize_SelectedIndexChanged"
+            SemanticProperties.Description="{markup:Localization Key=TilesField}"
           />
         </Border>
 
@@ -76,11 +78,13 @@
           <Button
             Text="{markup:Localization Key=Save}"
             Command="{Binding SaveCommand}"
+            SemanticProperties.Description="{markup:Localization Key=SaveProject}"
           />
           <Button
             Text="{markup:Localization Key=Cancel}"
             StyleClass="SecondaryButton"
             Command="{Binding CancelCommand}"
+            SemanticProperties.Description="{markup:Localization Key=CloseProjectEditor}"
           />
         </HorizontalStackLayout>
       </VerticalStackLayout>

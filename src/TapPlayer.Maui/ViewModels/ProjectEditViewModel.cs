@@ -235,6 +235,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     IsLoaded = false;
     ShowRefreshing = true;
 
+    WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
+
     var project = await _projectService.Get(projectId);
 
     Tiles.Clear();
@@ -264,6 +266,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 
     ShowRefreshing = false;
     IsLoaded = true;
+
+    WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
   }
 
   private async Task Save()
@@ -277,6 +281,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     }
 
     IsSaving = true;
+
+    WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
 
     var newProjectId = Guid.Empty;
 

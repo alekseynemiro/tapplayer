@@ -17,7 +17,7 @@ public partial class ProjectEdit : ContentView
 
   protected void ProjectEdit_BindingContextChanged(object sender, EventArgs e)
   {
-    GridSize_SelectedIndexChanged(GridSize, default(EventArgs));
+    GridSize_SelectedIndexChanged(GridSize, default);
   }
 
   protected void GridSize_SelectedIndexChanged(object sender, EventArgs e)

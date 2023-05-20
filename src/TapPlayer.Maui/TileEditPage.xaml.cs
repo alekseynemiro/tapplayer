@@ -30,9 +30,8 @@ public partial class TileEditPage : ContentPage
         PickerTitle = "Please select an audio file",
         FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
           {
-              { DevicePlatform.Android, new[] { "audio/mpeg", "audio/wav" } },
+              { DevicePlatform.Android, new[] { "audio/*" } },
               { DevicePlatform.WinUI, new[] { ".mp3", ".wav" } },
-              { DevicePlatform.macOS, new[] { "mp3", "wav" } },
           }
         ),
       });

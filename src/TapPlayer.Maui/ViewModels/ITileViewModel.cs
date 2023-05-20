@@ -1,5 +1,4 @@
-﻿using Plugin.Maui.Audio;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TapPlayer.Data.Enums;
 
 namespace TapPlayer.Maui.ViewModels;
@@ -18,9 +17,7 @@ public interface ITileViewModel
 
   ColorPalette Color { get; set; }
 
-  Stream FileStream { get; set; }
-
-  IAudioPlayer Player { get; set; }
+  IMediaPlayerViewModel Player { get; set; }
 
   ICommand<IProjectEditViewModel> EditCommand { get; }
 

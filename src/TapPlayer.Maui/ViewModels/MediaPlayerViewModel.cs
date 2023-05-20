@@ -24,6 +24,7 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
 
   public void Play()
   {
+    _player.Stop();
     _player.Play();
   }
 
@@ -41,7 +42,6 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
   {
     if (Loop)
     {
-      Stop();
       Play();
     }
   }

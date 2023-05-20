@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Localization;
-using Plugin.Maui.Audio;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Localization;
 using TapPlayer.Core.Services;
 using TapPlayer.Core.Services.Projects;
 using TapPlayer.Data;
@@ -18,13 +18,12 @@ public static class AppBuilder
 
     builder
       .UseMauiApp<App>()
+      .UseMauiCommunityToolkitMediaElement()
       .ConfigureFonts(fonts =>
       {
         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
         fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
       });
-
-    builder.Services.AddSingleton(AudioManager.Current);
 
     // localization
     builder.Services.AddLocalization();
@@ -44,7 +43,6 @@ public static class AppBuilder
     builder.Services.AddSingleton<IAppInfo, Services.AppInfo>();
     builder.Services.AddSingleton<IDialogService, DialogService>();
     builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
-    builder.Services.AddSingleton<IMediaService, MediaService>();
     builder.Services.AddSingleton<INavigationService, NavigationService>();
     builder.Services.AddSingleton<ITapPlayerService, TapPlayerService>();
 

@@ -1,27 +1,20 @@
-﻿using Plugin.Maui.Audio;
-using TapPlayer.Maui.Services;
+﻿using CommunityToolkit.Maui.Core.Primitives;
+using CommunityToolkit.Maui.Views;
 
 namespace TapPlayer.Maui.ViewModels;
 
 public class MediaPlayerViewModel : IMediaPlayerViewModel
 {
-  private readonly IDialogService _dialogService;
-  private readonly IAudioPlayer _player;
-  private readonly Stream _fileStream;
+  private readonly MediaElement _player;
 
-  public bool IsPlaying => _player.IsPlaying;
+  public bool IsPlaying => _player.CurrentState == MediaElementState.Playing;
 
   public bool Loop { get; set; }
 
-  public MediaPlayerViewModel(
-    IAudioManager audioManager,
-    IDialogService dialogService,
-    string filePath
-  )
+  public MediaPlayerViewModel(MediaElement mediaElement)
   {
-    _dialogService = dialogService;
-    _fileStream = TryToOpenFileStream(filePath); // TODO: looks bad, need to find another solution
-    _player = audioManager.CreatePlayer(_fileStream);
+    _player = mediaElement;
+    _player.MediaEnded += MediaEnded;
   }
 
   public void Pause()
@@ -41,25 +34,15 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
 
   public void Dispose()
   {
-    _player.Dispose();
-
-    if (_fileStream != null)
-    {
-      _fileStream.Close();
-      _fileStream.Dispose();
-    }
+    _player.Handler?.DisconnectHandler();
   }
 
-  private Stream TryToOpenFileStream(string filePath)
+  private void MediaEnded(object sender, EventArgs e)
   {
-    try
+    if (Loop)
     {
-      return File.OpenRead(filePath);
-    }
-    catch (Exception ex)
-    {
-      _dialogService.Error($"Failed to open file \"{filePath}\": {ex.Message}");
-      return null;
+      Stop();
+      Play();
     }
   }
 }

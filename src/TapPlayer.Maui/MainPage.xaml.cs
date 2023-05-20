@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using System.ComponentModel;
 using TapPlayer.Maui.Converters;
 using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.Resources.Strings;
@@ -28,14 +29,25 @@ public partial class MainPage : ContentPage
       {
         await model.LoadCommand.ExecuteAsync(activeProjectService.ProjectId);
 
-        MainGrid.Create(model.GridSize, CreateTill);
+        MainGrid.Create(
+          model.GridSize,
+          CreateTill
+        );
       }
     });
   }
 
-  private Button CreateTill(GridCreateEventArgs e)
+  private IView CreateTill(GridCreateEventArgs e)
   {
     var tile = Model.Tiles.ElementAt(e.Index);
+
+    var container = new Grid
+    {
+      HorizontalOptions = LayoutOptions.Fill,
+      VerticalOptions = LayoutOptions.Fill,
+      Padding = Thickness.Zero,
+      Margin = Thickness.Zero,
+    };
 
     var button = new Button
     {
@@ -63,7 +75,27 @@ public partial class MainPage : ContentPage
       string.Format(CommonStrings.TileX, tile.Index + 1)
     );
 
-    return button;
+    container.Add(button);
+
+    if (!string.IsNullOrEmpty(tile.File?.FullPath))
+    {
+      var mediaElement = new MediaElement
+      {
+        Source = MediaSource.FromFile(tile.File.FullPath),
+        IsVisible = false,
+      };
+
+      // TODO: Looks bad. We need to find a better solution.
+      // Model should not know anything about view elements.
+      tile.Player = new MediaPlayerViewModel(mediaElement)
+      {
+        Loop = tile.PlayType == Data.Enums.PlayType.Loop,
+      };
+
+      container.Add(mediaElement);
+    }
+
+    return container;
   }
 
   private void Tile_PropertyChanged(object sender, PropertyChangedEventArgs e)

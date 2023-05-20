@@ -1,5 +1,4 @@
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Maui;
 using System.ComponentModel;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Converters;

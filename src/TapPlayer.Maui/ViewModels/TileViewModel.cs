@@ -6,9 +6,7 @@ namespace TapPlayer.Maui.ViewModels;
 
 public class TileViewModel : ViewModelBase, ITileViewModel
 {
-  private readonly IMediaService _mediaService;
   private readonly ITapPlayerService _tapPlayerService;
-  private readonly IDialogService _dialogService;
 
   private int _index;
   private string _name;
@@ -115,15 +113,9 @@ public class TileViewModel : ViewModelBase, ITileViewModel
 
   public Action StopAllExcludingBackground { get; set; }
 
-  public TileViewModel(
-    IMediaService mediaService,
-    ITapPlayerService tapPlayerService,
-    IDialogService dialogService
-  )
+  public TileViewModel(ITapPlayerService tapPlayerService)
   {
-    _mediaService = mediaService;
     _tapPlayerService = tapPlayerService;
-    _dialogService = dialogService;
 
     TapCommand = new Command(Tap);
     EditCommand = new Command<IProjectEditViewModel>(x =>
@@ -134,45 +126,25 @@ public class TileViewModel : ViewModelBase, ITileViewModel
 
   private void Tap()
   {
-    var play = Player?.IsPlaying != true;
-
     if (!IsBackground)
     {
       _tapPlayerService.StopAllExcludingBackground();
     }
 
-    if (!string.IsNullOrWhiteSpace(File?.FullPath))
+    if (Player == null)
     {
-      if (Player == null)
-      {
-        Player = _mediaService.CreatePlayer(File.FullPath);
-
-        if (PlayType == PlayType.Loop)
-        {
-          Player.Loop = true;
-        }
-      }
-
-      if (play)
-      {
-        TryToPlay();
-      }
-      else
-      {
-        Player.Stop();
-      }
+      return;
     }
-  }
 
-  private void TryToPlay()
-  {
-    try
+    var play = Player.IsPlaying != true;
+
+    if (play)
     {
       Player.Play();
     }
-    catch (Exception ex)
+    else
     {
-      _dialogService.Error($"Failed to play file  \"{File.FullPath}\": {ex.Message}");
+      Player.Stop();
     }
   }
 }

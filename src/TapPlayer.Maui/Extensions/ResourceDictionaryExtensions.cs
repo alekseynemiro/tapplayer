@@ -2,9 +2,9 @@
 
 internal static class ResourceDictionaryExtensions
 {
-  public static object FindResource(this ResourceDictionary @this, string key)
+  public static object FindResource(this ResourceDictionary resourceDictionary, string key)
   {
-    foreach (var resource in @this.MergedDictionaries)
+    foreach (var resource in resourceDictionary.MergedDictionaries)
     {
       if (resource.Keys.Contains(key))
       {

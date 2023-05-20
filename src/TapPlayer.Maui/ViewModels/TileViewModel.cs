@@ -1,5 +1,4 @@
-﻿using Plugin.Maui.Audio;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Services;
 
@@ -7,9 +6,7 @@ namespace TapPlayer.Maui.ViewModels;
 
 public class TileViewModel : ViewModelBase, ITileViewModel
 {
-  private readonly IAudioManager _audioManager;
   private readonly ITapPlayerService _tapPlayerService;
-  private readonly IDialogService _dialogService;
 
   private int _index;
   private string _name;
@@ -17,8 +14,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   private PlayType _playType;
   private bool _isBackground;
   private ColorPalette _color;
-  private IAudioPlayer _player;
-  private Stream _fileStream;
+  private IMediaPlayerViewModel _player;
 
   public int Index
   {
@@ -98,19 +94,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     }
   }
 
-  public Stream FileStream
-  {
-    get
-    {
-      return _fileStream;
-    }
-    set
-    {
-      _fileStream = value;
-    }
-  }
-
-  public IAudioPlayer Player
+  public IMediaPlayerViewModel Player
   {
     get
     {
@@ -129,15 +113,9 @@ public class TileViewModel : ViewModelBase, ITileViewModel
 
   public Action StopAllExcludingBackground { get; set; }
 
-  public TileViewModel(
-    IAudioManager audioManager,
-    ITapPlayerService tapPlayerService,
-    IDialogService dialogService
-  )
+  public TileViewModel(ITapPlayerService tapPlayerService)
   {
-    _audioManager = audioManager;
     _tapPlayerService = tapPlayerService;
-    _dialogService = dialogService;
 
     TapCommand = new Command(Tap);
     EditCommand = new Command<IProjectEditViewModel>(x =>
@@ -148,59 +126,25 @@ public class TileViewModel : ViewModelBase, ITileViewModel
 
   private void Tap()
   {
-    var play = Player?.IsPlaying != true;
-
     if (!IsBackground)
     {
       _tapPlayerService.StopAllExcludingBackground();
     }
 
-    if (!string.IsNullOrWhiteSpace(File?.FullPath))
+    if (Player == null)
     {
-      if (Player == null)
-      {
-        FileStream = TryToOpenFileStream();
-        Player = _audioManager.CreatePlayer(FileStream);
-
-        if (PlayType == PlayType.Loop)
-        {
-          Player.Loop = true;
-        }
-      }
-
-      if (play)
-      {
-        TryToPlay();
-      }
-      else
-      {
-        Player.Stop();
-      }
+      return;
     }
-  }
 
-  private Stream TryToOpenFileStream()
-  {
-    try
-    {
-      return System.IO.File.OpenRead(File.FullPath);
-    }
-    catch (Exception ex)
-    {
-      _dialogService.Error($"Failed to open file \"{File.FullPath}\": {ex.Message}");
-      return null;
-    }
-  }
+    var play = Player.IsPlaying != true;
 
-  private void TryToPlay()
-  {
-    try
+    if (play)
     {
       Player.Play();
     }
-    catch (Exception ex)
+    else
     {
-      _dialogService.Error($"Failed to play file  \"{File.FullPath}\": {ex.Message}");
+      Player.Stop();
     }
   }
 }

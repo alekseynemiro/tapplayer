@@ -52,13 +52,6 @@ public class TapPlayerService : ITapPlayerService
         tile.Player.Dispose();
         tile.Player = null;
       }
-
-      if (tile.FileStream != null)
-      {
-        tile.FileStream.Close();
-        tile.FileStream.Dispose();
-        tile.FileStream = null;
-      }
     }
   }
 

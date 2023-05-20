@@ -4,6 +4,6 @@ internal static class ViewExtensions
 {
   public static void DispatchInvalidateMeasure(this IView view)
   {
-    Application.Current.MainPage.Dispatcher.Dispatch(() => view.InvalidateMeasure());
+    Application.Current.MainPage.Dispatcher.Dispatch(view.InvalidateMeasure);
   }
 }

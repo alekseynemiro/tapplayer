@@ -29,18 +29,23 @@
         HorizontalTextAlignment="Center"
         LineBreakMode="WordWrap"
       />
-      <Button
-        Text="{markup:Localization Key=OpenProject}"
-        Command="{Binding OpenProjectCommand}"
-      />
-      <Button
-        Text="{markup:Localization Key=CreateProject}"
-        Command="{Binding CreateProjectCommand}"
-      />
+      <HorizontalStackLayout
+        Spacing="8"
+        HorizontalOptions="Center"
+      >
+        <Button
+          Text="{markup:Localization Key=OpenProject}"
+          Command="{Binding OpenProjectCommand}"
+        />
+        <Button
+          Text="{markup:Localization Key=CreateProject}"
+          Command="{Binding CreateProjectCommand}"
+        />
+      </HorizontalStackLayout>
     </VerticalStackLayout>
     <VerticalStackLayout
       Spacing="8"
-      HorizontalOptions="Center"
+      HorizontalOptions="Fill"
       VerticalOptions="Center"
       IsVisible="{Binding ShowCreateProject}"
     >
@@ -49,10 +54,15 @@
         HorizontalTextAlignment="Center"
         LineBreakMode="WordWrap"
       />
-      <Button
-        Text="{markup:Localization Key=CreateProject}"
-        Command="{Binding CreateProjectCommand}"
-      />
+      <HorizontalStackLayout
+        Spacing="8"
+        HorizontalOptions="Center"
+      >
+        <Button
+          Text="{markup:Localization Key=CreateProject}"
+          Command="{Binding CreateProjectCommand}"
+        />
+      </HorizontalStackLayout>
     </VerticalStackLayout>
   </Grid>
 </ContentPage>

@@ -54,6 +54,7 @@
       <CheckBox
         VerticalOptions="Center"
         IsChecked="{Binding IsBackground}"
+        SemanticProperties.Description="{markup:Localization Key=Background}"
       />
       <Label
         VerticalOptions="Center"
@@ -79,6 +80,7 @@
           Style="{Binding Color, Converter={StaticResource ColorPaletteToButtonStyleConverter}}"
           WidthRequest="42"
           HeightRequest="42"
+          SemanticProperties.Description="{markup:Localization Key=SelectedColor}"
         />
       </Border>
     </HorizontalStackLayout>
@@ -86,9 +88,10 @@
     <VerticalStackLayout>
       <Label Text="{markup:Localization Key=TileName}" />
       <Border StyleClass="FormField">
-        <Editor
+        <Entry
           Text="{Binding Name}"
           MinimumWidthRequest="100"
+          SemanticProperties.Description="{markup:Localization Key=TileName}"
         />
       </Border>
     </VerticalStackLayout>
@@ -99,11 +102,13 @@
       <Button
         Text="{markup:Localization Key=Save}"
         Command="{Binding SaveCommand}"
+        SemanticProperties.Description="{markup:Localization Key=SaveTile}"
       />
       <Button
         Text="{markup:Localization Key=Cancel}"
         StyleClass="SecondaryButton"
         Command="{Binding CancelCommand}"
+        SemanticProperties.Description="{markup:Localization Key=CloseTileEditor}"
       />
     </HorizontalStackLayout>
   </VerticalStackLayout>

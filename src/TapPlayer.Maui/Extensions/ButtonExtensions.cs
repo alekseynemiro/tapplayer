@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Graphics.Skia;
-using System.Text.RegularExpressions;
 using Font = Microsoft.Maui.Graphics.Font;
 
 namespace TapPlayer.Maui.Extensions;
@@ -13,12 +12,17 @@ public static class ButtonExtensions
       return;
     }
 
-    // the text is sometimes cut off, we need to figure it out, but for now it's just a random numbers
-    double kw = 4.2;
-    double kh = 42;
+    double buttonContentWidth = button.Width - button.Padding.HorizontalThickness;
+    double buttonContentHeight = button.Height - button.Padding.VerticalThickness;
 
-    double width = button.Width - button.Padding.HorizontalThickness - kw;
-    double height = button.Height - button.Padding.VerticalThickness - kh;
+    if (Math.Min(buttonContentWidth, buttonContentHeight) <= 0)
+    {
+      return;
+    }
+
+    double width = buttonContentWidth - (buttonContentWidth * 0.1);
+    double height = buttonContentHeight - (buttonContentHeight * 0.3);
+
     double ratio = Math.Min(width, height);
 
     if (ratio <= 0)
@@ -26,7 +30,7 @@ public static class ButtonExtensions
       return;
     }
 
-    using var bmp = new SkiaBitmapExportContext((int)width, (int)height, 1.0f);
+    using var bmp = new SkiaBitmapExportContext((int)width, (int)height, (float)DeviceDisplay.MainDisplayInfo.Density);
     var font = new Font(button.FontFamily);
     var canvas = bmp.Canvas;
 
@@ -37,8 +41,8 @@ public static class ButtonExtensions
       button.Text,
       font,
       fontSize,
-      HorizontalAlignment.Center,
-      VerticalAlignment.Center
+      HorizontalAlignment.Left,
+      VerticalAlignment.Top
     );
 
     while (size.Width > width || size.Height > height)
@@ -50,7 +54,13 @@ public static class ButtonExtensions
         break;
       }
 
-      size = canvas.GetStringSize(button.Text, font, fontSize);
+      size = canvas.GetStringSize(
+        button.Text,
+        font,
+        fontSize,
+        HorizontalAlignment.Left,
+        VerticalAlignment.Top
+      );
     }
 
     button.FontSize = fontSize;

@@ -75,6 +75,7 @@
         StyleClass="SecondaryButton"
         HorizontalOptions="Start"
         Clicked="Cancel_Clicked"
+        SemanticProperties.Description="{markup:Localization Key=CloseSelectColor}"
       />
     </VerticalStackLayout>
   </Grid>

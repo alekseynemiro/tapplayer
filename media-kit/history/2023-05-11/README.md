@@ -1,6 +1,6 @@
 # 2023-05-11
 
-# Android
+## Android
 
 Screens for the [first public release](https://apps.rustore.ru/app/ru.nemiro.apps.tapplayer)!
 

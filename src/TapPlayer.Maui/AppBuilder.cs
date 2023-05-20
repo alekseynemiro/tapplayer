@@ -44,6 +44,7 @@ public static class AppBuilder
     builder.Services.AddSingleton<IAppInfo, Services.AppInfo>();
     builder.Services.AddSingleton<IDialogService, DialogService>();
     builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
+    builder.Services.AddSingleton<IMediaService, MediaService>();
     builder.Services.AddSingleton<INavigationService, NavigationService>();
     builder.Services.AddSingleton<ITapPlayerService, TapPlayerService>();
 

@@ -1,5 +1,4 @@
-﻿using Plugin.Maui.Audio;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Services;
 
@@ -7,7 +6,7 @@ namespace TapPlayer.Maui.ViewModels;
 
 public class TileViewModel : ViewModelBase, ITileViewModel
 {
-  private readonly IAudioManager _audioManager;
+  private readonly IMediaService _mediaService;
   private readonly ITapPlayerService _tapPlayerService;
   private readonly IDialogService _dialogService;
 
@@ -17,8 +16,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   private PlayType _playType;
   private bool _isBackground;
   private ColorPalette _color;
-  private IAudioPlayer _player;
-  private Stream _fileStream;
+  private IMediaPlayerViewModel _player;
 
   public int Index
   {
@@ -98,19 +96,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     }
   }
 
-  public Stream FileStream
-  {
-    get
-    {
-      return _fileStream;
-    }
-    set
-    {
-      _fileStream = value;
-    }
-  }
-
-  public IAudioPlayer Player
+  public IMediaPlayerViewModel Player
   {
     get
     {
@@ -130,12 +116,12 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   public Action StopAllExcludingBackground { get; set; }
 
   public TileViewModel(
-    IAudioManager audioManager,
+    IMediaService mediaService,
     ITapPlayerService tapPlayerService,
     IDialogService dialogService
   )
   {
-    _audioManager = audioManager;
+    _mediaService = mediaService;
     _tapPlayerService = tapPlayerService;
     _dialogService = dialogService;
 
@@ -159,8 +145,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     {
       if (Player == null)
       {
-        FileStream = TryToOpenFileStream();
-        Player = _audioManager.CreatePlayer(FileStream);
+        Player = _mediaService.CreatePlayer(File.FullPath);
 
         if (PlayType == PlayType.Loop)
         {
@@ -176,19 +161,6 @@ public class TileViewModel : ViewModelBase, ITileViewModel
       {
         Player.Stop();
       }
-    }
-  }
-
-  private Stream TryToOpenFileStream()
-  {
-    try
-    {
-      return System.IO.File.OpenRead(File.FullPath);
-    }
-    catch (Exception ex)
-    {
-      _dialogService.Error($"Failed to open file \"{File.FullPath}\": {ex.Message}");
-      return null;
     }
   }
 

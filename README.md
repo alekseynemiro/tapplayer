@@ -6,13 +6,15 @@ This is small an Android app that allows you to play music files when you click 
 
 ## Install
 
-Find the latest version in the Releases section:
+<a href="https://play.google.com/store/apps/details?id=ru.nemiro.apps.tapplayer&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank">
+  <img
+    alt="Get it on Google Play"
+    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+  />
+</a>
 
-https://github.com/alekseynemiro/TapPlayer/releases
-
-or install the application through RuStore:
-
-https://apps.rustore.ru/app/ru.nemiro.apps.tapplayer
+* https://apps.rustore.ru/app/ru.nemiro.apps.tapplayer
+* https://github.com/alekseynemiro/TapPlayer/releases
 
 ## License
 

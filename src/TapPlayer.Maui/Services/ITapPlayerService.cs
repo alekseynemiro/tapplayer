@@ -7,7 +7,7 @@ public interface ITapPlayerService
 {
   void Set(ObservableCollection<ITileViewModel> tiles);
 
-  void StopAllExcludingBackground();
+  void StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions);
 
   void StopAll();
 

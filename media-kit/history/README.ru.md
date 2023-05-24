@@ -6,6 +6,8 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.developer?w=wall-96983816_192 - Публикация в Google Play
+* https://vk.com/aleksey.developer?w=wall-96983816_190 - Отправил запрос на публикацию приложения в Google Play
 * https://vk.com/aleksey.developer?w=wall-96983816_185 - Результат тестирования приложения в Google Play
 * https://vk.com/aleksey.developer?w=wall-96983816_183 - Google Play не поддерживает android:versionCodeMajor o_O
 * https://vk.com/aleksey.developer?w=wall-96983816_180 - AndroidSDK съедает место на диске

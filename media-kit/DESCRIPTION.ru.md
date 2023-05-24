@@ -1,6 +1,6 @@
 # TapPlayer
 
-![TapPlayer](banner1024x500.png)
+![TapPlayer](banners/banner1024x500.png)
 
 ## Краткое описание
 

@@ -24,11 +24,7 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
 
   public void Play()
   {
-    if (_player.CurrentState != MediaElementState.Stopped)
-    {
-      _player.Stop();
-    }
-
+    _player.Stop();
     _player.Play();
   }
 

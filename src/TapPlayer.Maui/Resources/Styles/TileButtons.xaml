@@ -61,7 +61,6 @@
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color17}, Dark={StaticResource DarkColor17}}" />
   </Style>
   <Style TargetType="Button" x:Key="TileButton18" BaseResourceKey="TileButton">
-    <Setter Property="CornerRadius" Value="0" />
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color18}, Dark={StaticResource DarkColor18}}" />
   </Style>
   <Style TargetType="Button" x:Key="TileButton19" BaseResourceKey="TileButton">

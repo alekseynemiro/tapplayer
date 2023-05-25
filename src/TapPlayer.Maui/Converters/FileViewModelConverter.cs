@@ -14,6 +14,11 @@ internal class FileViewModelConverter : IValueConverter
       return null;
     }
 
+    if (parameter?.ToString()?.Equals("true", StringComparison.OrdinalIgnoreCase) == true)
+    {
+      return file.FullPath;
+    }
+
     return file.Name;
   }
 

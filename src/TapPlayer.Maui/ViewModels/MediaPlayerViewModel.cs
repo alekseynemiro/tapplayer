@@ -24,7 +24,11 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
 
   public void Play()
   {
-    _player.Stop();
+    if (_player.CurrentState != MediaElementState.Stopped)
+    {
+      _player.Stop();
+    }
+
     _player.Play();
   }
 
@@ -42,7 +46,7 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
   {
     if (Loop)
     {
-      Play();
+      Application.Current.Dispatcher.Dispatch(Play);
     }
   }
 }

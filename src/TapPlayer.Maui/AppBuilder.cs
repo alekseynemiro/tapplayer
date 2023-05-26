@@ -18,6 +18,7 @@ public static class AppBuilder
 
     builder
       .UseMauiApp<App>()
+      .UseMauiCommunityToolkit()
       .UseMauiCommunityToolkitMediaElement()
       .ConfigureFonts(fonts =>
       {

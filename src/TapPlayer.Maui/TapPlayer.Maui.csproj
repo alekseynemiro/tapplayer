@@ -97,6 +97,7 @@
 
   <ItemGroup>
     <PackageReference Include="akgul.Maui.DataGrid" Version="2.0.0" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
     <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.4" />
@@ -112,10 +113,16 @@
     <MauiXaml Update="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Components\TileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Resources\Styles\ColorPaletteDark.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Resources\Styles\ColorPalette.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Tiles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Resources\Styles\TileColorPaletteDark.xaml">
@@ -148,6 +155,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\TileView.xaml.cs">
+      <DependentUpon>TileView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Strings\CommonStrings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

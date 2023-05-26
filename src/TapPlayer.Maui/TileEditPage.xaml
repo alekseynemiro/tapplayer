@@ -78,8 +78,8 @@
       >
         <Button
           Style="{Binding Color, Converter={StaticResource ColorPaletteToButtonStyleConverter}}"
-          WidthRequest="42"
-          HeightRequest="42"
+          WidthRequest="52"
+          HeightRequest="52"
           SemanticProperties.Description="{markup:Localization Key=SelectedColor}"
         />
       </Border>

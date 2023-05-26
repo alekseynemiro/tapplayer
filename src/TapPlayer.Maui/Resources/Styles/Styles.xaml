@@ -39,7 +39,7 @@
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryText}, Dark={StaticResource DarkPrimaryText}}" />
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}" />
     <Setter Property="FontFamily" Value="OpenSansRegular" />
-    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontSize" Value="16" />
     <Setter Property="CornerRadius" Value="8" />
     <Setter Property="Padding" Value="14,10" />
     <Setter Property="VisualStateManager.VisualStateGroups">
@@ -82,7 +82,7 @@
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource InputText}, Dark={StaticResource DarkInputText}}" />
     <Setter Property="BackgroundColor" Value="Transparent" />
     <Setter Property="FontFamily" Value="OpenSansRegular" />
-    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontSize" Value="16" />
     <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
@@ -102,7 +102,7 @@
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource InputText}, Dark={StaticResource DarkInputText}}" />
     <Setter Property="BackgroundColor" Value="Transparent" />
     <Setter Property="FontFamily" Value="OpenSansRegular" />
-    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontSize" Value="16" />
     <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
@@ -140,7 +140,7 @@
   <Style TargetType="Label">
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Text}, Dark={StaticResource DarkText}}" />
     <Setter Property="FontFamily" Value="OpenSansRegular" />
-    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontSize" Value="16" />
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">
@@ -160,7 +160,7 @@
     <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource InputText}, Dark={StaticResource DarkInputText}}" />
     <Setter Property="BackgroundColor" Value="Transparent" />
     <Setter Property="FontFamily" Value="OpenSansRegular" />
-    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontSize" Value="16" />
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">
@@ -190,7 +190,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Text}, Dark={StaticResource DarkText}}" />
     <Setter Property="FontFamily" Value="OpenSansRegular" />
-    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontSize" Value="16" />
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">

@@ -14,7 +14,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <VerticalStackLayout
-    Spacing="16"
+    Spacing="18"
     StyleClass="WithPadding"
   >
     <Border StyleClass="FormField" Padding="8">
@@ -39,7 +39,7 @@
       </Grid>
     </Border>
 
-    <HorizontalStackLayout Spacing="8">
+    <HorizontalStackLayout Spacing="24">
       <RadioButton
         Content="{markup:Localization Key=PlayOnce}"
         IsChecked="{Binding PlayOnce}"

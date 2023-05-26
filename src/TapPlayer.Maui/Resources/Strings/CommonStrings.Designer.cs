@@ -241,6 +241,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Apply changes and close the tile config dialog..
+        /// </summary>
+        internal static string OkTileEditor {
+            get {
+                return ResourceManager.GetString("OkTileEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на To get started, open a project or create a new one..
         /// </summary>
         internal static string OpenOrCreateProjectToStart {
@@ -336,15 +345,6 @@ namespace TapPlayer.Maui.Resources.Strings {
         internal static string SaveProject {
             get {
                 return ResourceManager.GetString("SaveProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Save changes of tile settings..
-        /// </summary>
-        internal static string SaveTile {
-            get {
-                return ResourceManager.GetString("SaveTile", resourceCulture);
             }
         }
         

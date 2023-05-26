@@ -193,6 +193,10 @@
     <value>Ok</value>
     <comment>Button</comment>
   </data>
+  <data name="OkTileEditor" xml:space="preserve">
+    <value>Apply changes and close the tile config dialog.</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="OpenOrCreateProjectToStart" xml:space="preserve">
     <value>To get started, open a project or create a new one.</value>
     <comment>Message</comment>
@@ -235,9 +239,6 @@
   </data>
   <data name="SaveProject" xml:space="preserve">
     <value>Save changes of project settings.</value>
-  </data>
-  <data name="SaveTile" xml:space="preserve">
-    <value>Save changes of tile settings.</value>
   </data>
   <data name="SelectColor" xml:space="preserve">
     <value>Select color</value>

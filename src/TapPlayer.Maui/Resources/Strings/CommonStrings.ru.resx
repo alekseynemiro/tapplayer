@@ -130,7 +130,6 @@
   </data>
   <data name="BackgroundPlayback" xml:space="preserve">
     <value>Воспроизведение в фоне</value>
-    <comment>Semantic</comment>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
@@ -164,24 +163,24 @@
   </data>
   <data name="IsPlaying" xml:space="preserve">
     <value>Играет сейчас</value>
-    <comment>Semantic</comment>
   </data>
   <data name="Loop" xml:space="preserve">
     <value>зациклить</value>
   </data>
   <data name="LoopedPlayback" xml:space="preserve">
     <value>Цикличное воспроизведение</value>
-    <comment>Semantic</comment>
   </data>
   <data name="NewProject" xml:space="preserve">
     <value>Новый проект</value>
   </data>
   <data name="NoSource" xml:space="preserve">
     <value>Файл не выбран</value>
-    <comment>Semantic</comment>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
+  </data>
+  <data name="OkTileEditor" xml:space="preserve">
+    <value>Применить изменения настроек плитки и закрыть диалог.</value>
   </data>
   <data name="OpenOrCreateProjectToStart" xml:space="preserve">
     <value>Откройте существующий проект или создайте новый.</value>
@@ -216,9 +215,6 @@
   <data name="SaveProject" xml:space="preserve">
     <value>Сохранить изменения настроек проекта и закрыть диалог.</value>
   </data>
-  <data name="SaveTile" xml:space="preserve">
-    <value>Сохранить изменения настроек плитки и закрыть диалог.</value>
-  </data>
   <data name="SelectColor" xml:space="preserve">
     <value>Выбрать цвет</value>
   </data>
@@ -245,7 +241,6 @@
   </data>
   <data name="UnableToPlay" xml:space="preserve">
     <value>Невозможно воспроизвести</value>
-    <comment>Semantic</comment>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Да</value>

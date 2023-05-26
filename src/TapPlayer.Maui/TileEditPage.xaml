@@ -100,9 +100,9 @@
 
     <HorizontalStackLayout Margin="0" Spacing="8">
       <Button
-        Text="{markup:Localization Key=Save}"
+        Text="{markup:Localization Key=Ok}"
         Command="{Binding SaveCommand}"
-        SemanticProperties.Description="{markup:Localization Key=SaveTile}"
+        SemanticProperties.Description="{markup:Localization Key=OkTileEditor}"
       />
       <Button
         Text="{markup:Localization Key=Cancel}"

@@ -134,8 +134,9 @@
       VerticalOptions="Fill"
       HorizontalTextAlignment="Center"
       VerticalTextAlignment="Center"
-      LineBreakMode="WordWrap"
+      LineBreakMode="CharacterWrap"
       Style="{StaticResource TileName}"
+      Padding="4,0"
       Grid.Row="1"
     />
 

@@ -250,7 +250,8 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на To get started, open a project or create a new one:.
+        ///   Ищет локализованную строку, похожую на To get started, open a project
+        ///or create a new one:.
         /// </summary>
         internal static string OpenOrCreateProjectToStart {
             get {

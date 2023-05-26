@@ -1,25 +1,22 @@
 ﻿using System.Globalization;
-using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui.Converters;
 
-internal class FileViewModelConverter : IValueConverter
+internal class EmptyValueToBoolConverter : IValueConverter
 {
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
   {
-    var file = (FileViewModel)value;
-
-    if (string.IsNullOrWhiteSpace(file?.FullPath))
+    if (value == null)
     {
-      return null;
+      return true;
     }
 
-    if (parameter?.ToString()?.Equals("true", StringComparison.OrdinalIgnoreCase) == true)
+    if (value.GetType() == typeof(string))
     {
-      return file.FullPath;
+      return string.IsNullOrWhiteSpace(value.ToString());
     }
 
-    return file.Name;
+    throw new NotSupportedException($"{value.GetType()} is not supported.");
   }
 
   public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

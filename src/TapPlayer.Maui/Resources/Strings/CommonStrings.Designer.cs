@@ -88,6 +88,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Background playback.
+        /// </summary>
+        internal static string BackgroundPlayback {
+            get {
+                return ResourceManager.GetString("BackgroundPlayback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Cancel.
         /// </summary>
         internal static string Cancel {
@@ -178,6 +187,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Is playing.
+        /// </summary>
+        internal static string IsPlaying {
+            get {
+                return ResourceManager.GetString("IsPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Loop.
         /// </summary>
         internal static string Loop {
@@ -187,11 +205,29 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Looped playback.
+        /// </summary>
+        internal static string LoopedPlayback {
+            get {
+                return ResourceManager.GetString("LoopedPlayback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на New project.
         /// </summary>
         internal static string NewProject {
             get {
                 return ResourceManager.GetString("NewProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Playback file not selected.
+        /// </summary>
+        internal static string NoSource {
+            get {
+                return ResourceManager.GetString("NoSource", resourceCulture);
             }
         }
         
@@ -381,6 +417,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         internal static string TitleSettings {
             get {
                 return ResourceManager.GetString("TitleSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unable to play due to an error.
+        /// </summary>
+        internal static string UnableToPlay {
+            get {
+                return ResourceManager.GetString("UnableToPlay", resourceCulture);
             }
         }
         

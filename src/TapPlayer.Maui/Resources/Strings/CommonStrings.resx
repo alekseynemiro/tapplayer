@@ -129,6 +129,10 @@
     <value>background</value>
     <comment>Checkbox</comment>
   </data>
+  <data name="BackgroundPlayback" xml:space="preserve">
+    <value>Background playback</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
     <comment>Button</comment>
@@ -165,13 +169,25 @@
     <value>Exit</value>
     <comment>Menu</comment>
   </data>
+  <data name="IsPlaying" xml:space="preserve">
+    <value>Is playing</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Loop" xml:space="preserve">
     <value>Loop</value>
     <comment>Radio</comment>
   </data>
+  <data name="LoopedPlayback" xml:space="preserve">
+    <value>Looped playback</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="NewProject" xml:space="preserve">
     <value>New project</value>
     <comment>Title</comment>
+  </data>
+  <data name="NoSource" xml:space="preserve">
+    <value>Playback file not selected</value>
+    <comment>Semantic</comment>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
@@ -252,6 +268,10 @@
   <data name="TitleSettings" xml:space="preserve">
     <value>Tile settings</value>
     <comment>Title</comment>
+  </data>
+  <data name="UnableToPlay" xml:space="preserve">
+    <value>Unable to play due to an error</value>
+    <comment>Semantic</comment>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

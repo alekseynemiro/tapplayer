@@ -16,6 +16,8 @@
       VerticalOptions="Fill"
       HorizontalOptions="Fill"
       IsVisible="{Binding ShowTiles}"
+      RowSpacing="2"
+      ColumnSpacing="2"
     />
     <VerticalStackLayout
       Spacing="8"

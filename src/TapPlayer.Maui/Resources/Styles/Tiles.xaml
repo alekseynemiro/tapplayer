@@ -3,118 +3,117 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 >
-  <Style TargetType="Button" x:Key="TileButton" Class="TileButton">
-    <Setter Property="CornerRadius" Value="0" />
-    <Setter Property="FontAutoScalingEnabled" Value="False" />
-    <Setter Property="Padding" Value="14,10" />
-    <Setter Property="Margin" Value="{OnPlatform 0, Android=1}" />
+  <Style TargetType="Label" x:Key="TileName" Class="TileName">
+    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryText}, Dark={StaticResource DarkPrimaryText}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton1" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile" Class="Tile">
+  </Style>
+  <Style TargetType="Grid" x:Key="Tile1" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color1}, Dark={StaticResource DarkColor1}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton2" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile2" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color2}, Dark={StaticResource DarkColor2}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton3" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile3" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color3}, Dark={StaticResource DarkColor3}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton4" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile4" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color4}, Dark={StaticResource DarkColor4}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton5" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile5" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color5}, Dark={StaticResource DarkColor5}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton6" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile6" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color6}, Dark={StaticResource DarkColor6}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton7" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile7" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color7}, Dark={StaticResource DarkColor7}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton8" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile8" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color8}, Dark={StaticResource DarkColor8}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton9" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile9" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color9}, Dark={StaticResource DarkColor9}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton10" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile10" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color10}, Dark={StaticResource DarkColor10}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton11" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile11" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color11}, Dark={StaticResource DarkColor11}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton12" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile12" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color12}, Dark={StaticResource DarkColor12}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton13" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile13" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color13}, Dark={StaticResource DarkColor13}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton14" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile14" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color14}, Dark={StaticResource DarkColor14}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton15" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile15" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color15}, Dark={StaticResource DarkColor15}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton16" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile16" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color16}, Dark={StaticResource DarkColor16}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton17" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile17" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color17}, Dark={StaticResource DarkColor17}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton18" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile18" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color18}, Dark={StaticResource DarkColor18}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton19" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile19" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color19}, Dark={StaticResource DarkColor19}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton20" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile20" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color20}, Dark={StaticResource DarkColor20}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton21" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile21" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color21}, Dark={StaticResource DarkColor21}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton22" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile22" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color22}, Dark={StaticResource DarkColor22}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton23" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile23" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color23}, Dark={StaticResource DarkColor23}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton24" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile24" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color24}, Dark={StaticResource DarkColor24}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton25" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile25" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color25}, Dark={StaticResource DarkColor25}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton26" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile26" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color26}, Dark={StaticResource DarkColor26}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton27" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile27" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color27}, Dark={StaticResource DarkColor27}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton28" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile28" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color28}, Dark={StaticResource DarkColor28}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton29" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile29" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color29}, Dark={StaticResource DarkColor29}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton30" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile30" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color30}, Dark={StaticResource DarkColor30}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton31" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile31" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color31}, Dark={StaticResource DarkColor31}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton32" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile32" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color32}, Dark={StaticResource DarkColor32}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton33" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile33" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color33}, Dark={StaticResource DarkColor33}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton34" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile34" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color34}, Dark={StaticResource DarkColor34}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton35" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile35" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color35}, Dark={StaticResource DarkColor35}}" />
   </Style>
-  <Style TargetType="Button" x:Key="TileButton36" BaseResourceKey="TileButton">
+  <Style TargetType="Grid" x:Key="Tile36" BaseResourceKey="Tile">
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color36}, Dark={StaticResource DarkColor36}}" />
   </Style>
 </ResourceDictionary>

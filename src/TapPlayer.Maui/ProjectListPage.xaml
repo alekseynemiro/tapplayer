@@ -27,6 +27,7 @@
       HeaderBordersVisible="False"
       HorizontalOptions="Fill"
       VerticalOptions="Start"
+      FontSize="16"
       Refreshing="DataGrid_Refreshing"
     >
       <dg:DataGrid.Columns>
@@ -34,6 +35,7 @@
           PropertyName="Name"
           VerticalContentAlignment="Center"
           HorizontalContentAlignment="Start"
+          LineBreakMode="TailTruncation"
         />
         <dg:DataGridColumn
           Width="{OnPlatform Android='64', Default='42'}"

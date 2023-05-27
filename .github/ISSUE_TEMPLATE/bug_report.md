@@ -21,6 +21,10 @@ A clear and concise description of what you expected to happen.
 ## Screenshots
 If applicable, add screenshots to help explain your problem.
 
+## Affected versions
+Please indicate affected versions of TapPlayer (see Menu => About...)
+- e.g. v1.0.3
+
 ## Device (please complete the following information):
  - Manufacturer: [e.g. Xiaomi]
  - OS: [e.g. Android v12]

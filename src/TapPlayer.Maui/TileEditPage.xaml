@@ -91,6 +91,7 @@
           WidthRequest="52"
           HeightRequest="52"
           SemanticProperties.Description="{markup:Localization Key=SelectedColor}"
+          Clicked="SelectColor_Clicked"
         />
       </Border>
     </HorizontalStackLayout>

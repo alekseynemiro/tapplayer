@@ -6,6 +6,8 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.developer?w=wall-96983816_195 - NotFoundException: 'Resource ID #0x7f0d003a'
+* https://vk.com/aleksey.developer?w=wall-96983816_193 - Организация рабочего процесса над проектом
 * https://vk.com/aleksey.developer?w=wall-96983816_192 - Публикация в Google Play
 * https://vk.com/aleksey.developer?w=wall-96983816_190 - Отправил запрос на публикацию приложения в Google Play
 * https://vk.com/aleksey.developer?w=wall-96983816_185 - Результат тестирования приложения в Google Play

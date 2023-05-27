@@ -305,6 +305,10 @@
     <value>Create project</value>
     <comment>Menu/Button</comment>
   </data>
+  <data name="DeleteProject" xml:space="preserve">
+    <value>Delete project</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
     <comment>Title</comment>
@@ -348,7 +352,7 @@ or create a new one:</value>
   </data>
   <data name="OpenProject" xml:space="preserve">
     <value>Open project</value>
-    <comment>Menu/Button</comment>
+    <comment>Menu/Button/Semantic</comment>
   </data>
   <data name="PlayOnce" xml:space="preserve">
     <value>Play once</value>
@@ -376,7 +380,7 @@ or create a new one:</value>
   </data>
   <data name="ProjectSettings" xml:space="preserve">
     <value>Project settings</value>
-    <comment>Menu/Title</comment>
+    <comment>Menu/Title/Semantic</comment>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

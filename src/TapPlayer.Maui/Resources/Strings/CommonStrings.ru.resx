@@ -263,6 +263,9 @@
   <data name="CreateProject" xml:space="preserve">
     <value>Новый проект</value>
   </data>
+  <data name="DeleteProject" xml:space="preserve">
+    <value>Удалить проект</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>

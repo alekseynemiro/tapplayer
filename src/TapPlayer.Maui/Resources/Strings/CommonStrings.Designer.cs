@@ -493,6 +493,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Delete project.
+        /// </summary>
+        internal static string DeleteProject {
+            get {
+                return ResourceManager.GetString("DeleteProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error.
         /// </summary>
         internal static string Error {

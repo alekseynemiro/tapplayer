@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="512"
-   height="512"
-   viewBox="0 0 135.46668 135.46667"
+   width="64"
+   height="64"
+   viewBox="0 0 16.933335 16.933334"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="splash.svg">
+   sodipodi:docname="appicon.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="233.25388"
-     inkscape:cy="236.36429"
+     inkscape:cx="253.25293"
+     inkscape:cy="171.53964"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -67,70 +67,70 @@
      transform="translate(-22.67857,-18.142859)">
     <g
        id="g852"
-       transform="translate(-0.75595242,12.095239)">
+       transform="matrix(0.12479108,0,0,0.11859697,19.848486,15.99117)">
       <rect
-         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.151465"
+         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.264583"
          id="rect10"
-         width="25.532776"
-         height="26.831053"
-         x="52.72768"
-         y="38.553574" />
+         width="44.601189"
+         height="46.869045"
+         x="22.678572"
+         y="18.142859" />
       <rect
-         style="fill:#b3b3b3;stroke-width:0.151465"
+         style="fill:#b3b3b3;stroke-width:0.264583"
          id="rect10-8"
-         width="25.532776"
-         height="26.831053"
-         x="78.693214"
-         y="38.661762" />
+         width="44.601189"
+         height="46.869045"
+         x="68.035706"
+         y="18.331846" />
       <rect
-         style="fill:#b3b3b3;stroke-width:0.151465"
+         style="fill:#b3b3b3;stroke-width:0.264583"
          id="rect10-2"
-         width="25.532776"
-         height="26.831053"
-         x="104.76694"
-         y="38.553574" />
+         width="44.601189"
+         height="46.869045"
+         x="113.58184"
+         y="18.142859" />
       <rect
-         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.151465"
+         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.264583"
          id="rect10-1"
-         width="25.532776"
-         height="26.831053"
-         x="52.727684"
-         y="65.871483" />
+         width="44.601189"
+         height="46.869045"
+         x="22.678577"
+         y="65.86235" />
       <rect
-         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.151465"
+         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.264583"
          id="rect10-8-4"
-         width="25.532776"
-         height="26.831053"
-         x="78.693214"
-         y="65.979668" />
+         width="44.601189"
+         height="46.869045"
+         x="68.035713"
+         y="66.051338" />
       <rect
-         style="fill:#b3b3b3;stroke-width:0.151465"
+         style="fill:#b3b3b3;stroke-width:0.264583"
          id="rect10-2-4"
-         width="25.532776"
-         height="26.831053"
-         x="104.87514"
-         y="65.871483" />
+         width="44.601189"
+         height="46.869045"
+         x="113.77084"
+         y="65.86235" />
       <rect
-         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.151465"
+         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.264583"
          id="rect10-1-1"
-         width="25.532776"
-         height="26.831053"
-         x="52.72768"
-         y="93.351677" />
+         width="44.601189"
+         height="46.869045"
+         x="22.67857"
+         y="113.86533" />
       <rect
-         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.151465"
+         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.264583"
          id="rect10-8-4-0"
-         width="25.532776"
-         height="26.831053"
-         x="78.693214"
-         y="93.459862" />
+         width="44.601189"
+         height="46.869045"
+         x="68.035706"
+         y="114.05431" />
       <rect
-         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.151465"
+         style="fill:#ee82ee;fill-opacity:1;stroke-width:0.264583"
          id="rect10-2-4-2"
-         width="25.532776"
-         height="26.831053"
-         x="104.87514"
-         y="93.351677" />
+         width="44.601189"
+         height="46.869045"
+         x="113.77084"
+         y="113.86533" />
       <path
          sodipodi:type="star"
          style="fill:#800080;fill-opacity:1;stroke:#ffffff;stroke-width:1.53148;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -146,43 +146,9 @@
          inkscape:rounded="0"
          inkscape:randomized="0"
          d="m 118.68452,76.351189 -89.580362,51.719241 0,-103.438488 z"
-         inkscape:transform-center-x="-8.9578478"
-         transform="matrix(0.59998737,0,0,0.60954296,53.248781,33.991861)" />
+         inkscape:transform-center-x="-15.647756"
+         transform="matrix(1.0480705,0,0,1.0647624,23.588842,10.174362)"
+         inkscape:transform-center-y="-1.4740642e-06" />
     </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15.8482px;line-height:1.25;font-family:sans-serif;fill:#800080;fill-opacity:1;stroke:none;stroke-width:0.396207;"
-       x="58.160252"
-       y="40.811733"
-       id="text856"
-       transform="scale(0.89312651,1.1196622)"><tspan
-         sodipodi:role="line"
-         id="tspan854"
-         x="58.160252"
-         y="40.811733"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.396207;fill:#800080;fill-opacity:1;">TapPlayer</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15.7707px;line-height:1.25;font-family:sans-serif;fill:#800080;fill-opacity:1;stroke:none;stroke-width:0.394272;"
-       x="120.45328"
-       y="113.80279"
-       id="text856-8"
-       transform="scale(0.88876288,1.1251595)"><tspan
-         sodipodi:role="line"
-         id="tspan854-3"
-         x="120.45328"
-         y="113.80279"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.394272;fill:#800080;fill-opacity:1;">v1</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;fill:#800080;fill-opacity:1;stroke:none;stroke-width:0.264583;"
-       x="51.59375"
-       y="135.31548"
-       id="text878"><tspan
-         sodipodi:role="line"
-         id="tspan876"
-         x="51.59375"
-         y="135.31548"
-         style="font-size:2.82222px;stroke-width:0.264583;fill:#800080;fill-opacity:1;">by Aleksey Nemiro</tspan></text>
   </g>
 </svg>

@@ -11,9 +11,11 @@
     <ResourceDictionary>
       <converters:FileViewModelConverter x:Key="FileViewModelConverter" />
       <converters:ColorPaletteToButtonStyleConverter x:Key="ColorPaletteToButtonStyleConverter" />
+      <converters:ReduceValueConverter x:Key="ReduceValueConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <VerticalStackLayout
+    x:Name="Container"
     Spacing="18"
     StyleClass="WithPadding"
   >
@@ -59,6 +61,14 @@
       <Label
         VerticalOptions="Center"
         Text="{markup:Localization Key=Background}"
+        LineBreakMode="WordWrap"
+        MaximumWidthRequest="{Binding
+          Source={x:Reference Container},
+          Path=Width,
+          Converter={StaticResource ReduceValueConverter},
+          ConverterParameter=50
+        }"
+        PropertyChanged="MaximumWidthRequest_PropertyChanged"
       >
         <Label.GestureRecognizers>
           <TapGestureRecognizer Tapped="IsBackground_Tapped" />

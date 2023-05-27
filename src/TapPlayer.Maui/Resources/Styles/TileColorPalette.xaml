@@ -5,44 +5,44 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 >
   <Color x:Key="Color1">#EE82EE</Color>
-  <Color x:Key="Color2">#CA82EE</Color>
-  <Color x:Key="Color3">#A682EE</Color>
-  <Color x:Key="Color4">#8D5BA7</Color>
-  <Color x:Key="Color5">#745BA7</Color>
-  <Color x:Key="Color6">#4D4375</Color>
+  <Color x:Key="Color2">#E74CE7</Color>
+  <Color x:Key="Color3">#D81DD8</Color>
+  <Color x:Key="Color4">#A216A2</Color>
+  <Color x:Key="Color5">#6C0F6C</Color>
+  <Color x:Key="Color6">#360736</Color>
 
   <Color x:Key="Color7">#EE8282</Color>
-  <Color x:Key="Color8">#E46868</Color>
-  <Color x:Key="Color9">#DA5C4F</Color>
-  <Color x:Key="Color10">#C83C2D</Color>
-  <Color x:Key="Color11">#BC240F</Color>
-  <Color x:Key="Color12">#84190B</Color>
+  <Color x:Key="Color8">#E74C4C</Color>
+  <Color x:Key="Color9">#E33131</Color>
+  <Color x:Key="Color10">#BD1A1A</Color>
+  <Color x:Key="Color11">#871212</Color>
+  <Color x:Key="Color12">#360707</Color>
 
   <Color x:Key="Color13">#EEBE82</Color>
-  <Color x:Key="Color14">#DCAA6C</Color>
-  <Color x:Key="Color15">#C4904F</Color>
-  <Color x:Key="Color16">#C4A94F</Color>
-  <Color x:Key="Color17">#B69937</Color>
-  <Color x:Key="Color18">#8D7217</Color>
+  <Color x:Key="Color14">#E7A24C</Color>
+  <Color x:Key="Color15">#E39431</Color>
+  <Color x:Key="Color16">#BD741A</Color>
+  <Color x:Key="Color17">#875312</Color>
+  <Color x:Key="Color18">#51320B</Color>
 
   <Color x:Key="Color19">#82C266</Color>
-  <Color x:Key="Color20">#69A74D</Color>
-  <Color x:Key="Color21">#338D26</Color>
-  <Color x:Key="Color22">#3D7623</Color>
-  <Color x:Key="Color23">#19660D</Color>
-  <Color x:Key="Color24">#083F00</Color>
+  <Color x:Key="Color20">#67B046</Color>
+  <Color x:Key="Color21">#528d38</Color>
+  <Color x:Key="Color22">#3E6A2A</Color>
+  <Color x:Key="Color23">#29471C</Color>
+  <Color x:Key="Color24">#15230E</Color>
 
   <Color x:Key="Color25">#65B3A9</Color>
-  <Color x:Key="Color26">#4D938A</Color>
-  <Color x:Key="Color27">#3C8B81</Color>
-  <Color x:Key="Color28">#39949D</Color>
-  <Color x:Key="Color29">#2B7D85</Color>
-  <Color x:Key="Color30">#1A5D64</Color>
+  <Color x:Key="Color26">#4D9C92</Color>
+  <Color x:Key="Color27">#458D83</Color>
+  <Color x:Key="Color28">#366D66</Color>
+  <Color x:Key="Color29">#274E49</Color>
+  <Color x:Key="Color30">#172F2C</Color>
 
   <Color x:Key="Color31">#8982EE</Color>
-  <Color x:Key="Color32">#6671CE</Color>
-  <Color x:Key="Color33">#4D57AF</Color>
-  <Color x:Key="Color34">#3B459F</Color>
-  <Color x:Key="Color35">#27328F</Color>
-  <Color x:Key="Color36">#151E6C</Color>
+  <Color x:Key="Color32">#564CE7</Color>
+  <Color x:Key="Color33">#3D31E3</Color>
+  <Color x:Key="Color34">#241ABD</Color>
+  <Color x:Key="Color35">#1A1287</Color>
+  <Color x:Key="Color36">#100B51</Color>
 </ResourceDictionary>

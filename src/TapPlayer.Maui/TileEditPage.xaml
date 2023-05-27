@@ -108,7 +108,7 @@
 
     <BoxView StyleClass="Separator" />
 
-    <HorizontalStackLayout Margin="0" Spacing="8">
+    <HorizontalStackLayout Margin="0" Spacing="16">
       <Button
         Text="{markup:Localization Key=Ok}"
         Command="{Binding SaveCommand}"

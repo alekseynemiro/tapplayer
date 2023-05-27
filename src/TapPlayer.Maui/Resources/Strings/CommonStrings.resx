@@ -149,9 +149,153 @@
   <data name="CloseTileEditor" xml:space="preserve">
     <value>Close the tile editor without saving changes.</value>
   </data>
+  <data name="ColorBlue" xml:space="preserve">
+    <value>Blue</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueDark" xml:space="preserve">
+    <value>Dark blue</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueDark25" xml:space="preserve">
+    <value>Dark blue 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueDark50" xml:space="preserve">
+    <value>Dark blue 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreen" xml:space="preserve">
+    <value>Sea wave</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenDark" xml:space="preserve">
+    <value>Dark sea wave</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenDark25" xml:space="preserve">
+    <value>Dark sea wave 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenDark50" xml:space="preserve">
+    <value>Dark sea wave 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenLight" xml:space="preserve">
+    <value>Light sea wave</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenLight50" xml:space="preserve">
+    <value>Light sea wave 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueLight" xml:space="preserve">
+    <value>Light blue</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueLight50" xml:space="preserve">
+    <value>Light blue 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreen" xml:space="preserve">
+    <value>Green</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenDark" xml:space="preserve">
+    <value>Dark green</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenDark25" xml:space="preserve">
+    <value>Dark green 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenDark50" xml:space="preserve">
+    <value>Dark green 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenLight" xml:space="preserve">
+    <value>Light green</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenLight50" xml:space="preserve">
+    <value>Light green 50%</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="ColorPalette" xml:space="preserve">
     <value>Color palette</value>
     <comment>Title</comment>
+  </data>
+  <data name="ColorRed" xml:space="preserve">
+    <value>Red</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedDark" xml:space="preserve">
+    <value>Dark red</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedDark25" xml:space="preserve">
+    <value>Dark red 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedDark50" xml:space="preserve">
+    <value>Dark red 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedLight" xml:space="preserve">
+    <value>Light red</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedLight50" xml:space="preserve">
+    <value>Light red 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorViolet" xml:space="preserve">
+    <value>Violet</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletDark" xml:space="preserve">
+    <value>Dark violet</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletDark25" xml:space="preserve">
+    <value>Dark violet 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletDark50" xml:space="preserve">
+    <value>Dark violet 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletLight" xml:space="preserve">
+    <value>Light violet</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletLight50" xml:space="preserve">
+    <value>Light violet 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellow" xml:space="preserve">
+    <value>Sand</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowDark" xml:space="preserve">
+    <value>Dark sand</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowDark25" xml:space="preserve">
+    <value>Dark sand 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowDark50" xml:space="preserve">
+    <value>Dark sand 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowLight" xml:space="preserve">
+    <value>Light sand</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowLight50" xml:space="preserve">
+    <value>Light sand 50%</value>
+    <comment>Semantic</comment>
   </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>

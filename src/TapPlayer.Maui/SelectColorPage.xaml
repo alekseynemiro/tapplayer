@@ -11,6 +11,7 @@
   <ContentPage.Resources>
     <ResourceDictionary>
       <converters:ColorPaletteToButtonStyleConverter x:Key="ColorPaletteToButtonStyleConverter" />
+      <converters:ColorPaletteToSemanticDescriptionConverter x:Key="ColorPaletteToSemanticDescriptionConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
 
@@ -60,6 +61,7 @@
               Clicked="Color_Clicked"
               WidthRequest="{Binding CellWidth, Source={x:Reference Me}}"
               HeightRequest="{Binding CellHeight, Source={x:Reference Me}}"
+              SemanticProperties.Description="{Binding ., Converter={StaticResource ColorPaletteToSemanticDescriptionConverter}}"
             />
           </StackLayout>
         </DataTemplate>

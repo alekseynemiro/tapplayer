@@ -142,11 +142,335 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Blue.
+        /// </summary>
+        internal static string ColorBlue {
+            get {
+                return ResourceManager.GetString("ColorBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark blue.
+        /// </summary>
+        internal static string ColorBlueDark {
+            get {
+                return ResourceManager.GetString("ColorBlueDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark blue 25%.
+        /// </summary>
+        internal static string ColorBlueDark25 {
+            get {
+                return ResourceManager.GetString("ColorBlueDark25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark blue 50%.
+        /// </summary>
+        internal static string ColorBlueDark50 {
+            get {
+                return ResourceManager.GetString("ColorBlueDark50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sea wave.
+        /// </summary>
+        internal static string ColorBlueGreen {
+            get {
+                return ResourceManager.GetString("ColorBlueGreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark sea wave.
+        /// </summary>
+        internal static string ColorBlueGreenDark {
+            get {
+                return ResourceManager.GetString("ColorBlueGreenDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark sea wave 25%.
+        /// </summary>
+        internal static string ColorBlueGreenDark25 {
+            get {
+                return ResourceManager.GetString("ColorBlueGreenDark25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark sea wave 50%.
+        /// </summary>
+        internal static string ColorBlueGreenDark50 {
+            get {
+                return ResourceManager.GetString("ColorBlueGreenDark50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light sea wave.
+        /// </summary>
+        internal static string ColorBlueGreenLight {
+            get {
+                return ResourceManager.GetString("ColorBlueGreenLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light sea wave 50%.
+        /// </summary>
+        internal static string ColorBlueGreenLight50 {
+            get {
+                return ResourceManager.GetString("ColorBlueGreenLight50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light blue.
+        /// </summary>
+        internal static string ColorBlueLight {
+            get {
+                return ResourceManager.GetString("ColorBlueLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light blue 50%.
+        /// </summary>
+        internal static string ColorBlueLight50 {
+            get {
+                return ResourceManager.GetString("ColorBlueLight50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Green.
+        /// </summary>
+        internal static string ColorGreen {
+            get {
+                return ResourceManager.GetString("ColorGreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark green.
+        /// </summary>
+        internal static string ColorGreenDark {
+            get {
+                return ResourceManager.GetString("ColorGreenDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark green 25%.
+        /// </summary>
+        internal static string ColorGreenDark25 {
+            get {
+                return ResourceManager.GetString("ColorGreenDark25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark green 50%.
+        /// </summary>
+        internal static string ColorGreenDark50 {
+            get {
+                return ResourceManager.GetString("ColorGreenDark50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light green.
+        /// </summary>
+        internal static string ColorGreenLight {
+            get {
+                return ResourceManager.GetString("ColorGreenLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light green 50%.
+        /// </summary>
+        internal static string ColorGreenLight50 {
+            get {
+                return ResourceManager.GetString("ColorGreenLight50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Color palette.
         /// </summary>
         internal static string ColorPalette {
             get {
                 return ResourceManager.GetString("ColorPalette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Red.
+        /// </summary>
+        internal static string ColorRed {
+            get {
+                return ResourceManager.GetString("ColorRed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark red.
+        /// </summary>
+        internal static string ColorRedDark {
+            get {
+                return ResourceManager.GetString("ColorRedDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark red 25%.
+        /// </summary>
+        internal static string ColorRedDark25 {
+            get {
+                return ResourceManager.GetString("ColorRedDark25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark red 50%.
+        /// </summary>
+        internal static string ColorRedDark50 {
+            get {
+                return ResourceManager.GetString("ColorRedDark50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light red.
+        /// </summary>
+        internal static string ColorRedLight {
+            get {
+                return ResourceManager.GetString("ColorRedLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light red 50%.
+        /// </summary>
+        internal static string ColorRedLight50 {
+            get {
+                return ResourceManager.GetString("ColorRedLight50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Violet.
+        /// </summary>
+        internal static string ColorViolet {
+            get {
+                return ResourceManager.GetString("ColorViolet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark violet.
+        /// </summary>
+        internal static string ColorVioletDark {
+            get {
+                return ResourceManager.GetString("ColorVioletDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark violet 25%.
+        /// </summary>
+        internal static string ColorVioletDark25 {
+            get {
+                return ResourceManager.GetString("ColorVioletDark25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark violet 50%.
+        /// </summary>
+        internal static string ColorVioletDark50 {
+            get {
+                return ResourceManager.GetString("ColorVioletDark50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light violet.
+        /// </summary>
+        internal static string ColorVioletLight {
+            get {
+                return ResourceManager.GetString("ColorVioletLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light violet 50%.
+        /// </summary>
+        internal static string ColorVioletLight50 {
+            get {
+                return ResourceManager.GetString("ColorVioletLight50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sand.
+        /// </summary>
+        internal static string ColorYellow {
+            get {
+                return ResourceManager.GetString("ColorYellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark sand.
+        /// </summary>
+        internal static string ColorYellowDark {
+            get {
+                return ResourceManager.GetString("ColorYellowDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark sand 25%.
+        /// </summary>
+        internal static string ColorYellowDark25 {
+            get {
+                return ResourceManager.GetString("ColorYellowDark25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark sand 50%.
+        /// </summary>
+        internal static string ColorYellowDark50 {
+            get {
+                return ResourceManager.GetString("ColorYellowDark50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light sand.
+        /// </summary>
+        internal static string ColorYellowLight {
+            get {
+                return ResourceManager.GetString("ColorYellowLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Light sand 50%.
+        /// </summary>
+        internal static string ColorYellowLight50 {
+            get {
+                return ResourceManager.GetString("ColorYellowLight50", resourceCulture);
             }
         }
         

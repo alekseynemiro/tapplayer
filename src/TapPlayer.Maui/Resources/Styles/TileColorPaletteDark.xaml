@@ -5,44 +5,44 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 >
   <Color x:Key="DarkColor1">#EE82EE</Color>
-  <Color x:Key="DarkColor2">#CA82EE</Color>
-  <Color x:Key="DarkColor3">#A682EE</Color>
-  <Color x:Key="DarkColor4">#8D5BA7</Color>
-  <Color x:Key="DarkColor5">#745BA7</Color>
-  <Color x:Key="DarkColor6">#4D4375</Color>
+  <Color x:Key="DarkColor2">#E74CE7</Color>
+  <Color x:Key="DarkColor3">#D81DD8</Color>
+  <Color x:Key="DarkColor4">#A216A2</Color>
+  <Color x:Key="DarkColor5">#6C0F6C</Color>
+  <Color x:Key="DarkColor6">#360736</Color>
 
   <Color x:Key="DarkColor7">#EE8282</Color>
-  <Color x:Key="DarkColor8">#E46868</Color>
-  <Color x:Key="DarkColor9">#DA5C4F</Color>
-  <Color x:Key="DarkColor10">#C83C2D</Color>
-  <Color x:Key="DarkColor11">#BC240F</Color>
-  <Color x:Key="DarkColor12">#84190B</Color>
+  <Color x:Key="DarkColor8">#E74C4C</Color>
+  <Color x:Key="DarkColor9">#E33131</Color>
+  <Color x:Key="DarkColor10">#BD1A1A</Color>
+  <Color x:Key="DarkColor11">#871212</Color>
+  <Color x:Key="DarkColor12">#360707</Color>
 
   <Color x:Key="DarkColor13">#EEBE82</Color>
-  <Color x:Key="DarkColor14">#DCAA6C</Color>
-  <Color x:Key="DarkColor15">#C4904F</Color>
-  <Color x:Key="DarkColor16">#C4A94F</Color>
-  <Color x:Key="DarkColor17">#B69937</Color>
-  <Color x:Key="DarkColor18">#8D7217</Color>
+  <Color x:Key="DarkColor14">#E7A24C</Color>
+  <Color x:Key="DarkColor15">#E39431</Color>
+  <Color x:Key="DarkColor16">#BD741A</Color>
+  <Color x:Key="DarkColor17">#875312</Color>
+  <Color x:Key="DarkColor18">#51320B</Color>
 
   <Color x:Key="DarkColor19">#82C266</Color>
-  <Color x:Key="DarkColor20">#69A74D</Color>
-  <Color x:Key="DarkColor21">#338D26</Color>
-  <Color x:Key="DarkColor22">#3D7623</Color>
-  <Color x:Key="DarkColor23">#19660D</Color>
-  <Color x:Key="DarkColor24">#083F00</Color>
+  <Color x:Key="DarkColor20">#67B046</Color>
+  <Color x:Key="DarkColor21">#528d38</Color>
+  <Color x:Key="DarkColor22">#3E6A2A</Color>
+  <Color x:Key="DarkColor23">#29471C</Color>
+  <Color x:Key="DarkColor24">#15230E</Color>
 
   <Color x:Key="DarkColor25">#65B3A9</Color>
-  <Color x:Key="DarkColor26">#4D938A</Color>
-  <Color x:Key="DarkColor27">#3C8B81</Color>
-  <Color x:Key="DarkColor28">#39949D</Color>
-  <Color x:Key="DarkColor29">#2B7D85</Color>
-  <Color x:Key="DarkColor30">#1A5D64</Color>
+  <Color x:Key="DarkColor26">#4D9C92</Color>
+  <Color x:Key="DarkColor27">#458D83</Color>
+  <Color x:Key="DarkColor28">#366D66</Color>
+  <Color x:Key="DarkColor29">#274E49</Color>
+  <Color x:Key="DarkColor30">#172F2C</Color>
 
   <Color x:Key="DarkColor31">#8982EE</Color>
-  <Color x:Key="DarkColor32">#6671CE</Color>
-  <Color x:Key="DarkColor33">#4D57AF</Color>
-  <Color x:Key="DarkColor34">#3B459F</Color>
-  <Color x:Key="DarkColor35">#27328F</Color>
-  <Color x:Key="DarkColor36">#151E6C</Color>
+  <Color x:Key="DarkColor32">#564CE7</Color>
+  <Color x:Key="DarkColor33">#3D31E3</Color>
+  <Color x:Key="DarkColor34">#241ABD</Color>
+  <Color x:Key="DarkColor35">#1A1287</Color>
+  <Color x:Key="DarkColor36">#100B51</Color>
 </ResourceDictionary>

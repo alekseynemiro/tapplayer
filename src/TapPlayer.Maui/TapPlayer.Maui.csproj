@@ -16,8 +16,8 @@
     <ApplicationIdGuid>285CA652-00D1-4F06-B73E-B9FA1B95B70D</ApplicationIdGuid>
 
     <!-- Versions -->
-    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
-    <ApplicationVersion>20230520</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
+    <ApplicationVersion>20230527</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">33.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
@@ -33,14 +33,14 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
     <AndroidKeyStore>False</AndroidKeyStore>
-    <ApplicationVersion>20230520</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
+    <ApplicationVersion>20230527</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
     <AndroidKeyStore>True</AndroidKeyStore>
-    <ApplicationVersion>20230520</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
+    <ApplicationVersion>20230527</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
     <RunAOTCompilation>False</RunAOTCompilation>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
     <AndroidSigningKeyStore>../../build/app.keystore</AndroidSigningKeyStore>
@@ -50,13 +50,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
-    <ApplicationVersion>20230520</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
+    <ApplicationVersion>20230527</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
-    <ApplicationVersion>20230520</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
+    <ApplicationVersion>20230527</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -69,6 +69,11 @@
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
     <MauiImage Update="Resources\Images\menu.svg" TintColor="#FFFFFF" BaseSize="42,42" />
+    <MauiImage Update="Resources\Images\error.svg" TintColor="#FFFFFF" BaseSize="18,18" />
+    <MauiImage Update="Resources\Images\loop.svg" TintColor="#FFFFFF" BaseSize="18,18" />
+    <MauiImage Update="Resources\Images\background.svg" TintColor="#FFFFFF" BaseSize="18,18" />
+    <MauiImage Update="Resources\Images\volume_off.svg" TintColor="#FFFFFF" BaseSize="18,18" />
+    <MauiImage Update="Resources\Images\play2.svg" TintColor="#FFFFFF" BaseSize="18,18" />
 
     <!-- Custom Fonts -->
     <MauiFont Include="Resources\Fonts\*" />
@@ -78,15 +83,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\background.svg" />
     <None Remove="Resources\Images\delete.svg" />
+    <None Remove="Resources\Images\error.svg" />
+    <None Remove="Resources\Images\loop.svg" />
     <None Remove="Resources\Images\menu.svg" />
     <None Remove="Resources\Images\play.svg" />
+    <None Remove="Resources\Images\play2.svg" />
     <None Remove="Resources\Images\settings.svg" />
     <None Remove="Resources\Images\tapplayer.svg" />
+    <None Remove="Resources\Images\volume_off.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="akgul.Maui.DataGrid" Version="2.0.0" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
     <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.4" />
@@ -102,10 +113,16 @@
     <MauiXaml Update="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Components\TileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Resources\Styles\ColorPaletteDark.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Resources\Styles\ColorPalette.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Tiles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Resources\Styles\TileColorPaletteDark.xaml">
@@ -138,6 +155,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\TileView.xaml.cs">
+      <DependentUpon>TileView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Strings\CommonStrings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

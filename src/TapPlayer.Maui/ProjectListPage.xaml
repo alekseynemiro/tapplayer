@@ -27,14 +27,16 @@
       HeaderBordersVisible="False"
       HorizontalOptions="Fill"
       VerticalOptions="Start"
+      FontSize="16"
       Refreshing="DataGrid_Refreshing"
     >
       <dg:DataGrid.Columns>
         <dg:DataGridColumn
-        PropertyName="Name"
-        VerticalContentAlignment="Center"
-        HorizontalContentAlignment="Start"
-      />
+          PropertyName="Name"
+          VerticalContentAlignment="Center"
+          HorizontalContentAlignment="Start"
+          LineBreakMode="TailTruncation"
+        />
         <dg:DataGridColumn
           Width="{OnPlatform Android='64', Default='42'}"
         >
@@ -49,6 +51,7 @@
                 WidthRequest="{OnPlatform Android='64', Default='42'}"
                 HeightRequest="{OnPlatform Android='64', Default='42'}"
                 Padding="{OnPlatform Android='4,6', Default='2'}"
+                SemanticProperties.Description="{markup:Localization Key=OpenProject}"
               />
             </DataTemplate>
           </dg:DataGridColumn.CellTemplate>
@@ -67,6 +70,7 @@
                 WidthRequest="{OnPlatform Android='64', Default='42'}"
                 HeightRequest="{OnPlatform Android='64', Default='42'}"
                 Padding="{OnPlatform Android='4,6', Default='2'}"
+                SemanticProperties.Description="{markup:Localization Key=ProjectSettings}"
               />
             </DataTemplate>
           </dg:DataGridColumn.CellTemplate>
@@ -85,6 +89,7 @@
                 WidthRequest="{OnPlatform Android='64', Default='42'}"
                 HeightRequest="{OnPlatform Android='64', Default='42'}"
                 Padding="{OnPlatform Android='4,6', Default='2'}"
+                SemanticProperties.Description="{markup:Localization Key=DeleteProject}"
               />
             </DataTemplate>
           </dg:DataGridColumn.CellTemplate>

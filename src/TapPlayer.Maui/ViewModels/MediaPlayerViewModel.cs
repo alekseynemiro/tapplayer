@@ -3,18 +3,58 @@ using CommunityToolkit.Maui.Views;
 
 namespace TapPlayer.Maui.ViewModels;
 
-public class MediaPlayerViewModel : IMediaPlayerViewModel
+public class MediaPlayerViewModel : ViewModelBase, IMediaPlayerViewModel
 {
   private readonly MediaElement _player;
+  private bool _isFailed = false;
+  private bool _isPlaying = false;
+  private bool _loop = false;
 
-  public bool IsPlaying => _player.CurrentState == MediaElementState.Playing;
+  public bool IsFailed
+  {
+    get
+    {
+      return _isFailed;
+    }
+    private set
+    {
+      _isFailed = value;
+      OnProprtyChanged();
+    }
+  }
 
-  public bool Loop { get; set; }
+  public bool IsPlaying
+  {
+    get
+    {
+      return _isPlaying;
+    }
+    private set
+    {
+      _isPlaying = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool Loop
+  {
+    get
+    {
+      return _loop;
+    }
+    set
+    {
+      _loop = value;
+      OnProprtyChanged();
+    }
+  }
 
   public MediaPlayerViewModel(MediaElement mediaElement)
   {
     _player = mediaElement;
-    _player.MediaEnded += MediaEnded;
+
+    _player.MediaEnded += Player_MediaEnded;
+    _player.StateChanged += Player_StateChanged;
   }
 
   public void Pause()
@@ -38,11 +78,17 @@ public class MediaPlayerViewModel : IMediaPlayerViewModel
     _player.Handler?.DisconnectHandler();
   }
 
-  private void MediaEnded(object sender, EventArgs e)
+  private void Player_MediaEnded(object sender, EventArgs e)
   {
     if (Loop)
     {
-      Play();
+      Application.Current.Dispatcher.Dispatch(Play);
     }
+  }
+
+  private void Player_StateChanged(object sender, MediaStateChangedEventArgs e)
+  {
+    IsPlaying = e.NewState == MediaElementState.Playing;
+    IsFailed = e.NewState == MediaElementState.Failed;
   }
 }

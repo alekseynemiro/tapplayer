@@ -11,10 +11,12 @@
     <ResourceDictionary>
       <converters:FileViewModelConverter x:Key="FileViewModelConverter" />
       <converters:ColorPaletteToButtonStyleConverter x:Key="ColorPaletteToButtonStyleConverter" />
+      <converters:ReduceValueConverter x:Key="ReduceValueConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <VerticalStackLayout
-    Spacing="16"
+    x:Name="Container"
+    Spacing="18"
     StyleClass="WithPadding"
   >
     <Border StyleClass="FormField" Padding="8">
@@ -39,7 +41,7 @@
       </Grid>
     </Border>
 
-    <HorizontalStackLayout Spacing="8">
+    <HorizontalStackLayout Spacing="24">
       <RadioButton
         Content="{markup:Localization Key=PlayOnce}"
         IsChecked="{Binding PlayOnce}"
@@ -59,6 +61,14 @@
       <Label
         VerticalOptions="Center"
         Text="{markup:Localization Key=Background}"
+        LineBreakMode="WordWrap"
+        MaximumWidthRequest="{Binding
+          Source={x:Reference Container},
+          Path=Width,
+          Converter={StaticResource ReduceValueConverter},
+          ConverterParameter=50
+        }"
+        PropertyChanged="MaximumWidthRequest_PropertyChanged"
       >
         <Label.GestureRecognizers>
           <TapGestureRecognizer Tapped="IsBackground_Tapped" />
@@ -78,9 +88,10 @@
       >
         <Button
           Style="{Binding Color, Converter={StaticResource ColorPaletteToButtonStyleConverter}}"
-          WidthRequest="42"
-          HeightRequest="42"
+          WidthRequest="52"
+          HeightRequest="52"
           SemanticProperties.Description="{markup:Localization Key=SelectedColor}"
+          Clicked="SelectColor_Clicked"
         />
       </Border>
     </HorizontalStackLayout>
@@ -98,11 +109,11 @@
 
     <BoxView StyleClass="Separator" />
 
-    <HorizontalStackLayout Margin="0" Spacing="8">
+    <HorizontalStackLayout Margin="0" Spacing="16">
       <Button
-        Text="{markup:Localization Key=Save}"
+        Text="{markup:Localization Key=Ok}"
         Command="{Binding SaveCommand}"
-        SemanticProperties.Description="{markup:Localization Key=SaveTile}"
+        SemanticProperties.Description="{markup:Localization Key=OkTileEditor}"
       />
       <Button
         Text="{markup:Localization Key=Cancel}"

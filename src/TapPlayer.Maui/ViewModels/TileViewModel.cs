@@ -128,7 +128,9 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   {
     if (!IsBackground)
     {
-      _tapPlayerService.StopAllExcludingBackground();
+      // exclude the current tile, because the state of the MediaElement may not change immediately
+      // and this can lead to incorrect determination of whether to start or stop playback
+      _tapPlayerService.StopAllExcludingBackground(x => x != this);
     }
 
     if (Player == null)
@@ -136,15 +138,13 @@ public class TileViewModel : ViewModelBase, ITileViewModel
       return;
     }
 
-    var play = Player.IsPlaying != true;
-
-    if (play)
+    if (Player.IsPlaying)
     {
-      Player.Play();
+      Player.Stop();
     }
     else
     {
-      Player.Stop();
+      Player.Play();
     }
   }
 }

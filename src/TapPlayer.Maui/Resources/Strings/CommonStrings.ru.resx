@@ -128,6 +128,9 @@
   <data name="Background" xml:space="preserve">
     <value>играть в фоне, не останавливая другие звуки</value>
   </data>
+  <data name="BackgroundPlayback" xml:space="preserve">
+    <value>Воспроизведение в фоне</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -143,8 +146,116 @@
   <data name="CloseTileEditor" xml:space="preserve">
     <value>Закрыть настройки плитки без сохранения изменений.</value>
   </data>
+  <data name="ColorBlue" xml:space="preserve">
+    <value>Синий</value>
+  </data>
+  <data name="ColorBlueDark" xml:space="preserve">
+    <value>Тёмно-синий</value>
+  </data>
+  <data name="ColorBlueDark25" xml:space="preserve">
+    <value>Тёмно-синий 25%</value>
+  </data>
+  <data name="ColorBlueDark50" xml:space="preserve">
+    <value>Тёмно-синий 50%</value>
+  </data>
+  <data name="ColorBlueGreen" xml:space="preserve">
+    <value>Морская волна</value>
+  </data>
+  <data name="ColorBlueGreenDark" xml:space="preserve">
+    <value>Тёмная морская волна</value>
+  </data>
+  <data name="ColorBlueGreenDark25" xml:space="preserve">
+    <value>Тёмная морская волна 25%</value>
+  </data>
+  <data name="ColorBlueGreenDark50" xml:space="preserve">
+    <value>Тёмная морская волна 50%</value>
+  </data>
+  <data name="ColorBlueGreenLight" xml:space="preserve">
+    <value>Светлая морская волна</value>
+  </data>
+  <data name="ColorBlueGreenLight50" xml:space="preserve">
+    <value>Светлая морская волна 50%</value>
+  </data>
+  <data name="ColorBlueLight" xml:space="preserve">
+    <value>Светло-синий</value>
+  </data>
+  <data name="ColorBlueLight50" xml:space="preserve">
+    <value>Светло-синий 50%</value>
+  </data>
+  <data name="ColorGreen" xml:space="preserve">
+    <value>Зелёный</value>
+  </data>
+  <data name="ColorGreenDark" xml:space="preserve">
+    <value>Тёмно-зелёный</value>
+  </data>
+  <data name="ColorGreenDark25" xml:space="preserve">
+    <value>Тёмно-зелёный 25%</value>
+  </data>
+  <data name="ColorGreenDark50" xml:space="preserve">
+    <value>Тёмно-зелёный 50%</value>
+  </data>
+  <data name="ColorGreenLight" xml:space="preserve">
+    <value>Светло-зелёный</value>
+  </data>
+  <data name="ColorGreenLight50" xml:space="preserve">
+    <value>Светло-зелёный 50%</value>
+  </data>
   <data name="ColorPalette" xml:space="preserve">
     <value>Палитра</value>
+  </data>
+  <data name="ColorRed" xml:space="preserve">
+    <value>Красный</value>
+  </data>
+  <data name="ColorRedDark" xml:space="preserve">
+    <value>Тёмно-красный</value>
+  </data>
+  <data name="ColorRedDark25" xml:space="preserve">
+    <value>Тёмно-красный 25%</value>
+  </data>
+  <data name="ColorRedDark50" xml:space="preserve">
+    <value>Тёмно-красный 50%</value>
+  </data>
+  <data name="ColorRedLight" xml:space="preserve">
+    <value>Светло-красный</value>
+  </data>
+  <data name="ColorRedLight50" xml:space="preserve">
+    <value>Светло-красный 50%</value>
+  </data>
+  <data name="ColorViolet" xml:space="preserve">
+    <value>Фиолетовый</value>
+  </data>
+  <data name="ColorVioletDark" xml:space="preserve">
+    <value>Тёмно-фиолетовый</value>
+  </data>
+  <data name="ColorVioletDark25" xml:space="preserve">
+    <value>Тёмно-фиолетовый 25%</value>
+  </data>
+  <data name="ColorVioletDark50" xml:space="preserve">
+    <value>Тёмно-фиолетовый 50%</value>
+  </data>
+  <data name="ColorVioletLight" xml:space="preserve">
+    <value>Светло-фиолетовый</value>
+  </data>
+  <data name="ColorVioletLight50" xml:space="preserve">
+    <value>Светло-фиолетовый 50%</value>
+  </data>
+  <data name="ColorYellow" xml:space="preserve">
+    <value>Песочный</value>
+  </data>
+  <data name="ColorYellowDark" xml:space="preserve">
+    <value>Тёмно-песочный</value>
+  </data>
+  <data name="ColorYellowDark25" xml:space="preserve">
+    <value>Тёмно-песочный 25%</value>
+  </data>
+  <data name="ColorYellowDark50" xml:space="preserve">
+    <value>Тёмно-песочный 50%</value>
+  </data>
+  <data name="ColorYellowLight" xml:space="preserve">
+    <value>Светло-песочный</value>
+  </data>
+  <data name="ColorYellowLight50" xml:space="preserve">
+    <value>Светло-песочный 50%</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Подтверждение</value>
@@ -152,23 +263,39 @@
   <data name="CreateProject" xml:space="preserve">
     <value>Новый проект</value>
   </data>
+  <data name="DeleteProject" xml:space="preserve">
+    <value>Удалить проект</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Выход</value>
   </data>
+  <data name="IsPlaying" xml:space="preserve">
+    <value>Играет сейчас</value>
+  </data>
   <data name="Loop" xml:space="preserve">
     <value>зациклить</value>
+  </data>
+  <data name="LoopedPlayback" xml:space="preserve">
+    <value>Цикличное воспроизведение</value>
   </data>
   <data name="NewProject" xml:space="preserve">
     <value>Новый проект</value>
   </data>
+  <data name="NoSource" xml:space="preserve">
+    <value>Файл не выбран</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="OkTileEditor" xml:space="preserve">
+    <value>Применить изменения настроек плитки и закрыть диалог.</value>
+  </data>
   <data name="OpenOrCreateProjectToStart" xml:space="preserve">
-    <value>Откройте существующий проект или создайте новый.</value>
+    <value>Откройте существующий проект
+или создайте новый:</value>
   </data>
   <data name="OpenProject" xml:space="preserve">
     <value>Открыть проект</value>
@@ -200,9 +327,6 @@
   <data name="SaveProject" xml:space="preserve">
     <value>Сохранить изменения настроек проекта и закрыть диалог.</value>
   </data>
-  <data name="SaveTile" xml:space="preserve">
-    <value>Сохранить изменения настроек плитки и закрыть диалог.</value>
-  </data>
   <data name="SelectColor" xml:space="preserve">
     <value>Выбрать цвет</value>
   </data>
@@ -226,6 +350,9 @@
   </data>
   <data name="TitleSettings" xml:space="preserve">
     <value>Параметры плитки</value>
+  </data>
+  <data name="UnableToPlay" xml:space="preserve">
+    <value>Невозможно воспроизвести</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Да</value>

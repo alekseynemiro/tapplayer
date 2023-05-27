@@ -1,5 +1,27 @@
 # Change Log
 
+## v1.0.3 (May 27, 2023)
+
+This release contains critical fixes and improvements.
+
+### Added
+
+* Added tile status indicators (https://github.com/alekseynemiro/tapplayer/issues/33).
+
+### Changed
+
+* Improved color palette (https://github.com/alekseynemiro/tapplayer/issues/38).
+* Increased font size and increased spacing between controls (https://github.com/alekseynemiro/tapplayer/issues/37).
+* Changed labels on some buttons (https://github.com/alekseynemiro/tapplayer/issues/46).
+* Improved accessibility (https://github.com/alekseynemiro/tapplayer/issues/31).
+* Optimized app icon size (https://github.com/alekseynemiro/tapplayer/issues/40).
+
+### Fixed
+
+* Fixed bug with looping playback (https://github.com/alekseynemiro/tapplayer/issues/44).
+* Fixed playback stop issue (https://github.com/alekseynemiro/tapplayer/issues/39).
+* Fixed a bug with updating the project name in the list (https://github.com/alekseynemiro/tapplayer/issues/51).
+
 ## v1.0.2 (May 20, 2023)
 
 This release contains critical fixes.

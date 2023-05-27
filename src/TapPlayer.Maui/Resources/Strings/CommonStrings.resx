@@ -129,6 +129,10 @@
     <value>background</value>
     <comment>Checkbox</comment>
   </data>
+  <data name="BackgroundPlayback" xml:space="preserve">
+    <value>Background playback</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
     <comment>Button</comment>
@@ -145,9 +149,153 @@
   <data name="CloseTileEditor" xml:space="preserve">
     <value>Close the tile editor without saving changes.</value>
   </data>
+  <data name="ColorBlue" xml:space="preserve">
+    <value>Blue</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueDark" xml:space="preserve">
+    <value>Dark blue</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueDark25" xml:space="preserve">
+    <value>Dark blue 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueDark50" xml:space="preserve">
+    <value>Dark blue 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreen" xml:space="preserve">
+    <value>Sea wave</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenDark" xml:space="preserve">
+    <value>Dark sea wave</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenDark25" xml:space="preserve">
+    <value>Dark sea wave 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenDark50" xml:space="preserve">
+    <value>Dark sea wave 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenLight" xml:space="preserve">
+    <value>Light sea wave</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueGreenLight50" xml:space="preserve">
+    <value>Light sea wave 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueLight" xml:space="preserve">
+    <value>Light blue</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorBlueLight50" xml:space="preserve">
+    <value>Light blue 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreen" xml:space="preserve">
+    <value>Green</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenDark" xml:space="preserve">
+    <value>Dark green</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenDark25" xml:space="preserve">
+    <value>Dark green 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenDark50" xml:space="preserve">
+    <value>Dark green 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenLight" xml:space="preserve">
+    <value>Light green</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorGreenLight50" xml:space="preserve">
+    <value>Light green 50%</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="ColorPalette" xml:space="preserve">
     <value>Color palette</value>
     <comment>Title</comment>
+  </data>
+  <data name="ColorRed" xml:space="preserve">
+    <value>Red</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedDark" xml:space="preserve">
+    <value>Dark red</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedDark25" xml:space="preserve">
+    <value>Dark red 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedDark50" xml:space="preserve">
+    <value>Dark red 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedLight" xml:space="preserve">
+    <value>Light red</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorRedLight50" xml:space="preserve">
+    <value>Light red 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorViolet" xml:space="preserve">
+    <value>Violet</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletDark" xml:space="preserve">
+    <value>Dark violet</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletDark25" xml:space="preserve">
+    <value>Dark violet 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletDark50" xml:space="preserve">
+    <value>Dark violet 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletLight" xml:space="preserve">
+    <value>Light violet</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorVioletLight50" xml:space="preserve">
+    <value>Light violet 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellow" xml:space="preserve">
+    <value>Sand</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowDark" xml:space="preserve">
+    <value>Dark sand</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowDark25" xml:space="preserve">
+    <value>Dark sand 25%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowDark50" xml:space="preserve">
+    <value>Dark sand 50%</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowLight" xml:space="preserve">
+    <value>Light sand</value>
+    <comment>Semantic</comment>
+  </data>
+  <data name="ColorYellowLight50" xml:space="preserve">
+    <value>Light sand 50%</value>
+    <comment>Semantic</comment>
   </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>
@@ -157,6 +305,10 @@
     <value>Create project</value>
     <comment>Menu/Button</comment>
   </data>
+  <data name="DeleteProject" xml:space="preserve">
+    <value>Delete project</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
     <comment>Title</comment>
@@ -165,25 +317,42 @@
     <value>Exit</value>
     <comment>Menu</comment>
   </data>
+  <data name="IsPlaying" xml:space="preserve">
+    <value>Is playing</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Loop" xml:space="preserve">
     <value>Loop</value>
     <comment>Radio</comment>
+  </data>
+  <data name="LoopedPlayback" xml:space="preserve">
+    <value>Looped playback</value>
+    <comment>Semantic</comment>
   </data>
   <data name="NewProject" xml:space="preserve">
     <value>New project</value>
     <comment>Title</comment>
   </data>
+  <data name="NoSource" xml:space="preserve">
+    <value>Playback file not selected</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
     <comment>Button</comment>
   </data>
+  <data name="OkTileEditor" xml:space="preserve">
+    <value>Apply changes and close the tile config dialog.</value>
+    <comment>Semantic</comment>
+  </data>
   <data name="OpenOrCreateProjectToStart" xml:space="preserve">
-    <value>To get started, open a project or create a new one.</value>
+    <value>To get started, open a project
+or create a new one:</value>
     <comment>Message</comment>
   </data>
   <data name="OpenProject" xml:space="preserve">
     <value>Open project</value>
-    <comment>Menu/Button</comment>
+    <comment>Menu/Button/Semantic</comment>
   </data>
   <data name="PlayOnce" xml:space="preserve">
     <value>Play once</value>
@@ -211,7 +380,7 @@
   </data>
   <data name="ProjectSettings" xml:space="preserve">
     <value>Project settings</value>
-    <comment>Menu/Title</comment>
+    <comment>Menu/Title/Semantic</comment>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -219,9 +388,6 @@
   </data>
   <data name="SaveProject" xml:space="preserve">
     <value>Save changes of project settings.</value>
-  </data>
-  <data name="SaveTile" xml:space="preserve">
-    <value>Save changes of tile settings.</value>
   </data>
   <data name="SelectColor" xml:space="preserve">
     <value>Select color</value>
@@ -252,6 +418,10 @@
   <data name="TitleSettings" xml:space="preserve">
     <value>Tile settings</value>
     <comment>Title</comment>
+  </data>
+  <data name="UnableToPlay" xml:space="preserve">
+    <value>Unable to play due to an error</value>
+    <comment>Semantic</comment>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

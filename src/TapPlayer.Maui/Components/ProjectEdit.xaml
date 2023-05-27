@@ -33,44 +33,50 @@
       SizeChanged="MainScrollView_SizeChanged"
     >
       <VerticalStackLayout
-        Spacing="8"
+        Spacing="16"
         HorizontalOptions="Fill"
         VerticalOptions="Fill"
       >
-        <Label Text="{markup:Localization Key=ProjectNameField}" />
-        <Border StyleClass="FormField">
-          <Entry
-            Text="{Binding ProjectName}"
-            SemanticProperties.Description="{markup:Localization Key=ProjectNameField}"
-          />
-        </Border>
+        <VerticalStackLayout Spacing="8">
+          <Label Text="{markup:Localization Key=ProjectNameField}" />
+          <Border StyleClass="FormField">
+            <Entry
+              Text="{Binding ProjectName}"
+              SemanticProperties.Description="{markup:Localization Key=ProjectNameField}"
+            />
+          </Border>
+        </VerticalStackLayout>
 
-        <Label Text="{markup:Localization Key=TilesField}" />
-        <Border StyleClass="FormField">
-          <Picker
-            x:Name="GridSize"
-            ItemsSource="{Binding AvailableGridSizes}"
-            ItemDisplayBinding="{Binding ., Converter={StaticResource GridSizeConverter}}"
-            SelectedItem="{Binding GridSize}"
-            SelectedIndexChanged="GridSize_SelectedIndexChanged"
-            SemanticProperties.Description="{markup:Localization Key=TilesField}"
-          />
-        </Border>
+        <VerticalStackLayout Spacing="8">
+          <Label Text="{markup:Localization Key=TilesField}" />
+          <Border StyleClass="FormField">
+            <Picker
+              x:Name="GridSize"
+              ItemsSource="{Binding AvailableGridSizes}"
+              ItemDisplayBinding="{Binding ., Converter={StaticResource GridSizeConverter}}"
+              SelectedItem="{Binding GridSize}"
+              SelectedIndexChanged="GridSize_SelectedIndexChanged"
+              SemanticProperties.Description="{markup:Localization Key=TilesField}"
+            />
+          </Border>
+        </VerticalStackLayout>
 
-        <Label Text="{markup:Localization Key=TapToConfig}" />
-        <Border
-          Padding="2"
-          HorizontalOptions="Start"
-          VerticalOptions="Start"
-          WidthRequest="{Binding TilesGridWidth}"
-          HeightRequest="{Binding TilesGridHeight}"
-        >
-          <Grid
-            x:Name="TilesGrid"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"
-          />
-        </Border>
+        <VerticalStackLayout Spacing="8">
+          <Label Text="{markup:Localization Key=TapToConfig}" />
+          <Border
+            Padding="2"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            WidthRequest="{Binding TilesGridWidth}"
+            HeightRequest="{Binding TilesGridHeight}"
+          >
+            <Grid
+              x:Name="TilesGrid"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill"
+            />
+          </Border>
+        </VerticalStackLayout>
 
         <BoxView StyleClass="Separator" />
 

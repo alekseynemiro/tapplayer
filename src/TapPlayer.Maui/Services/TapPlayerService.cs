@@ -17,11 +17,12 @@ public class TapPlayerService : ITapPlayerService
     }
   }
 
-  public void StopAllExcludingBackground()
+  public void StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions)
   {
     var activeTiles = _tiles
       .Where(x => x.Player != null && x.Player.IsPlaying)
       .Where(x => !x.IsBackground)
+      .Where(additionalConditions)
       .ToList();
 
     foreach (var tile in activeTiles)

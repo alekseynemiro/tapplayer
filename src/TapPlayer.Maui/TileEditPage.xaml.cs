@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.Services;
 using TapPlayer.Maui.ViewModels;
 
@@ -63,5 +65,13 @@ public partial class TileEditPage : ContentPage
   private void IsBackground_Tapped(object sender, TappedEventArgs e)
   {
     Model.IsBackground = !Model.IsBackground;
+  }
+
+  private void MaximumWidthRequest_PropertyChanged(object sender, PropertyChangedEventArgs e)
+  {
+    if (e.PropertyName.Equals(nameof(MaximumWidthRequest)))
+    {
+      ((IView)sender).DispatchInvalidateMeasure();
+    }
   }
 }

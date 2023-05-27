@@ -31,10 +31,10 @@
     >
       <dg:DataGrid.Columns>
         <dg:DataGridColumn
-        PropertyName="Name"
-        VerticalContentAlignment="Center"
-        HorizontalContentAlignment="Start"
-      />
+          PropertyName="Name"
+          VerticalContentAlignment="Center"
+          HorizontalContentAlignment="Start"
+        />
         <dg:DataGridColumn
           Width="{OnPlatform Android='64', Default='42'}"
         >

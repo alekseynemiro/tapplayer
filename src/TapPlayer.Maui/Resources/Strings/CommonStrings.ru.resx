@@ -183,7 +183,8 @@
     <value>Применить изменения настроек плитки и закрыть диалог.</value>
   </data>
   <data name="OpenOrCreateProjectToStart" xml:space="preserve">
-    <value>Откройте существующий проект или создайте новый.</value>
+    <value>Откройте существующий проект
+или создайте новый:</value>
   </data>
   <data name="OpenProject" xml:space="preserve">
     <value>Открыть проект</value>

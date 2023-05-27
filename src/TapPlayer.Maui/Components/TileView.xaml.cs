@@ -39,15 +39,15 @@ public partial class TileView : ContentView
       return;
     }
 
-    double contentWidth = Width - Padding.HorizontalThickness;
-    double contentHeight = Height - Padding.VerticalThickness - TileViewConainer.RowDefinitions[0].Height.Value;
+    double contentWidth = Width - Padding.HorizontalThickness - TileName.Padding.HorizontalThickness;
+    double contentHeight = Height - Padding.VerticalThickness - TileViewConainer.RowDefinitions[0].Height.Value - TileName.Padding.VerticalThickness;
 
     if (Math.Min(contentWidth, contentHeight) <= 0)
     {
       return;
     }
 
-    double width = contentWidth - (contentWidth * 0.1);
+    double width = contentWidth - (contentWidth * 0.3);
     double height = contentHeight - (contentHeight * 0.3);
 
     double ratio = Math.Min(width, height);

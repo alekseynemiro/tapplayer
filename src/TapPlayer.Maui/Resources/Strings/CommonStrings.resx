@@ -198,7 +198,8 @@
     <comment>Semantic</comment>
   </data>
   <data name="OpenOrCreateProjectToStart" xml:space="preserve">
-    <value>To get started, open a project or create a new one.</value>
+    <value>To get started, open a project
+or create a new one:</value>
     <comment>Message</comment>
   </data>
   <data name="OpenProject" xml:space="preserve">

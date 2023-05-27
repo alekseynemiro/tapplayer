@@ -20,7 +20,7 @@
       ColumnSpacing="2"
     />
     <VerticalStackLayout
-      Spacing="8"
+      Spacing="16"
       HorizontalOptions="Fill"
       VerticalOptions="Center"
       IsVisible="{Binding ShowCreateOrOpenProject}"
@@ -32,7 +32,7 @@
         LineBreakMode="WordWrap"
       />
       <HorizontalStackLayout
-        Spacing="8"
+        Spacing="16"
         HorizontalOptions="Center"
       >
         <Button
@@ -46,7 +46,7 @@
       </HorizontalStackLayout>
     </VerticalStackLayout>
     <VerticalStackLayout
-      Spacing="8"
+      Spacing="16"
       HorizontalOptions="Fill"
       VerticalOptions="Center"
       IsVisible="{Binding ShowCreateProject}"
@@ -57,7 +57,7 @@
         LineBreakMode="WordWrap"
       />
       <HorizontalStackLayout
-        Spacing="8"
+        Spacing="16"
         HorizontalOptions="Center"
       >
         <Button

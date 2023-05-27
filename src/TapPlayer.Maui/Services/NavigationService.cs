@@ -1,4 +1,5 @@
 ﻿using TapPlayer.Core.Services.Projects;
+using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui.Services;
 
@@ -85,6 +86,7 @@ public class NavigationService : INavigationService
 
     if (prevPage is ProjectListPage)
     {
+      ((IProjectListPageViewModel)prevPage.BindingContext).LoadCommand.Execute(null);
       await PopAsync();
     }
     else

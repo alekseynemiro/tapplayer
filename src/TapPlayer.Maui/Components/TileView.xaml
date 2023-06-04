@@ -52,10 +52,16 @@
           SemanticProperties.Description="{markup:Localization Key=NoSource}"
         >
           <Image.Behaviors>
-            <toolkit:IconTintColorBehavior
-              BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-              TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-            />
+            <OnPlatform x:TypeArguments="Behavior">
+              <On Platform="Android">
+                <On.Value>
+                  <toolkit:IconTintColorBehavior
+                    BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
+                    TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
+                  />
+                </On.Value>
+              </On>
+            </OnPlatform>
           </Image.Behaviors>
         </Image>
         <Image
@@ -68,10 +74,16 @@
           SemanticProperties.Description="{markup:Localization Key=BackgroundPlayback}"
         >
           <Image.Behaviors>
-            <toolkit:IconTintColorBehavior
-              BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-              TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-            />
+            <OnPlatform x:TypeArguments="Behavior">
+              <On Platform="Android">
+                <On.Value>
+                  <toolkit:IconTintColorBehavior
+                    BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
+                    TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
+                  />
+                </On.Value>
+              </On>
+            </OnPlatform>
           </Image.Behaviors>
         </Image>
         <Image
@@ -84,10 +96,16 @@
           SemanticProperties.Description="{markup:Localization Key=LoopedPlayback}"
         >
           <Image.Behaviors>
-            <toolkit:IconTintColorBehavior
-              BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-              TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-            />
+            <OnPlatform x:TypeArguments="Behavior">
+              <On Platform="Android">
+                <On.Value>
+                  <toolkit:IconTintColorBehavior
+                    BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
+                    TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
+                  />
+                </On.Value>
+              </On>
+            </OnPlatform>
           </Image.Behaviors>
         </Image>
       </HorizontalStackLayout>
@@ -102,10 +120,16 @@
         SemanticProperties.Description="{markup:Localization Key=IsPlaying}"
       >
         <Image.Behaviors>
-          <toolkit:IconTintColorBehavior
-            BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-            TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-          />
+          <OnPlatform x:TypeArguments="Behavior">
+            <On Platform="Android">
+              <On.Value>
+                <toolkit:IconTintColorBehavior
+                  BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
+                  TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
+                />
+              </On.Value>
+            </On>
+          </OnPlatform>
         </Image.Behaviors>
       </Image>
       <Image
@@ -119,10 +143,16 @@
         SemanticProperties.Description="{markup:Localization Key=UnableToPlay}"
       >
         <Image.Behaviors>
-          <toolkit:IconTintColorBehavior
-            BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-            TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-          />
+          <OnPlatform x:TypeArguments="Behavior">
+            <On Platform="Android">
+              <On.Value>
+                <toolkit:IconTintColorBehavior
+                  BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
+                  TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
+                />
+              </On.Value>
+            </On>
+          </OnPlatform>
         </Image.Behaviors>
       </Image>
     </Grid>

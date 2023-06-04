@@ -256,6 +256,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.Color = act?.Color ?? ColorPalette.Color1;
       tile.IsBackground = act?.IsBackground == true;
       tile.PlayType = act?.Play ?? PlayType.Once;
+      tile.TapCommand = TileEditCommand;
 
       Tiles.Add(tile);
     }
@@ -388,6 +389,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.Name = string.Empty;
       tile.File = null;
       tile.Color = ColorPalette.Color1;
+      tile.TapCommand = TileEditCommand;
 
       Tiles.Add(tile);
     }

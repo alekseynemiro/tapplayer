@@ -1,9 +1,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using System.ComponentModel;
 using TapPlayer.Data.Enums;
-using TapPlayer.Maui.Converters;
 using TapPlayer.Maui.Extensions;
-using TapPlayer.Maui.Resources.Strings;
 using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui.Components;
@@ -44,42 +42,17 @@ public partial class ProjectEdit : ContentView
     TilesGrid.DispatchInvalidateMeasure();
   }
 
-  private Button CreateTill(GridCreateEventArgs e)
+  private IView CreateTill(GridCreateEventArgs e)
   {
     var tile = Model.Tiles.ElementAt(e.Index);
-    var button = new Button
+    var tileView = new TileView
     {
       BindingContext = tile,
-      CommandParameter = Model,
       HorizontalOptions = LayoutOptions.Fill,
       VerticalOptions = LayoutOptions.Fill,
-      LineBreakMode = LineBreakMode.NoWrap,
     };
 
-    button.SetBinding(
-      Button.StyleProperty,
-      nameof(TileViewModel.Color),
-      converter: new ColorPaletteToButtonStyleConverter()
-    );
-
-    button.SetBinding(
-      Button.TextProperty,
-      nameof(TileViewModel.Name)
-    );
-
-    button.SetBinding(
-      Button.CommandProperty,
-      nameof(TileViewModel.EditCommand)
-    );
-
-    button.PropertyChanged += Tile_PropertyChanged;
-
-    SemanticProperties.SetDescription(
-      button,
-      string.Format(CommonStrings.TileX, tile.Index + 1)
-    );
-
-    return button;
+    return tileView;
   }
 
   private void Tile_PropertyChanged(object sender, PropertyChangedEventArgs e)

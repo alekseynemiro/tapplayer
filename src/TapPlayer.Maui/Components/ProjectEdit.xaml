@@ -74,6 +74,8 @@
               x:Name="TilesGrid"
               HorizontalOptions="Fill"
               VerticalOptions="Fill"
+              RowSpacing="2"
+              ColumnSpacing="2"
             />
           </Border>
         </VerticalStackLayout>

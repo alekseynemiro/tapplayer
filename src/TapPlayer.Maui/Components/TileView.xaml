@@ -30,7 +30,10 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     <Grid.GestureRecognizers>
-      <TapGestureRecognizer Command="{Binding TapCommand}" />
+      <TapGestureRecognizer
+        Command="{Binding TapCommand}"
+        CommandParameter="{Binding .}"
+      />
     </Grid.GestureRecognizers>
     <Grid Grid.Row="0">
       <Grid.ColumnDefinitions>

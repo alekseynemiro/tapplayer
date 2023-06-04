@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using TapPlayer.Data.Enums;
+﻿using TapPlayer.Data.Enums;
 
 namespace TapPlayer.Maui.ViewModels;
 
@@ -19,9 +18,7 @@ public interface ITileViewModel
 
   IMediaPlayerViewModel Player { get; set; }
 
-  ICommand<IProjectEditViewModel> EditCommand { get; }
-
-  ICommand TapCommand { get; }
+  IAsyncCommand<ITileViewModel> TapCommand { get; set; }
 
   Action StopAllExcludingBackground { get; }
 }

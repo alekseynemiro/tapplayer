@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using TapPlayer.Data.Enums;
+﻿using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Services;
 
 namespace TapPlayer.Maui.ViewModels;
@@ -107,9 +106,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     }
   }
 
-  public ICommand<IProjectEditViewModel> EditCommand { get; init; }
-
-  public ICommand TapCommand { get; init; }
+  public IAsyncCommand<ITileViewModel> TapCommand { get; set; }
 
   public Action StopAllExcludingBackground { get; set; }
 
@@ -117,14 +114,10 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   {
     _tapPlayerService = tapPlayerService;
 
-    TapCommand = new Command(Tap);
-    EditCommand = new Command<IProjectEditViewModel>(x =>
-    {
-      x.TileEditCommand.Execute(this);
-    });
+    TapCommand = new AsyncCommand<ITileViewModel>(Tap);
   }
 
-  private void Tap()
+  private Task Tap(ITileViewModel model)
   {
     if (!IsBackground)
     {
@@ -135,7 +128,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
 
     if (Player == null)
     {
-      return;
+      return Task.CompletedTask;
     }
 
     if (Player.IsPlaying)
@@ -146,5 +139,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     {
       Player.Play();
     }
+
+    return Task.CompletedTask;
   }
 }

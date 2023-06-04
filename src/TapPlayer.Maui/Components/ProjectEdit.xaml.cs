@@ -1,5 +1,4 @@
 using CommunityToolkit.Mvvm.Messaging;
-using System.ComponentModel;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.ViewModels;
@@ -53,21 +52,6 @@ public partial class ProjectEdit : ContentView
     };
 
     return tileView;
-  }
-
-  private void Tile_PropertyChanged(object sender, PropertyChangedEventArgs e)
-  {
-    if (
-      e.PropertyName == nameof(Button.Text)
-      || e.PropertyName == nameof(Button.Width)
-      || e.PropertyName == nameof(Button.Height)
-      || e.PropertyName == nameof(Button.Padding)
-    )
-    {
-      var button = (Button)sender;
-
-      button.FitTextToSize();
-    }
   }
 
   protected void Cancel_Clicked(object sender, EventArgs e)

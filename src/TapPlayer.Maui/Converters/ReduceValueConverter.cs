@@ -6,24 +6,15 @@ internal class ReduceValueConverter : IValueConverter
 {
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
   {
-    if (value == null)
-    {
-      return value;
-    }
-
-    if (System.Convert.ToInt32(value, CultureInfo.InvariantCulture) < 0)
-    {
-      return value;
-    }
-
-    var result = System.Convert.ToInt32(value, CultureInfo.InvariantCulture)
-       - System.Convert.ToInt32(parameter, CultureInfo.InvariantCulture);
+    var valueInt = System.Convert.ToInt32(value, CultureInfo.InvariantCulture);
+    var parameterInt = System.Convert.ToInt32(parameter, CultureInfo.InvariantCulture);
+    var result = valueInt - parameterInt;
 
     return result;
   }
 
   public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
   {
-    return System.Convert.ToDouble(value, CultureInfo.InvariantCulture);
+    return System.Convert.ToInt32(value, CultureInfo.InvariantCulture);
   }
 }

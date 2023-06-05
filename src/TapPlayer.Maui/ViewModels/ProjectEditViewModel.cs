@@ -257,6 +257,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.IsBackground = act?.IsBackground == true;
       tile.PlayType = act?.Play ?? PlayType.Once;
       tile.TapCommand = TileEditCommand;
+      tile.IsPlayable = false;
 
       Tiles.Add(tile);
     }
@@ -390,6 +391,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.File = null;
       tile.Color = ColorPalette.Color1;
       tile.TapCommand = TileEditCommand;
+      tile.IsPlayable = false;
 
       Tiles.Add(tile);
     }

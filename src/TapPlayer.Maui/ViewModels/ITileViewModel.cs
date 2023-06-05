@@ -18,6 +18,8 @@ public interface ITileViewModel
 
   IMediaPlayerViewModel Player { get; set; }
 
+  bool IsPlayable { get; set; }
+
   IAsyncCommand<ITileViewModel> TapCommand { get; set; }
 
   Action StopAllExcludingBackground { get; }

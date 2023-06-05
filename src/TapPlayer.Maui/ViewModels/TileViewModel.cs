@@ -14,6 +14,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   private bool _isBackground;
   private ColorPalette _color;
   private IMediaPlayerViewModel _player;
+  private bool _isPlayable = true;
 
   public int Index
   {
@@ -102,6 +103,19 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     set
     {
       _player = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool IsPlayable
+  {
+    get
+    {
+      return _isPlayable;
+    }
+    set
+    {
+      _isPlayable = value;
       OnProprtyChanged();
     }
   }

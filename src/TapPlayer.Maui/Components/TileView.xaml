@@ -13,7 +13,7 @@
       <converters:ColorPaletteToTileStyleConverter x:Key="ColorPaletteToTileStyleConverter" />
       <converters:ColorPaletteToTileIndicatorTintColorConverter x:Key="ColorPaletteToTileIndicatorTintColorConverter" />
       <converters:EmptyValueToBoolConverter x:Key="EmptyValueToBoolConverter" />
-      <converters:FileViewModelConverter x:Key="FileViewModelConverter" />
+      <converters:TileViewModelToMediaElementSourceConverter x:Key="TileViewModelToMediaElementSourceConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
 
@@ -176,7 +176,11 @@
     <toolkit:MediaElement
       x:Name="MediaPlayer"
       IsVisible="False"
-      Source="{Binding File, Converter={StaticResource FileViewModelConverter}, ConverterParameter=True, Mode=OneWay}"
+      Source="{
+        Binding .,
+        Converter={StaticResource TileViewModelToMediaElementSourceConverter},
+        Mode=OneWay
+      }"
     />
   </Grid>
 </ContentView>

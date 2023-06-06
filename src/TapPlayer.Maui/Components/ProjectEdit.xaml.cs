@@ -1,20 +1,27 @@
 using CommunityToolkit.Mvvm.Messaging;
-using System.ComponentModel;
 using TapPlayer.Data.Enums;
-using TapPlayer.Maui.Converters;
 using TapPlayer.Maui.Extensions;
-using TapPlayer.Maui.Resources.Strings;
 using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui.Components;
 
 public partial class ProjectEdit : ContentView
 {
+  private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
+
+  private int _gridSizeSelectedIndexChangedQueue = 0;
+  private bool _isRendered = false;
+
   public IProjectEditViewModel Model => (IProjectEditViewModel)BindingContext;
 
   public ProjectEdit()
   {
     InitializeComponent();
+
+    BindingContextChanged += ProjectEdit_BindingContextChanged;
+    LayoutChanged += ProjectEdit_LayoutChanged;
+
+    GridSize.SelectedIndexChanged += GridSize_SelectedIndexChanged;
 
     // TODO: I don't like this solution. Too confusing.
     // We need to find a way to update the Grid when the model changes, through binding.
@@ -31,70 +38,89 @@ public partial class ProjectEdit : ContentView
     );
   }
 
+  protected void ProjectEdit_LayoutChanged(object sender, EventArgs e)
+  {
+    _isRendered = true;
+  }
+
   protected void ProjectEdit_BindingContextChanged(object sender, EventArgs e)
   {
-    GridSize_SelectedIndexChanged(GridSize, default);
+    if (Model.IsLoaded && _isRendered)
+    {
+      GridSize_SelectedIndexChanged(GridSize, default);
+    }
   }
 
   protected void GridSize_SelectedIndexChanged(object sender, EventArgs e)
   {
-    var gridSize = (GridSize)GridSize.SelectedItem;
+    Interlocked.Increment(ref _gridSizeSelectedIndexChangedQueue);
 
-    TilesGrid.Create(gridSize, CreateTill);
-    TilesGrid.DispatchInvalidateMeasure();
+    Task.Run(
+      async () =>
+      {
+        _semaphore.Wait();
+
+        Model.CanSetGridSize = false;
+
+        var gridSize = (GridSize)GridSize.SelectedItem;
+
+        Dispatcher.Dispatch(() =>
+        {
+          TilesGridContainer.Content = new ActivityIndicator
+          {
+            IsRunning = true,
+            Scale = 0.25,
+            HorizontalOptions = LayoutOptions.Fill,
+            VerticalOptions = LayoutOptions.Fill,
+          };
+        });
+
+        try
+        {
+          while (!_isRendered || !Model.IsLoaded)
+          {
+            await Task.Delay(250);
+          }
+
+          if (_gridSizeSelectedIndexChangedQueue == 1)
+          {
+            var tilesGrid = new Grid
+            {
+              HorizontalOptions = LayoutOptions.Fill,
+              VerticalOptions = LayoutOptions.Fill,
+              RowSpacing = 2,
+              ColumnSpacing = 2,
+            };
+
+            tilesGrid.Create(gridSize, CreateTill);
+
+            Dispatcher.Dispatch(() =>
+            {
+              TilesGridContainer.Content = tilesGrid;
+            });
+          }
+        }
+        finally
+        {
+          Interlocked.Decrement(ref _gridSizeSelectedIndexChangedQueue);
+          Model.CanSetGridSize = _gridSizeSelectedIndexChangedQueue == 0;
+          _semaphore.Release();
+        }
+      }
+    );
   }
 
-  private Button CreateTill(GridCreateEventArgs e)
+  private IView CreateTill(GridCreateEventArgs e)
   {
     var tile = Model.Tiles.ElementAt(e.Index);
-    var button = new Button
+    var tileView = new TileView
     {
       BindingContext = tile,
-      CommandParameter = Model,
       HorizontalOptions = LayoutOptions.Fill,
       VerticalOptions = LayoutOptions.Fill,
-      LineBreakMode = LineBreakMode.NoWrap,
     };
 
-    button.SetBinding(
-      Button.StyleProperty,
-      nameof(TileViewModel.Color),
-      converter: new ColorPaletteToButtonStyleConverter()
-    );
-
-    button.SetBinding(
-      Button.TextProperty,
-      nameof(TileViewModel.Name)
-    );
-
-    button.SetBinding(
-      Button.CommandProperty,
-      nameof(TileViewModel.EditCommand)
-    );
-
-    button.PropertyChanged += Tile_PropertyChanged;
-
-    SemanticProperties.SetDescription(
-      button,
-      string.Format(CommonStrings.TileX, tile.Index + 1)
-    );
-
-    return button;
-  }
-
-  private void Tile_PropertyChanged(object sender, PropertyChangedEventArgs e)
-  {
-    if (
-      e.PropertyName == nameof(Button.Text)
-      || e.PropertyName == nameof(Button.Width)
-      || e.PropertyName == nameof(Button.Height)
-      || e.PropertyName == nameof(Button.Padding)
-    )
-    {
-      var button = (Button)sender;
-
-      button.FitTextToSize();
-    }
+    return tileView;
   }
 
   protected void Cancel_Clicked(object sender, EventArgs e)
@@ -118,16 +144,7 @@ public partial class ProjectEdit : ContentView
 
       Model.TilesGridWidth = Model.TilesGridHeight = min;
 
-      scrollView.DispatchInvalidateMeasure();
-    }
-  }
-
-  protected void ContentPage_Refreshing(object sender, EventArgs e)
-  {
-    if (Model.IsLoaded)
-    {
-      Model.ShowRefreshing = false;
-      // TODO: Reload?
+      TilesVerticalStackLayout.DispatchInvalidateMeasure();
     }
   }
 }

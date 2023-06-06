@@ -5,7 +5,13 @@ namespace TapPlayer.Maui.Services;
 
 public class TapPlayerService : ITapPlayerService
 {
+  private readonly IDispatcherService _dispatcherService;
   private readonly ObservableCollection<ITileViewModel> _tiles = new ObservableCollection<ITileViewModel>();
+
+  public TapPlayerService(IDispatcherService dispatcherService)
+  {
+    _dispatcherService = dispatcherService;
+  }
 
   public void Set(ObservableCollection<ITileViewModel> tiles)
   {
@@ -27,7 +33,7 @@ public class TapPlayerService : ITapPlayerService
 
     foreach (var tile in activeTiles)
     {
-      tile.Player.Stop();
+      _dispatcherService.Dispatch(tile.Player.Stop);
     }
   }
 
@@ -39,7 +45,7 @@ public class TapPlayerService : ITapPlayerService
 
     foreach (var tile in activeTiles)
     {
-      tile.Player.Stop();
+      _dispatcherService.Dispatch(tile.Player.Stop);
     }
   }
 
@@ -47,12 +53,15 @@ public class TapPlayerService : ITapPlayerService
   {
     foreach (var tile in _tiles)
     {
-      if (tile.Player != null)
+      _dispatcherService.Dispatch(() =>
       {
-        tile.Player.Stop();
-        tile.Player.Dispose();
-        tile.Player = null;
-      }
+        if (tile.Player != null)
+        {
+          tile.Player.Stop();
+          tile.Player.Dispose();
+          tile.Player = null;
+        }
+      });
     }
   }
 

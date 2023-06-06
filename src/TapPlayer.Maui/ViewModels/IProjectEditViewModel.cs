@@ -20,7 +20,9 @@ public interface IProjectEditViewModel
 
   double TilesGridHeight { get; set; }
 
-  bool ShowRefreshing { get; set; }
+  bool ShowLoader { get; set; }
+
+  bool CanSetGridSize { get; set; }
 
   string Title { get; }
 

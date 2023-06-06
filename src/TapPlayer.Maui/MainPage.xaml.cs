@@ -7,6 +7,7 @@ namespace TapPlayer.Maui;
 
 public partial class MainPage : ContentPage
 {
+  private readonly IActiveProjectService _activeProjectService;
   private IMainPageViewModel Model => (IMainPageViewModel)BindingContext;
 
   public MainPage(
@@ -14,22 +15,48 @@ public partial class MainPage : ContentPage
     IMainPageViewModel model
   )
   {
+    _activeProjectService = activeProjectService;
     BindingContext = model;
 
     InitializeComponent();
+    Init();
+  }
 
-    Dispatcher.DispatchAsync(async () =>
+  private void Init()
+  {
+    Task.Run(async () =>
     {
-      await model.InitCommand.ExecuteAsync();
+      Dispatcher.Dispatch(TilesGridContainer.Children.Clear);
 
-      if (activeProjectService.HasProject)
+      await Model.InitCommand.ExecuteAsync();
+
+      if (_activeProjectService.HasProject)
       {
-        await model.LoadCommand.ExecuteAsync(activeProjectService.ProjectId);
+        await Model.LoadCommand.ExecuteAsync(_activeProjectService.ProjectId);
 
-        MainGrid.Create(
-          model.GridSize,
+        var tilesGrid = new Grid
+        {
+          VerticalOptions = LayoutOptions.Fill,
+          HorizontalOptions = LayoutOptions.Fill,
+          RowSpacing = 2,
+          ColumnSpacing = 2,
+        };
+
+        tilesGrid.Create(
+          Model.GridSize,
           CreateTill
         );
+
+        Dispatcher.Dispatch(() =>
+        {
+          TilesGridContainer.Children.Add(tilesGrid);
+          TilesGridContainer.DispatchInvalidateMeasure();
+          Model.HideActivityIndicator();
+        });
+      }
+      else
+      {
+        Model.HideActivityIndicator();
       }
     });
   }

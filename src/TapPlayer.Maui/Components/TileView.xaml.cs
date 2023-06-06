@@ -1,4 +1,5 @@
 using Microsoft.Maui.Graphics.Skia;
+using System.ComponentModel;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.ViewModels;
 using Font = Microsoft.Maui.Graphics.Font;
@@ -99,5 +100,13 @@ public partial class TileView : ContentView
     }
 
     TileName.FontSize = fontSize;
+  }
+
+  protected void TileName_PropertyChanged(object sender, PropertyChangedEventArgs e)
+  {
+    if (e.PropertyName.Equals(nameof(Label.Text)))
+    {
+      TileView_SizeChanged(default, default);
+    }
   }
 }

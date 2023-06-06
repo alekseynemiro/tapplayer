@@ -14,6 +14,8 @@ internal static class ServiceCollectionExtensions
     page.Unloaded += (object sender, EventArgs e) =>
     {
       (((ContentPage)sender).BindingContext as IDisposable)?.Dispose();
+      ((ContentPage)sender).BindingContext = null;
+      (((ContentPage)sender) as IDisposable)?.Dispose();
     };
 
     return page;

@@ -5,10 +5,15 @@ using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui;
 
-public partial class MainPage : ContentPage
+public partial class MainPage : ContentPage, IDisposable
 {
   private readonly IActiveProjectService _activeProjectService;
+  private readonly CancellationTokenSource _initTaskCancellationTokenSource = new CancellationTokenSource();
+  private CancellationToken _initTaskCancellationToken;
+
   private IMainPageViewModel Model => (IMainPageViewModel)BindingContext;
+
+  private bool _disposed = false;
 
   public MainPage(
     IActiveProjectService activeProjectService,
@@ -24,41 +29,62 @@ public partial class MainPage : ContentPage
 
   private void Init()
   {
-    Task.Run(async () =>
-    {
-      Dispatcher.Dispatch(TilesGridContainer.Children.Clear);
+    _initTaskCancellationToken = _initTaskCancellationTokenSource.Token;
 
-      await Model.InitCommand.ExecuteAsync();
-
-      if (_activeProjectService.HasProject)
+    Task.Run(
+      async () =>
       {
-        await Model.LoadCommand.ExecuteAsync(_activeProjectService.ProjectId);
-
-        var tilesGrid = new Grid
+        try
         {
-          VerticalOptions = LayoutOptions.Fill,
-          HorizontalOptions = LayoutOptions.Fill,
-          RowSpacing = 2,
-          ColumnSpacing = 2,
-        };
+          _initTaskCancellationToken.ThrowIfCancellationRequested();
 
-        tilesGrid.Create(
-          Model.GridSize,
-          CreateTill
-        );
+          Dispatcher.Dispatch(TilesGridContainer.Children.Clear);
 
-        Dispatcher.Dispatch(() =>
+          await Model.InitCommand.ExecuteAsync();
+
+          _initTaskCancellationToken.ThrowIfCancellationRequested();
+
+          if (_activeProjectService.HasProject)
+          {
+            await Model.LoadCommand.ExecuteAsync(_activeProjectService.ProjectId);
+
+            _initTaskCancellationToken.ThrowIfCancellationRequested();
+
+            var tilesGrid = new Grid
+            {
+              VerticalOptions = LayoutOptions.Fill,
+              HorizontalOptions = LayoutOptions.Fill,
+              RowSpacing = 2,
+              ColumnSpacing = 2,
+            };
+
+            tilesGrid.Create(
+              Model.GridSize,
+              CreateTill
+            );
+
+            _initTaskCancellationToken.ThrowIfCancellationRequested();
+
+            Dispatcher.Dispatch(() =>
+            {
+              TilesGridContainer.Children.Add(tilesGrid);
+              TilesGridContainer.DispatchInvalidateMeasure();
+              Model.HideActivityIndicator();
+            });
+          }
+          else
+          {
+            Model.HideActivityIndicator();
+          }
+        }
+        catch
         {
-          TilesGridContainer.Children.Add(tilesGrid);
-          TilesGridContainer.DispatchInvalidateMeasure();
-          Model.HideActivityIndicator();
-        });
-      }
-      else
-      {
-        Model.HideActivityIndicator();
-      }
-    });
+          // TODO: log
+          throw;
+        }
+      },
+      _initTaskCancellationToken
+    );
   }
 
   private IView CreateTill(GridCreateEventArgs e)
@@ -72,5 +98,17 @@ public partial class MainPage : ContentPage
     };
 
     return tileView;
+  }
+
+  public void Dispose()
+  {
+    if (_disposed)
+    {
+      return;
+    }
+
+    _initTaskCancellationTokenSource.Cancel();
+
+    _disposed = true;
   }
 }

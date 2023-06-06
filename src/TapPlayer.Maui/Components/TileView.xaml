@@ -170,6 +170,7 @@
       LineBreakMode="CharacterWrap"
       Style="{StaticResource TileName}"
       Padding="4,0"
+      Margin="0,0,0,24"
       Grid.Row="1"
     />
 

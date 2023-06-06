@@ -10,11 +10,11 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   private int _index;
   private string _name;
   private FileViewModel _file;
-  private PlayType _playType;
   private bool _isBackground;
   private ColorPalette _color;
   private IMediaPlayerViewModel _player;
   private bool _isPlayable = true;
+  private bool _isLooped = false;
 
   public int Index
   {
@@ -55,19 +55,6 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     }
   }
 
-  public PlayType PlayType
-  {
-    get
-    {
-      return _playType;
-    }
-    set
-    {
-      _playType = value;
-      OnProprtyChanged();
-    }
-  }
-
   public bool IsBackground
   {
     get
@@ -77,6 +64,19 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     set
     {
       _isBackground = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool IsLooped
+  {
+    get
+    {
+      return _isLooped;
+    }
+    set
+    {
+      _isLooped = value;
       OnProprtyChanged();
     }
   }

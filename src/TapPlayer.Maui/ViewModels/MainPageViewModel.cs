@@ -272,7 +272,7 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
       tile.File = new FileViewModel(act?.FilePath);
       tile.Color = act?.Color ?? ColorPalette.Color1;
       tile.IsBackground = act?.IsBackground == true;
-      tile.PlayType = act?.Play ?? PlayType.Once;
+      tile.IsLooped = act?.Play == PlayType.Loop;
 
       Tiles.Add(tile);
     }

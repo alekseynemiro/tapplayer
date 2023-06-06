@@ -269,7 +269,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.File = new FileViewModel(act?.FilePath);
       tile.Color = act?.Color ?? ColorPalette.Color1;
       tile.IsBackground = act?.IsBackground == true;
-      tile.PlayType = act?.Play ?? PlayType.Once;
+      tile.IsLooped = act?.Play == PlayType.Loop;
       tile.TapCommand = TileEditCommand;
       tile.IsPlayable = false;
 
@@ -316,7 +316,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
             Color = x.Color,
             FilePath = x.File?.FullPath,
             IsBackground = x.IsBackground,
-            Play = x.PlayType,
+            Play = x.IsLooped ? PlayType.Loop : PlayType.Once,
           }).ToList(),
       });
 
@@ -337,7 +337,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
             Color = x.Color,
             FilePath = x.File?.FullPath,
             IsBackground = x.IsBackground,
-            Play = x.PlayType,
+            Play = x.IsLooped ? PlayType.Loop : PlayType.Once,
           })
           .ToList(),
       });
@@ -380,7 +380,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     tile.File = new FileViewModel(model.File.FullPath);
     tile.Color = model.Color;
     tile.IsBackground = model.IsBackground;
-    tile.PlayType = model.PlayLoop ? PlayType.Loop : PlayType.Once;
+    tile.IsLooped = model.PlayLoop;
 
     Tiles.UpdateItem(tile);
   }

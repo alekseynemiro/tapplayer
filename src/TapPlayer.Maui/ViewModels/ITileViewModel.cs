@@ -10,9 +10,9 @@ public interface ITileViewModel
 
   FileViewModel File { get; set; }
 
-  PlayType PlayType { get; set; }
-
   bool IsBackground { get; set; }
+
+  bool IsLooped { get; set; }
 
   ColorPalette Color { get; set; }
 

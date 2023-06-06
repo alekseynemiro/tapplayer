@@ -43,6 +43,7 @@ public static class AppBuilder
     builder.Services.AddSingleton<IActiveProjectService, ActiveProjectService>();
     builder.Services.AddSingleton<IAppInfo, Services.AppInfo>();
     builder.Services.AddSingleton<IDialogService, DialogService>();
+    builder.Services.AddSingleton<IDispatcherService, DispatcherService>();
     builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
     builder.Services.AddSingleton<INavigationService, NavigationService>();
     builder.Services.AddSingleton<ITapPlayerService, TapPlayerService>();

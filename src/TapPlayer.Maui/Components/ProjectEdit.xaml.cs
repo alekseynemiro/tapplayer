@@ -20,6 +20,7 @@ public partial class ProjectEdit : ContentView
 
     BindingContextChanged += ProjectEdit_BindingContextChanged;
     LayoutChanged += ProjectEdit_LayoutChanged;
+    Unloaded += ProjectEdit_Unloaded;
 
     GridSize.SelectedIndexChanged += GridSize_SelectedIndexChanged;
 
@@ -45,10 +46,15 @@ public partial class ProjectEdit : ContentView
 
   protected void ProjectEdit_BindingContextChanged(object sender, EventArgs e)
   {
-    if (Model.IsLoaded && _isRendered)
+    if (Model != null && Model.IsLoaded && _isRendered)
     {
       GridSize_SelectedIndexChanged(GridSize, default);
     }
+  }
+
+  protected void ProjectEdit_Unloaded(object sender, EventArgs e)
+  {
+    // TODO: Cancel tasks
   }
 
   protected void GridSize_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,6 +65,12 @@ public partial class ProjectEdit : ContentView
       async () =>
       {
         _semaphore.Wait();
+
+        if (Model == null)
+        {
+          _semaphore.Release();
+          return;
+        }
 
         Model.CanSetGridSize = false;
 

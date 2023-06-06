@@ -15,6 +15,15 @@ public partial class TileView : ContentView
 
     BindingContextChanged += TileView_BindingContextChanged;
     SizeChanged += TileView_SizeChanged;
+    Unloaded += TileView_Unloaded;
+  }
+
+  protected void TileView_Unloaded(object sender, EventArgs e)
+  {
+    Dispatcher.Dispatch(() =>
+    {
+      Model?.Player?.Dispose();
+    });
   }
 
   protected void TileView_BindingContextChanged(object sender, EventArgs e)

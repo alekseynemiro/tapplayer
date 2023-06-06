@@ -8,16 +8,15 @@
 >
   <Grid>
     <ActivityIndicator
-      Scale="0.25"
+      Scale="{OnPlatform Android=0.25, Default=1}"
       IsRunning="{Binding ShowActivityIndicator}"
+      IsVisible="{Binding ShowActivityIndicator}"
     />
     <Grid
-      x:Name="MainGrid"
+      x:Name="TilesGridContainer"
       VerticalOptions="Fill"
       HorizontalOptions="Fill"
       IsVisible="{Binding ShowTiles}"
-      RowSpacing="2"
-      ColumnSpacing="2"
     />
     <VerticalStackLayout
       Spacing="16"

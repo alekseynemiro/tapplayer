@@ -137,7 +137,7 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     {
       return _showActivityIndicator;
     }
-    set
+    private set
     {
       _showActivityIndicator = value;
       OnProprtyChanged();
@@ -231,6 +231,11 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     _disposed = true;
   }
 
+  public void HideActivityIndicator()
+  {
+    ShowActivityIndicator = false;
+  }
+
   private async Task Init()
   {
     ShowStartLoading();
@@ -243,8 +248,6 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
 
     ProjectName = string.Empty;
     Tiles.Clear();
-
-    ShowActivityIndicator = false;
   }
 
   private async Task Load(Guid projectId)
@@ -293,6 +296,5 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
   {
     ShowCreateOrOpenProject = Tiles.Count == 0;
     ShowTiles = Tiles.Count > 0;
-    ShowActivityIndicator = false;
   }
 }

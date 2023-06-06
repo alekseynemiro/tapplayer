@@ -24,7 +24,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
   private ObservableCollection<ITileViewModel> _tiles = new ObservableCollection<ITileViewModel>();
   private double _tilesGridWidth = -1;
   private double _tilesGridHeight = -1;
-  private bool _showRefreshing = false;
+  private bool _showLoader = true;
+  private bool _canSetGridSize = true;
   private bool _isLoaded = false;
   private bool _isSaving = false;
   private bool _isCreated = false;
@@ -122,15 +123,28 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     }
   }
 
-  public bool ShowRefreshing
+  public bool ShowLoader
   {
     get
     {
-      return _showRefreshing;
+      return _showLoader;
     }
     set
     {
-      _showRefreshing = value;
+      _showLoader = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool CanSetGridSize
+  {
+    get
+    {
+      return _canSetGridSize;
+    }
+    set
+    {
+      _canSetGridSize = value;
       OnProprtyChanged();
     }
   }
@@ -233,7 +247,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     }
 
     IsLoaded = false;
-    ShowRefreshing = true;
+    ShowLoader = true;
 
     WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
 
@@ -266,8 +280,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     ProjectName = project.Name;
     GridSize = project.Size;
 
-    ShowRefreshing = false;
     IsLoaded = true;
+    ShowLoader = false;
 
     WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
   }
@@ -374,7 +388,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
   private void InitDefault()
   {
     IsLoaded = false;
-    ShowRefreshing = true;
+    ShowLoader = true;
 
     Tiles.Clear();
 
@@ -400,7 +414,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     ProjectName = string.Empty;
     GridSize = GridSize.Grid3x3;
 
-    ShowRefreshing = false;
     IsLoaded = true;
+    ShowLoader = false;
   }
 }

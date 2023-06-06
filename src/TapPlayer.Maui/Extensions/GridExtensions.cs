@@ -27,9 +27,10 @@ internal static class GridExtensions
       for (int row = 0; row < rows; ++row)
       {
         int index = row + column + (row > 0 ? (columns - 1) * row : 0);
+        var view = getCellView.Invoke(new GridCreateEventArgs(column, row, index));
 
         grid.Add(
-          getCellView.Invoke(new GridCreateEventArgs(column, row, index)),
+          view,
           column,
           row
         );

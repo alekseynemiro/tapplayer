@@ -7,7 +7,6 @@
   xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
   x:Class="TapPlayer.Maui.Components.ProjectEdit"
   x:Name="Me"
-  BindingContextChanged="ProjectEdit_BindingContextChanged"
 >
   <ContentView.Resources>
     <ResourceDictionary>
@@ -16,86 +15,94 @@
       <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
-  <components:RefreshView
-    IsRefreshing="{Binding ShowRefreshing}"
-    VerticalOptions="Fill"
+  <ScrollView
+    x:Name="MainScrollView"
+    HorizontalScrollBarVisibility="Never"
+    VerticalScrollBarVisibility="Default"
     HorizontalOptions="Fill"
-    Refreshing="ContentPage_Refreshing"
+    VerticalOptions="Fill"
+    StyleClass="WithPadding"
+    SizeChanged="MainScrollView_SizeChanged"
   >
-    <ScrollView
-      x:Name="MainScrollView"
-      HorizontalScrollBarVisibility="Never"
-      VerticalScrollBarVisibility="Default"
+    <VerticalStackLayout
+      Spacing="16"
       HorizontalOptions="Fill"
       VerticalOptions="Fill"
-      StyleClass="WithPadding"
-      IsVisible="{Binding ShowRefreshing, Converter={StaticResource InvertedBoolConverter}}"
-      SizeChanged="MainScrollView_SizeChanged"
     >
+      <ActivityIndicator
+        IsRunning="{Binding ShowLoader}"
+        IsVisible="{Binding ShowLoader}"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+      />
       <VerticalStackLayout
-        Spacing="16"
-        HorizontalOptions="Fill"
-        VerticalOptions="Fill"
+        Spacing="8"
+        IsVisible="{Binding ShowLoader, Converter={StaticResource InvertedBoolConverter}}"
       >
-        <VerticalStackLayout Spacing="8">
-          <Label Text="{markup:Localization Key=ProjectNameField}" />
-          <Border StyleClass="FormField">
-            <Entry
-              Text="{Binding ProjectName}"
-              SemanticProperties.Description="{markup:Localization Key=ProjectNameField}"
-            />
-          </Border>
-        </VerticalStackLayout>
-
-        <VerticalStackLayout Spacing="8">
-          <Label Text="{markup:Localization Key=TilesField}" />
-          <Border StyleClass="FormField">
-            <Picker
-              x:Name="GridSize"
-              ItemsSource="{Binding AvailableGridSizes}"
-              ItemDisplayBinding="{Binding ., Converter={StaticResource GridSizeConverter}}"
-              SelectedItem="{Binding GridSize}"
-              SelectedIndexChanged="GridSize_SelectedIndexChanged"
-              SemanticProperties.Description="{markup:Localization Key=TilesField}"
-            />
-          </Border>
-        </VerticalStackLayout>
-
-        <VerticalStackLayout Spacing="8">
-          <Label Text="{markup:Localization Key=TapToConfig}" />
-          <Border
-            Padding="2"
-            HorizontalOptions="Start"
-            VerticalOptions="Start"
-            WidthRequest="{Binding TilesGridWidth}"
-            HeightRequest="{Binding TilesGridHeight}"
-          >
-            <Grid
-              x:Name="TilesGrid"
-              HorizontalOptions="Fill"
-              VerticalOptions="Fill"
-              RowSpacing="2"
-              ColumnSpacing="2"
-            />
-          </Border>
-        </VerticalStackLayout>
-
-        <BoxView StyleClass="Separator" />
-
-        <HorizontalStackLayout Margin="0" Spacing="8">
-          <Button
-            Text="{markup:Localization Key=Save}"
-            Command="{Binding SaveCommand}"
-            SemanticProperties.Description="{markup:Localization Key=SaveProject}"
+        <Label Text="{markup:Localization Key=ProjectNameField}" />
+        <Border StyleClass="FormField">
+          <Entry
+            Text="{Binding ProjectName}"
+            SemanticProperties.Description="{markup:Localization Key=ProjectNameField}"
           />
-          <Button
-            Text="{markup:Localization Key=Cancel}"
-            StyleClass="SecondaryButton"
-            Command="{Binding CancelCommand}"
-            SemanticProperties.Description="{markup:Localization Key=CloseProjectEditor}"
-          />
-        </HorizontalStackLayout>
+        </Border>
       </VerticalStackLayout>
-    </ScrollView>
-  </components:RefreshView>
+
+      <VerticalStackLayout
+        Spacing="8"
+        IsVisible="{Binding ShowLoader, Converter={StaticResource InvertedBoolConverter}}"
+      >
+        <Label Text="{markup:Localization Key=TilesField}" />
+        <Border StyleClass="FormField">
+          <Picker
+            x:Name="GridSize"
+            IsEnabled="{Binding CanSetGridSize}"
+            ItemsSource="{Binding AvailableGridSizes}"
+            ItemDisplayBinding="{Binding ., Converter={StaticResource GridSizeConverter}}"
+            SelectedItem="{Binding GridSize}"
+            SemanticProperties.Description="{markup:Localization Key=TilesField}"
+          />
+        </Border>
+      </VerticalStackLayout>
+
+      <VerticalStackLayout
+        x:Name="TilesVerticalStackLayout"
+        Spacing="8"
+        IsVisible="{Binding ShowLoader, Converter={StaticResource InvertedBoolConverter}}"
+      >
+        <Label Text="{markup:Localization Key=TapToConfig}" />
+        <Border
+          x:Name="TilesGridContainer"
+          Padding="2"
+          HorizontalOptions="Start"
+          VerticalOptions="Start"
+          WidthRequest="{Binding TilesGridWidth}"
+          HeightRequest="{Binding TilesGridHeight}"
+        />
+      </VerticalStackLayout>
+
+      <BoxView
+        StyleClass="Separator"
+        IsVisible="{Binding ShowLoader, Converter={StaticResource InvertedBoolConverter}}"
+      />
+
+      <HorizontalStackLayout
+        Margin="0"
+        Spacing="8"
+        IsVisible="{Binding ShowLoader, Converter={StaticResource InvertedBoolConverter}}"
+      >
+        <Button
+          Text="{markup:Localization Key=Save}"
+          Command="{Binding SaveCommand}"
+          SemanticProperties.Description="{markup:Localization Key=SaveProject}"
+        />
+        <Button
+          Text="{markup:Localization Key=Cancel}"
+          StyleClass="SecondaryButton"
+          Command="{Binding CancelCommand}"
+          SemanticProperties.Description="{markup:Localization Key=CloseProjectEditor}"
+        />
+      </HorizontalStackLayout>
+    </VerticalStackLayout>
+  </ScrollView>
 </ContentView>

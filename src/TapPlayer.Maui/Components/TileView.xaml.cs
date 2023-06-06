@@ -24,17 +24,20 @@ public partial class TileView : ContentView
       return;
     }
 
-    Model.Player?.Dispose();
-
-    Model.Player = new MediaPlayerViewModel(MediaPlayer)
+    Dispatcher.Dispatch(() =>
     {
-      Loop = Model.PlayType == PlayType.Loop,
-    };
+      Model.Player?.Dispose();
+
+      Model.Player = new MediaPlayerViewModel(MediaPlayer)
+      {
+        Loop = Model.PlayType == PlayType.Loop,
+      };
+    });
   }
 
   protected void TileView_SizeChanged(object sender, EventArgs e)
   {
-    if (string.IsNullOrWhiteSpace(TileName.Text))
+    if (string.IsNullOrWhiteSpace(Model.Name))
     {
       return;
     }

@@ -12,6 +12,9 @@ public partial class ProjectEdit : ContentView
   private readonly ILogger _logger;
   private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
+  private CancellationTokenSource _cancellationTokenSource;
+  private CancellationToken _cancellationToken;
+
   private int _gridSizeSelectedIndexChangedQueue = 0;
   private bool _isRendered = false;
 
@@ -59,17 +62,35 @@ public partial class ProjectEdit : ContentView
 
   protected void ProjectEdit_Unloaded(object sender, EventArgs e)
   {
-    // TODO: Cancel tasks
+    if (_cancellationToken != CancellationToken.None)
+    {
+      _cancellationTokenSource.Cancel();
+    }
   }
 
   protected void GridSize_SelectedIndexChanged(object sender, EventArgs e)
   {
-    Interlocked.Increment(ref _gridSizeSelectedIndexChangedQueue);
+    if (_cancellationToken != CancellationToken.None)
+    {
+      _cancellationTokenSource.Cancel();
+    }
+
+    var tokenSource = new CancellationTokenSource();
+    var token = tokenSource.Token;
+
+    _cancellationTokenSource = tokenSource;
+    _cancellationToken = token;
 
     Task.Run(
       async () =>
       {
+        token.ThrowIfCancellationRequested();
+
+        Interlocked.Increment(ref _gridSizeSelectedIndexChangedQueue);
+
         _semaphore.Wait();
+
+        token.ThrowIfCancellationRequested();
 
         if (Model == null)
         {
@@ -96,11 +117,14 @@ public partial class ProjectEdit : ContentView
         {
           while (!_isRendered || !Model.IsLoaded)
           {
+            token.ThrowIfCancellationRequested();
             await Task.Delay(250);
           }
 
           if (_gridSizeSelectedIndexChangedQueue <= 1)
           {
+            token.ThrowIfCancellationRequested();
+
             var stopwatch = new Stopwatch();
             var tilesGrid = new Grid
             {
@@ -116,11 +140,17 @@ public partial class ProjectEdit : ContentView
 
             _logger.LogInformation("Tiles were created in {Elapsed}.", stopwatch.Elapsed);
 
+            token.ThrowIfCancellationRequested();
+
             Dispatcher.Dispatch(() =>
             {
               TilesGridContainer.Content = tilesGrid;
             });
           }
+        }
+        catch (OperationCanceledException)
+        {
+          _logger.LogInformation("Tiles generation has been cancelled. Queue size: {QueueSize}.", _gridSizeSelectedIndexChangedQueue);
         }
         catch (Exception ex)
         {
@@ -132,12 +162,18 @@ public partial class ProjectEdit : ContentView
           Model.CanSetGridSize = _gridSizeSelectedIndexChangedQueue == 0;
           _semaphore.Release();
         }
-      }
+      },
+      token
     );
   }
 
   private IView CreateTill(GridCreateEventArgs e)
   {
+    if (_cancellationToken != CancellationToken.None)
+    {
+      _cancellationToken.ThrowIfCancellationRequested();
+    }
+
     var tile = Model.Tiles.ElementAt(e.Index);
     var tileView = new TileView
     {

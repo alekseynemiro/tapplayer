@@ -14,113 +14,120 @@
       <converters:ReduceValueConverter x:Key="ReduceValueConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
-  <VerticalStackLayout
-    x:Name="Container"
-    Spacing="18"
+  <ScrollView
+    HorizontalScrollBarVisibility="Never"
+    VerticalScrollBarVisibility="Default"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
     StyleClass="WithPadding"
   >
-    <Border StyleClass="FormField" Padding="8">
-      <Grid ColumnDefinitions="Auto,*">
-        <Button
-          Grid.Column="0"
-          Text="{markup:Localization Key=SelectFile}"
-          Margin="0,0,4,0"
-          Clicked="SelectFile_Clicked"
+    <VerticalStackLayout
+      x:Name="Container"
+      Spacing="18"
+    >
+      <Border StyleClass="FormField" Padding="8">
+        <Grid ColumnDefinitions="Auto,*">
+          <Button
+            Grid.Column="0"
+            Text="{markup:Localization Key=SelectFile}"
+            Margin="0,0,4,0"
+            Clicked="SelectFile_Clicked"
+          />
+          <Label
+            Text="{Binding File, Converter={StaticResource FileViewModelConverter}, Mode=OneWay}"
+            VerticalTextAlignment="Center"
+            VerticalOptions="Fill"
+            LineBreakMode="MiddleTruncation"
+            Grid.Column="1"
+          >
+            <Label.GestureRecognizers>
+              <TapGestureRecognizer Tapped="SelectFile_Clicked" />
+            </Label.GestureRecognizers>
+          </Label>
+        </Grid>
+      </Border>
+
+      <HorizontalStackLayout Spacing="24">
+        <RadioButton
+          Content="{markup:Localization Key=PlayOnce}"
+          IsChecked="{Binding PlayOnce}"
+        />
+        <RadioButton
+          Content="{markup:Localization Key=Loop}"
+          IsChecked="{Binding PlayLoop}"
+        />
+      </HorizontalStackLayout>
+
+      <HorizontalStackLayout>
+        <CheckBox
+          VerticalOptions="Center"
+          IsChecked="{Binding IsBackground}"
+          SemanticProperties.Description="{markup:Localization Key=Background}"
         />
         <Label
-          Text="{Binding File, Converter={StaticResource FileViewModelConverter}, Mode=OneWay}"
-          VerticalTextAlignment="Center"
-          VerticalOptions="Fill"
-          LineBreakMode="MiddleTruncation"
-          Grid.Column="1"
+          VerticalOptions="Center"
+          Text="{markup:Localization Key=Background}"
+          LineBreakMode="WordWrap"
+          MaximumWidthRequest="{Binding
+            Source={x:Reference Container},
+            Path=Width,
+            Converter={StaticResource ReduceValueConverter},
+            ConverterParameter=50
+          }"
+          PropertyChanged="MaximumWidthRequest_PropertyChanged"
         >
           <Label.GestureRecognizers>
-            <TapGestureRecognizer Tapped="SelectFile_Clicked" />
+            <TapGestureRecognizer Tapped="IsBackground_Tapped" />
           </Label.GestureRecognizers>
         </Label>
-      </Grid>
-    </Border>
+      </HorizontalStackLayout>
 
-    <HorizontalStackLayout Spacing="24">
-      <RadioButton
-        Content="{markup:Localization Key=PlayOnce}"
-        IsChecked="{Binding PlayOnce}"
-      />
-      <RadioButton
-        Content="{markup:Localization Key=Loop}"
-        IsChecked="{Binding PlayLoop}"
-      />
-    </HorizontalStackLayout>
-
-    <HorizontalStackLayout>
-      <CheckBox
-        VerticalOptions="Center"
-        IsChecked="{Binding IsBackground}"
-        SemanticProperties.Description="{markup:Localization Key=Background}"
-      />
-      <Label
-        VerticalOptions="Center"
-        Text="{markup:Localization Key=Background}"
-        LineBreakMode="WordWrap"
-        MaximumWidthRequest="{Binding
-          Source={x:Reference Container},
-          Path=Width,
-          Converter={StaticResource ReduceValueConverter},
-          ConverterParameter=50
-        }"
-        PropertyChanged="MaximumWidthRequest_PropertyChanged"
-      >
-        <Label.GestureRecognizers>
-          <TapGestureRecognizer Tapped="IsBackground_Tapped" />
-        </Label.GestureRecognizers>
-      </Label>
-    </HorizontalStackLayout>
-
-    <HorizontalStackLayout>
-      <Button
-        Text="{markup:Localization Key=SelectColor}"
-        Clicked="SelectColor_Clicked"
-      />
-      <Border
-        StrokeThickness="1"
-        BackgroundColor="{Binding ., Source={StaticResource Black}}"
-        Padding="2"
-      >
+      <HorizontalStackLayout>
         <Button
-          Style="{Binding Color, Converter={StaticResource ColorPaletteToButtonStyleConverter}}"
-          WidthRequest="52"
-          HeightRequest="52"
-          SemanticProperties.Description="{markup:Localization Key=SelectedColor}"
+          Text="{markup:Localization Key=SelectColor}"
           Clicked="SelectColor_Clicked"
         />
-      </Border>
-    </HorizontalStackLayout>
+        <Border
+          StrokeThickness="1"
+          BackgroundColor="{Binding ., Source={StaticResource Black}}"
+          Padding="2"
+        >
+          <Button
+            Style="{Binding Color, Converter={StaticResource ColorPaletteToButtonStyleConverter}}"
+            WidthRequest="52"
+            HeightRequest="52"
+            SemanticProperties.Description="{markup:Localization Key=SelectedColor}"
+            Clicked="SelectColor_Clicked"
+          />
+        </Border>
+      </HorizontalStackLayout>
 
-    <VerticalStackLayout>
-      <Label Text="{markup:Localization Key=TileName}" />
-      <Border StyleClass="FormField">
-        <Entry
-          Text="{Binding Name}"
-          MinimumWidthRequest="100"
-          SemanticProperties.Description="{markup:Localization Key=TileName}"
+      <VerticalStackLayout>
+        <Label Text="{markup:Localization Key=TileName}" />
+        <Border StyleClass="FormField">
+          <Entry
+            Text="{Binding Name}"
+            MinimumWidthRequest="100"
+            SemanticProperties.Description="{markup:Localization Key=TileName}"
+          />
+        </Border>
+      </VerticalStackLayout>
+
+      <BoxView StyleClass="Separator" />
+
+      <HorizontalStackLayout Margin="0" Spacing="16">
+        <Button
+          Text="{markup:Localization Key=Ok}"
+          Command="{Binding SaveCommand}"
+          SemanticProperties.Description="{markup:Localization Key=OkTileEditor}"
         />
-      </Border>
+        <Button
+          Text="{markup:Localization Key=Cancel}"
+          StyleClass="SecondaryButton"
+          Command="{Binding CancelCommand}"
+          SemanticProperties.Description="{markup:Localization Key=CloseTileEditor}"
+        />
+      </HorizontalStackLayout>
     </VerticalStackLayout>
-
-    <BoxView StyleClass="Separator" />
-
-    <HorizontalStackLayout Margin="0" Spacing="16">
-      <Button
-        Text="{markup:Localization Key=Ok}"
-        Command="{Binding SaveCommand}"
-        SemanticProperties.Description="{markup:Localization Key=OkTileEditor}"
-      />
-      <Button
-        Text="{markup:Localization Key=Cancel}"
-        StyleClass="SecondaryButton"
-        Command="{Binding CancelCommand}"
-        SemanticProperties.Description="{markup:Localization Key=CloseTileEditor}"
-      />
-    </HorizontalStackLayout>
-  </VerticalStackLayout>
+  </ScrollView>
 </ContentPage>

@@ -3,6 +3,7 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+  xmlns:behaviors="clr-namespace:TapPlayer.Maui.Behaviors"
   xmlns:converters="clr-namespace:TapPlayer.Maui.Converters"
   xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
   x:Class="TapPlayer.Maui.Components.TileView"
@@ -64,6 +65,11 @@
                   />
                 </On.Value>
               </On>
+              <On Platform="WinUI">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
             </OnPlatform>
           </Image.Behaviors>
         </Image>
@@ -86,6 +92,11 @@
                   />
                 </On.Value>
               </On>
+              <On Platform="WinUI">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
             </OnPlatform>
           </Image.Behaviors>
         </Image>
@@ -106,6 +117,11 @@
                     BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
                     TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
                   />
+                </On.Value>
+              </On>
+              <On Platform="WinUI">
+                <On.Value>
+                  <behaviors:DummyBehavior />
                 </On.Value>
               </On>
             </OnPlatform>
@@ -132,6 +148,11 @@
                 />
               </On.Value>
             </On>
+            <On Platform="WinUI">
+              <On.Value>
+                <behaviors:DummyBehavior />
+              </On.Value>
+            </On>
           </OnPlatform>
         </Image.Behaviors>
       </Image>
@@ -153,6 +174,11 @@
                   BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
                   TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
                 />
+              </On.Value>
+            </On>
+            <On Platform="WinUI">
+              <On.Value>
+                <behaviors:DummyBehavior />
               </On.Value>
             </On>
           </OnPlatform>

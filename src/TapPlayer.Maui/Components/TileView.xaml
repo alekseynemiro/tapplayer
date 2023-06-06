@@ -106,7 +106,7 @@
           VerticalOptions="Start"
           WidthRequest="18"
           HeightRequest="18"
-          IsVisible="{Binding Player.Loop}"
+          IsVisible="{Binding IsLooped}"
           SemanticProperties.Description="{markup:Localization Key=LoopedPlayback}"
         >
           <Image.Behaviors>

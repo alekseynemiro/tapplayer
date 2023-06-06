@@ -127,7 +127,7 @@ public class TileEditPageViewModel : ViewModelBase, ITileEditPageViewModel
     Color = tile.Color;
     File = new FileViewModel(tile.File?.FullPath);
     IsBackground = tile.IsBackground;
-    PlayLoop = tile.PlayType == PlayType.Loop;
-    PlayOnce = tile.PlayType == PlayType.Once;
+    PlayLoop = tile.IsLooped;
+    PlayOnce = !tile.IsLooped;
   }
 }

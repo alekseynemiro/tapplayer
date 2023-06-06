@@ -30,7 +30,7 @@ public partial class TileView : ContentView
 
       Model.Player = new MediaPlayerViewModel(MediaPlayer)
       {
-        Loop = Model.PlayType == PlayType.Loop,
+        Loop = Model.IsLooped,
       };
     });
   }

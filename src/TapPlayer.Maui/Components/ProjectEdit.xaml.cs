@@ -1,4 +1,6 @@
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.ViewModels;
@@ -7,6 +9,7 @@ namespace TapPlayer.Maui.Components;
 
 public partial class ProjectEdit : ContentView
 {
+  private readonly ILogger _logger;
   private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
   private int _gridSizeSelectedIndexChangedQueue = 0;
@@ -16,6 +19,8 @@ public partial class ProjectEdit : ContentView
 
   public ProjectEdit()
   {
+    _logger = MauiProgram.ServiceProvider.GetRequiredService<ILogger<ProjectEdit>>();
+
     InitializeComponent();
 
     BindingContextChanged += ProjectEdit_BindingContextChanged;
@@ -94,8 +99,9 @@ public partial class ProjectEdit : ContentView
             await Task.Delay(250);
           }
 
-          if (_gridSizeSelectedIndexChangedQueue == 1)
+          if (_gridSizeSelectedIndexChangedQueue <= 1)
           {
+            var stopwatch = new Stopwatch();
             var tilesGrid = new Grid
             {
               HorizontalOptions = LayoutOptions.Fill,
@@ -104,13 +110,21 @@ public partial class ProjectEdit : ContentView
               ColumnSpacing = 2,
             };
 
+            stopwatch.Start();
             tilesGrid.Create(gridSize, CreateTill);
+            stopwatch.Stop();
+
+            _logger.LogInformation("Tiles were created in {Elapsed}.", stopwatch.Elapsed);
 
             Dispatcher.Dispatch(() =>
             {
               TilesGridContainer.Content = tilesGrid;
             });
           }
+        }
+        catch (Exception ex)
+        {
+          _logger.LogError(ex, "An error occurred while initializing tiles.");
         }
         finally
         {

@@ -1,4 +1,6 @@
-﻿using TapPlayer.Maui.Components;
+﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using TapPlayer.Maui.Components;
 using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.Services;
 using TapPlayer.Maui.ViewModels;
@@ -7,6 +9,7 @@ namespace TapPlayer.Maui;
 
 public partial class MainPage : ContentPage, IDisposable
 {
+  private readonly ILogger _logger;
   private readonly IActiveProjectService _activeProjectService;
   private readonly CancellationTokenSource _initTaskCancellationTokenSource = new CancellationTokenSource();
   private CancellationToken _initTaskCancellationToken;
@@ -16,10 +19,12 @@ public partial class MainPage : ContentPage, IDisposable
   private bool _disposed = false;
 
   public MainPage(
+    ILogger<MainPage> logger,
     IActiveProjectService activeProjectService,
     IMainPageViewModel model
   )
   {
+    _logger = logger;
     _activeProjectService = activeProjectService;
     BindingContext = model;
 
@@ -50,6 +55,7 @@ public partial class MainPage : ContentPage, IDisposable
 
             _initTaskCancellationToken.ThrowIfCancellationRequested();
 
+            var stopwatch = new Stopwatch();
             var tilesGrid = new Grid
             {
               VerticalOptions = LayoutOptions.Fill,
@@ -58,10 +64,16 @@ public partial class MainPage : ContentPage, IDisposable
               ColumnSpacing = 2,
             };
 
+            stopwatch.Start();
+
             tilesGrid.Create(
               Model.GridSize,
               CreateTill
             );
+
+            stopwatch.Stop();
+
+            _logger.LogInformation("Tiles were created in {Elapsed}.", stopwatch.Elapsed);
 
             _initTaskCancellationToken.ThrowIfCancellationRequested();
 
@@ -77,10 +89,12 @@ public partial class MainPage : ContentPage, IDisposable
             Model.HideActivityIndicator();
           }
         }
-        catch
+        catch (OperationCanceledException)
         {
-          // TODO: log
-          throw;
+        }
+        catch (Exception ex)
+        {
+          _logger.LogError(ex, "Error while initializing project.");
         }
       },
       _initTaskCancellationToken

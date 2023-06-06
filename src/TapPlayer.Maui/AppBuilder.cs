@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using MetroLog.MicrosoftExtensions;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using TapPlayer.Core.Services;
 using TapPlayer.Core.Services.Projects;
 using TapPlayer.Data;
@@ -24,6 +26,25 @@ public static class AppBuilder
       {
         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
         fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+      });
+
+    // logging
+    builder.Logging
+      .SetMinimumLevel(LogLevel.Trace)
+      .AddTraceLogger(options =>
+      {
+        options.MinLevel = LogLevel.Trace;
+        options.MaxLevel = LogLevel.Critical;
+      })
+      .AddConsoleLogger(options =>
+      {
+        options.MinLevel = LogLevel.Information;
+        options.MaxLevel = LogLevel.Critical;
+      }) // will write to the Console Output (logcat for android)
+      .AddStreamingFileLogger(options =>
+      {
+        options.RetainDays = 2;
+        options.FolderPath = Path.Combine(FileSystem.CacheDirectory, "logs");
       });
 
     // localization

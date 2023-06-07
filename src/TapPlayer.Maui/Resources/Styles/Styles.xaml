@@ -29,7 +29,6 @@
 
   <Style TargetType="Border" Class="FormField">
     <Setter Property="Padding" Value="{OnPlatform Android='8,0,8,0', Default='0'}" />
-    <Setter Property="StrokeThickness" Value="{OnPlatform Android=1, Default=0}" />
   </Style>
 
   <Style TargetType="BoxView">

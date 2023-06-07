@@ -38,7 +38,11 @@ public static class AppBuilder
       })
       .AddConsoleLogger(options =>
       {
+#if DEBUG
+        options.MinLevel = LogLevel.Trace;
+#else
         options.MinLevel = LogLevel.Information;
+#endif
         options.MaxLevel = LogLevel.Critical;
       }) // will write to the Console Output (logcat for android)
       .AddStreamingFileLogger(options =>

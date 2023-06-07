@@ -7,11 +7,12 @@ using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui;
 
-public partial class MainPage : ContentPage, IDisposable
+public partial class MainPage : ContentPage
 {
   private readonly ILogger _logger;
   private readonly IActiveProjectService _activeProjectService;
-  private readonly CancellationTokenSource _initTaskCancellationTokenSource = new CancellationTokenSource();
+
+  private CancellationTokenSource _initTaskCancellationTokenSource;
   private CancellationToken _initTaskCancellationToken;
 
   private IMainPageViewModel Model => (IMainPageViewModel)BindingContext;
@@ -26,34 +27,47 @@ public partial class MainPage : ContentPage, IDisposable
   {
     _logger = logger;
     _activeProjectService = activeProjectService;
+
+    _logger.LogDebug("Instance created.");
+
     BindingContext = model;
 
     InitializeComponent();
-    Init();
   }
 
   private void Init()
   {
-    _initTaskCancellationToken = _initTaskCancellationTokenSource.Token;
+    _logger.LogDebug(nameof(Init));
+
+    if (_initTaskCancellationToken != CancellationToken.None)
+    {
+      _initTaskCancellationTokenSource.Cancel();
+    }
+
+    _initTaskCancellationTokenSource = new CancellationTokenSource();
+
+    var token = _initTaskCancellationTokenSource.Token;
+
+    _initTaskCancellationToken = token;
 
     Task.Run(
       async () =>
       {
         try
         {
-          _initTaskCancellationToken.ThrowIfCancellationRequested();
+          token.ThrowIfCancellationRequested();
 
           Dispatcher.Dispatch(TilesGridContainer.Children.Clear);
 
           await Model.InitCommand.ExecuteAsync();
 
-          _initTaskCancellationToken.ThrowIfCancellationRequested();
+          token.ThrowIfCancellationRequested();
 
           if (_activeProjectService.HasProject)
           {
             await Model.LoadCommand.ExecuteAsync(_activeProjectService.ProjectId);
 
-            _initTaskCancellationToken.ThrowIfCancellationRequested();
+            token.ThrowIfCancellationRequested();
 
             var stopwatch = new Stopwatch();
             var tilesGrid = new Grid
@@ -75,7 +89,7 @@ public partial class MainPage : ContentPage, IDisposable
 
             _logger.LogInformation("Tiles were created in {Elapsed}.", stopwatch.Elapsed);
 
-            _initTaskCancellationToken.ThrowIfCancellationRequested();
+            token.ThrowIfCancellationRequested();
 
             Dispatcher.Dispatch(() =>
             {
@@ -89,20 +103,26 @@ public partial class MainPage : ContentPage, IDisposable
             Model.HideActivityIndicator();
           }
         }
-        catch (OperationCanceledException)
+        catch (OperationCanceledException ex)
         {
+          _logger.LogDebug(ex, "The task was canceled programmatically.");
         }
         catch (Exception ex)
         {
           _logger.LogError(ex, "Error while initializing project.");
         }
       },
-      _initTaskCancellationToken
+      token
     );
   }
 
   private IView CreateTill(GridCreateEventArgs e)
   {
+    if (_initTaskCancellationToken != CancellationToken.None)
+    {
+      _initTaskCancellationToken.ThrowIfCancellationRequested();
+    }
+
     var tile = Model.Tiles.ElementAt(e.Index);
     var tileView = new TileView
     {
@@ -114,15 +134,17 @@ public partial class MainPage : ContentPage, IDisposable
     return tileView;
   }
 
-  public void Dispose()
+  protected override void OnAppearing()
   {
-    if (_disposed)
-    {
-      return;
-    }
+    _logger.LogDebug(nameof(OnAppearing));
+    base.OnAppearing();
+    Init();
+  }
 
+  protected override void OnDisappearing()
+  {
+    _logger.LogDebug(nameof(OnDisappearing));
+    base.OnDisappearing();
     _initTaskCancellationTokenSource.Cancel();
-
-    _disposed = true;
   }
 }

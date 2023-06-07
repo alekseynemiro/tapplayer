@@ -237,7 +237,7 @@
   </Style>
 
   <Style TargetType="BoxView" Class="Separator">
-    <Setter Property="Margin" Value="0,8,0,8" />
+    <Setter Property="Margin" Value="0,16,0,16" />
     <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
     <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
     <Setter Property="HeightRequest" Value="1" />

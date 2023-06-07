@@ -13,9 +13,9 @@ public class TapPlayerService : ITapPlayerService
     _dispatcherService = dispatcherService;
   }
 
-  public void Set(ObservableCollection<ITileViewModel> tiles)
+  public async Task Set(ObservableCollection<ITileViewModel> tiles)
   {
-    Clear();
+    await Clear();
 
     foreach (var tile in tiles)
     {
@@ -23,7 +23,7 @@ public class TapPlayerService : ITapPlayerService
     }
   }
 
-  public void StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions)
+  public async Task StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions)
   {
     var activeTiles = _tiles
       .Where(x => x.Player != null && x.Player.IsPlaying)
@@ -33,11 +33,11 @@ public class TapPlayerService : ITapPlayerService
 
     foreach (var tile in activeTiles)
     {
-      _dispatcherService.Dispatch(tile.Player.Stop);
+      await _dispatcherService.DispatchAsync(tile.Player.Stop);
     }
   }
 
-  public void StopAll()
+  public async Task StopAll()
   {
     var activeTiles = _tiles
       .Where(x => x.Player != null && x.Player.IsPlaying)
@@ -45,15 +45,15 @@ public class TapPlayerService : ITapPlayerService
 
     foreach (var tile in activeTiles)
     {
-      _dispatcherService.Dispatch(tile.Player.Stop);
+      await _dispatcherService.DispatchAsync(tile.Player.Stop);
     }
   }
 
-  public void DisposeAll()
+  public async Task DisposeAll()
   {
     foreach (var tile in _tiles)
     {
-      _dispatcherService.Dispatch(() =>
+      await _dispatcherService.DispatchAsync(() =>
       {
         if (tile.Player != null)
         {
@@ -65,9 +65,9 @@ public class TapPlayerService : ITapPlayerService
     }
   }
 
-  public void Clear()
+  public async Task Clear()
   {
-    DisposeAll();
+    await DisposeAll();
     _tiles.Clear();
   }
 }

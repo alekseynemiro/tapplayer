@@ -25,35 +25,31 @@ public partial class ProjectEdit : ContentView
     _logger = MauiProgram.ServiceProvider.GetRequiredService<ILogger<ProjectEdit>>();
 
     InitializeComponent();
+  }
 
-    BindingContextChanged += ProjectEdit_BindingContextChanged;
-    LayoutChanged += ProjectEdit_LayoutChanged;
-    Unloaded += ProjectEdit_Unloaded;
+  protected void ProjectEdit_Loaded(object sender, EventArgs e)
+  {
+    _logger.LogDebug("Loaded");
 
     GridSize.SelectedIndexChanged += GridSize_SelectedIndexChanged;
-
-    // TODO: I don't like this solution. Too confusing.
-    // We need to find a way to update the Grid when the model changes, through binding.
-    // https://github.com/alekseynemiro/TapPlayer/issues/21
-    WeakReferenceMessenger.Default.Register<IProjectEditViewModel>(
-      this,
-      (r, m) =>
-      {
-        if (m.IsLoaded)
-        {
-          GridSize_SelectedIndexChanged(GridSize, default);
-        }
-      }
-    );
   }
 
   protected void ProjectEdit_LayoutChanged(object sender, EventArgs e)
   {
+    _logger.LogDebug("LayoutChanged");
+
     _isRendered = true;
+
+    if (Model != null && Model.IsLoaded)
+    {
+      GridSize_SelectedIndexChanged(GridSize, default);
+    }
   }
 
   protected void ProjectEdit_BindingContextChanged(object sender, EventArgs e)
   {
+    _logger.LogDebug("BindingContextChanged: {Model}.", Model == null ? "<NULL>" : "New model");
+
     if (Model != null && Model.IsLoaded && _isRendered)
     {
       GridSize_SelectedIndexChanged(GridSize, default);
@@ -62,14 +58,28 @@ public partial class ProjectEdit : ContentView
 
   protected void ProjectEdit_Unloaded(object sender, EventArgs e)
   {
-    if (_cancellationToken != CancellationToken.None)
-    {
-      _cancellationTokenSource.Cancel();
-    }
+    _logger.LogDebug("Unloaded");
+    Dispose();
   }
 
   protected void GridSize_SelectedIndexChanged(object sender, EventArgs e)
   {
+    if (Model?.IsLoaded != true)
+    {
+      _logger.LogDebug(
+        "GridSize_SelectedIndexChanged: SKIP, project loaded = {IsLoaded}.",
+        Model?.IsLoaded
+      );
+      return;
+    }
+
+    _logger.LogDebug(
+      "GridSize_SelectedIndexChanged: IsCancellationRequested = {IsCancellationRequested}, Queue = {Queue}, SemaphoreCurrentCount = {SemaphoreCurrentCount}",
+      _cancellationToken.IsCancellationRequested,
+      _gridSizeSelectedIndexChangedQueue,
+      _semaphore.CurrentCount
+    );
+
     if (_cancellationToken != CancellationToken.None)
     {
       _cancellationTokenSource.Cancel();
@@ -88,7 +98,7 @@ public partial class ProjectEdit : ContentView
 
         Interlocked.Increment(ref _gridSizeSelectedIndexChangedQueue);
 
-        _semaphore.Wait();
+        _semaphore.Wait(TimeSpan.FromSeconds(30));
 
         token.ThrowIfCancellationRequested();
 
@@ -159,8 +169,20 @@ public partial class ProjectEdit : ContentView
         finally
         {
           Interlocked.Decrement(ref _gridSizeSelectedIndexChangedQueue);
-          Model.CanSetGridSize = _gridSizeSelectedIndexChangedQueue == 0;
+
+          if (Model != null)
+          {
+            Model.CanSetGridSize = _gridSizeSelectedIndexChangedQueue == 0;
+          }
+
           _semaphore.Release();
+
+          _logger.LogDebug(
+            "GridSize_SelectedIndexChanged Finished: IsCancellationRequested = {IsCancellationRequested}, Queue = {Queue}, SemaphoreCurrentCount = {SemaphoreCurrentCount}",
+            _cancellationToken.IsCancellationRequested,
+            _gridSizeSelectedIndexChangedQueue,
+            _semaphore.CurrentCount
+          );
         }
       },
       token
@@ -208,5 +230,53 @@ public partial class ProjectEdit : ContentView
 
       TilesVerticalStackLayout.DispatchInvalidateMeasure();
     }
+  }
+
+  public void Init()
+  {
+    _logger.LogDebug(nameof(Init));
+
+    BindingContextChanged += ProjectEdit_BindingContextChanged;
+    LayoutChanged += ProjectEdit_LayoutChanged;
+    Loaded += ProjectEdit_Loaded;
+    Unloaded += ProjectEdit_Unloaded;
+
+    // TODO: I don't like this solution. Too confusing.
+    // We need to find a way to update the Grid when the model changes, through binding.
+    // https://github.com/alekseynemiro/TapPlayer/issues/21
+    WeakReferenceMessenger.Default.Register<IProjectEditViewModel>(
+      this,
+      (r, m) =>
+      {
+        _logger.LogDebug(
+          "Project {ProjectName} ({ProjectId}): Loaded = {IsLoaded}.",
+          m.ProjectName ?? "<NULL>",
+          m.ProjectId,
+          m.IsLoaded
+        );
+
+        if (m.IsLoaded)
+        {
+          GridSize_SelectedIndexChanged(GridSize, default);
+        }
+      }
+    );
+  }
+
+  public void Dispose()
+  {
+    _logger.LogDebug(nameof(Dispose));
+
+    BindingContextChanged -= ProjectEdit_BindingContextChanged;
+    LayoutChanged -= ProjectEdit_LayoutChanged;
+    Loaded -= ProjectEdit_Loaded;
+    Unloaded -= ProjectEdit_Unloaded;
+
+    if (_cancellationToken != CancellationToken.None)
+    {
+      _cancellationTokenSource.Cancel();
+    }
+
+    WeakReferenceMessenger.Default.Unregister<IProjectEditViewModel>(this);
   }
 }

@@ -1,10 +1,12 @@
-﻿using TapPlayer.Core.Services.Projects;
+﻿using Microsoft.Extensions.Logging;
+using TapPlayer.Core.Services.Projects;
 using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui.Services;
 
 public class NavigationService : INavigationService
 {
+  private readonly ILogger _logger;
   private readonly IServiceProvider _serviceProvider;
   private readonly IActiveProjectService _activeProjectService;
   private readonly IKeyboardService _keyboardService;
@@ -24,6 +26,7 @@ public class NavigationService : INavigationService
   public bool IsNavigating { get; private set; }
 
   public NavigationService(
+    ILogger<NavigationService> logger,
     IServiceProvider serviceProvider,
     IActiveProjectService activeProjectService,
     IKeyboardService keyboardService,
@@ -31,6 +34,7 @@ public class NavigationService : INavigationService
     ITapPlayerService tapPlayerService
   )
   {
+    _logger = logger;
     _serviceProvider = serviceProvider;
     _activeProjectService = activeProjectService;
     _keyboardService = keyboardService;
@@ -40,6 +44,8 @@ public class NavigationService : INavigationService
 
   public async Task CreateProject()
   {
+    _logger.LogDebug(nameof(CreateProject));
+
     IsNavigating = true;
 
     _activeProjectService.Reset();
@@ -53,11 +59,12 @@ public class NavigationService : INavigationService
 
   public Task OpenProject(Guid projectId)
   {
+    _logger.LogDebug(nameof(OpenProject) + " {ProjectId}", projectId);
+
     IsNavigating = true;
 
     _activeProjectService.Set(projectId);
-
-    Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();
+    RecreateMainPage();
 
     IsNavigating = false;
 
@@ -66,6 +73,8 @@ public class NavigationService : INavigationService
 
   public async Task ProjectSettings(Guid projectId)
   {
+    _logger.LogDebug(nameof(ProjectSettings) + " {ProjectId}", projectId);
+
     IsNavigating = true;
 
     _activeProjectService.Set(projectId);
@@ -79,6 +88,8 @@ public class NavigationService : INavigationService
 
   public async Task CloseProjectEditor()
   {
+    _logger.LogDebug(nameof(CloseProjectEditor));
+
     IsNavigating = true;
 
     var isProjectSettingsPage = Navigation.NavigationStack.LastOrDefault() is ProjectSettingsPage;
@@ -91,7 +102,11 @@ public class NavigationService : INavigationService
     }
     else
     {
-      if (!isProjectSettingsPage)
+      if (isProjectSettingsPage)
+      {
+        await Home();
+      }
+      else
       {
         var projectList = await _projectListService.GetAll();
 
@@ -103,9 +118,9 @@ public class NavigationService : INavigationService
         {
           _activeProjectService.Reset();
         }
-      }
 
-      await Home();
+        await Home();
+      }
     }
 
     IsNavigating = false;
@@ -113,6 +128,8 @@ public class NavigationService : INavigationService
 
   public async Task ProjectList()
   {
+    _logger.LogDebug(nameof(ProjectList));
+
     IsNavigating = true;
 
     var projectListPage = _serviceProvider.GetRequiredService<ProjectListPage>();
@@ -122,21 +139,23 @@ public class NavigationService : INavigationService
     IsNavigating = false;
   }
 
-  public Task Home()
+  public async Task Home()
   {
+    _logger.LogDebug(nameof(Home));
+
     IsNavigating = true;
 
-    StopAllPlayers();
+    await StopAllPlayers();
 
-    Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();
+    RecreateMainPage();
 
     IsNavigating = false;
-
-    return Task.CompletedTask;
   }
 
   public async Task About()
   {
+    _logger.LogDebug(nameof(About));
+
     IsNavigating = true;
 
     var aboutPage = _serviceProvider.GetRequiredService<AboutPage>();
@@ -146,73 +165,98 @@ public class NavigationService : INavigationService
     IsNavigating = false;
   }
 
-  public Task PushAsync(Page page)
+  public async Task PushAsync(Page page)
   {
+    _logger.LogDebug(nameof(PushAsync));
+
     if (IsPageOpen(page.GetType()))
     {
-      return Task.CompletedTask;
+      return;
     }
 
-    StopAllPlayers();
-    HideUnnecessaryUIElements();
-
-    return Navigation.PushAsync(page);
+    await StopAllPlayers();
+    await HideUnnecessaryUIElements();
+    await Navigation.PushAsync(page);
   }
 
-  public Task PushModalAsync(Page page)
+  public async Task PushModalAsync(Page page)
   {
+    _logger.LogDebug(nameof(PushModalAsync));
+
     if (IsPageOpen(page.GetType()))
     {
-      return Task.CompletedTask;
+      return;
     }
 
-    StopAllPlayers();
-    HideUnnecessaryUIElements();
-
-    return Navigation.PushModalAsync(page);
+    await StopAllPlayers();
+    await HideUnnecessaryUIElements();
+    await Navigation.PushModalAsync(page);
   }
 
-  public Task PopAsync()
+  public async Task PopAsync()
   {
-    StopAllPlayers();
-    HideUnnecessaryUIElements();
-    return Navigation.PopAsync();
+    _logger.LogDebug(nameof(PopAsync));
+
+    await StopAllPlayers();
+    await HideUnnecessaryUIElements();
+    await Navigation.PopAsync();
   }
 
-  public Task PopModalAsync()
+  public async Task PopModalAsync()
   {
-    StopAllPlayers();
-    HideUnnecessaryUIElements();
-    return Navigation.PopModalAsync();
+    _logger.LogDebug(nameof(PopModalAsync));
+
+    await StopAllPlayers();
+    await HideUnnecessaryUIElements();
+    await Navigation.PopModalAsync();
   }
 
   private bool IsPageOpen(Type type)
   {
-    return Navigation.NavigationStack.LastOrDefault()?.GetType() == type
+    var result = Navigation.NavigationStack.LastOrDefault()?.GetType() == type
       || Navigation.ModalStack.LastOrDefault()?.GetType() == type;
+
+    _logger.LogDebug(nameof(IsPageOpen) + " {Type} = {Result}", type, result);
+
+    return result;
   }
 
   private async Task Clear()
   {
+    _logger.LogDebug(nameof(Clear));
+
     while (Navigation.ModalStack.Count > 0)
     {
-      await Navigation.PopModalAsync();
+      await Navigation.PopModalAsync(false);
     }
 
     while (Navigation.NavigationStack.Count > 1)
     {
-      await Navigation.PopAsync();
+      await Navigation.PopAsync(false);
     }
   }
 
-  private void HideUnnecessaryUIElements()
+  private Task HideUnnecessaryUIElements()
   {
+    _logger.LogDebug(nameof(HideUnnecessaryUIElements));
+
     Shell.Current.FlyoutIsPresented = false;
     _keyboardService.HideKeyboard();
+
+    return Task.CompletedTask;
   }
 
-  private void StopAllPlayers()
+  private Task StopAllPlayers()
   {
-    _tapPlayerService.StopAll();
+    _logger.LogDebug(nameof(StopAllPlayers));
+
+    return _tapPlayerService.StopAll();
+  }
+
+  private void RecreateMainPage()
+  {
+    _logger.LogDebug(nameof(RecreateMainPage));
+
+    Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();
   }
 }

@@ -6,4 +6,9 @@ public class DispatcherService : IDispatcherService
   {
     Application.Current.MainPage.Dispatcher.Dispatch(action);
   }
+
+  public Task DispatchAsync(Action action)
+  {
+    return Application.Current.MainPage.Dispatcher.DispatchAsync(action);
+  }
 }

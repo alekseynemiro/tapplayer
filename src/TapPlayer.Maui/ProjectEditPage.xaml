@@ -7,5 +7,7 @@
   x:Class="TapPlayer.Maui.ProjectEditPage"
   Title="{Binding Title}"
 >
-  <components:ProjectEdit />
+  <components:ProjectEdit
+    x:Name="ProjectEdit"
+  />
 </ContentPage>

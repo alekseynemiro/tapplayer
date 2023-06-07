@@ -5,13 +5,13 @@ namespace TapPlayer.Maui.Services;
 
 public interface ITapPlayerService
 {
-  void Set(ObservableCollection<ITileViewModel> tiles);
+  Task Set(ObservableCollection<ITileViewModel> tiles);
 
-  void StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions);
+  Task StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions);
 
-  void StopAll();
+  Task StopAll();
 
-  void DisposeAll();
+  Task DisposeAll();
 
-  void Clear();
+  Task Clear();
 }

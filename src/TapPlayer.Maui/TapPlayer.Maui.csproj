@@ -114,6 +114,9 @@
     <MauiXaml Update="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="AppSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Components\TileView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

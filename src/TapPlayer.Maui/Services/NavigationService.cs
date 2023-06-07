@@ -126,6 +126,19 @@ public class NavigationService : INavigationService
     IsNavigating = false;
   }
 
+  public async Task ApplicationSettings()
+  {
+    _logger.LogDebug(nameof(ApplicationSettings));
+
+    IsNavigating = true;
+
+    var appSettingsPage = _serviceProvider.GetRequiredService<AppSettingsPage>();
+
+    await PushAsync(appSettingsPage);
+
+    IsNavigating = false;
+  }
+
   public async Task ProjectList()
   {
     _logger.LogDebug(nameof(ProjectList));

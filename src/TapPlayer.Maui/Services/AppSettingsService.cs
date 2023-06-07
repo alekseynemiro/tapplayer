@@ -10,11 +10,11 @@ public class AppSettingsService : IAppSettingsService
   {
     get
     {
-      return _preferences.Get("Language", 0);
+      return _preferences.Get(nameof(Language), 0);
     }
     set
     {
-      _preferences.Set("Language", value);
+      _preferences.Set(nameof(Language), value);
 
       if (value == 0)
       {

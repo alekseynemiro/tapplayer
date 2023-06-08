@@ -128,6 +128,8 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   {
     _tapPlayerService = tapPlayerService;
 
+    // TODO: it's better to default to null
+    // now in the project editor this command is overridden and it's not obvious
     TapCommand = new AsyncCommand<ITileViewModel>(Tap);
   }
 

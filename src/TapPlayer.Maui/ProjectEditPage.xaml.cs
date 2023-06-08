@@ -4,6 +4,7 @@ using TapPlayer.Maui.ViewModels;
 
 namespace TapPlayer.Maui;
 
+// TODO: Rename to ProjectCreationPage
 public partial class ProjectEditPage : ContentPage
 {
   private readonly ILogger _logger;

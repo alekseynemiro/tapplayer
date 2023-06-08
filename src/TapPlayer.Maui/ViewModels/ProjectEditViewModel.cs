@@ -8,7 +8,6 @@ using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.Resources.Strings;
 using TapPlayer.Maui.Services;
-using static Android.Graphics.ColorSpace;
 
 namespace TapPlayer.Maui.ViewModels;
 
@@ -396,8 +395,6 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     tile.Color = e.Color;
     tile.IsBackground = e.IsBackground;
     tile.IsLooped = e.PlayLoop;
-
-    _logger.LogDebug(nameof(Tiles) + "." + nameof(ObservableCollectionExtensions.UpdateItem) + " #{Index}", e?.Index);
 
     Tiles.UpdateItem(tile);
 

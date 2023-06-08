@@ -1,6 +1,6 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Graphics.Skia;
 using System.ComponentModel;
-using TapPlayer.Data.Enums;
 using TapPlayer.Maui.ViewModels;
 using Font = Microsoft.Maui.Graphics.Font;
 
@@ -8,10 +8,15 @@ namespace TapPlayer.Maui.Components;
 
 public partial class TileView : ContentView
 {
+  private readonly ILogger _logger;
   public ITileViewModel Model => (ITileViewModel)BindingContext;
 
   public TileView()
   {
+    _logger = MauiProgram.ServiceProvider.GetRequiredService<ILogger<TileView>>();
+
+    _logger.LogDebug("Instance created.");
+
     InitializeComponent();
 
     BindingContextChanged += TileView_BindingContextChanged;
@@ -21,6 +26,8 @@ public partial class TileView : ContentView
 
   protected void TileView_Unloaded(object sender, EventArgs e)
   {
+    _logger.LogDebug(nameof(TileView_Unloaded));
+
     Dispatcher.Dispatch(() =>
     {
       Model?.Player?.Dispose();
@@ -29,6 +36,8 @@ public partial class TileView : ContentView
 
   protected void TileView_BindingContextChanged(object sender, EventArgs e)
   {
+    _logger.LogDebug(nameof(TileView_BindingContextChanged) + " {Model}", Model == null ? "<NULL>" : "<NEW>");
+
     if (Model == null)
     {
       return;

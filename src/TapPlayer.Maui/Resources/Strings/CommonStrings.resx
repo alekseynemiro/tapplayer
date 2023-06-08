@@ -121,6 +121,10 @@
     <value>About...</value>
     <comment>Menu/Title</comment>
   </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>Application settings</value>
+    <comment>Menu/Title</comment>
+  </data>
   <data name="AreYouSureYouWantToDeleteTheProject" xml:space="preserve">
     <value>Are you sure you want to delete the project "{0}"?</value>
     <comment>Confirmation request</comment>
@@ -139,6 +143,10 @@
   </data>
   <data name="ClickToColorForSelect" xml:space="preserve">
     <value>Click to color for select:</value>
+  </data>
+  <data name="CloseAppSettings" xml:space="preserve">
+    <value>Close the application settings dialog without saving changes.</value>
+    <comment>Semantic</comment>
   </data>
   <data name="CloseProjectEditor" xml:space="preserve">
     <value>Close the project editor without saving changes.</value>
@@ -321,6 +329,10 @@
     <value>Is playing</value>
     <comment>Semantic</comment>
   </data>
+  <data name="LanguageField" xml:space="preserve">
+    <value>Language:</value>
+    <comment>Language in application settings form.</comment>
+  </data>
   <data name="Loop" xml:space="preserve">
     <value>Loop</value>
     <comment>Radio</comment>
@@ -382,9 +394,17 @@ or create a new one:</value>
     <value>Project settings</value>
     <comment>Menu/Title/Semantic</comment>
   </data>
+  <data name="RestartIsRequired" xml:space="preserve">
+    <value>Some settings will only take effect after restarting the application.</value>
+    <comment>Application settings warning.</comment>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
     <comment>Button</comment>
+  </data>
+  <data name="SaveAppSettings" xml:space="preserve">
+    <value>Save application settings and close the dialog.</value>
+    <comment>Semantic</comment>
   </data>
   <data name="SaveProject" xml:space="preserve">
     <value>Save changes of project settings.</value>

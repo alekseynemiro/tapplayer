@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 using TapPlayer.Core.Services.Projects;
 using TapPlayer.Data.Enums;
@@ -9,10 +10,14 @@ namespace TapPlayer.Maui.ViewModels;
 
 public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
 {
+  private readonly ILogger _logger;
   private readonly IServiceProvider _serviceProvider;
   private readonly IProjectService _projectService;
   private readonly IProjectListService _projectListService;
   private readonly ITapPlayerService _tapPlayerService;
+  private readonly IAppSettingsService _appSettingsService;
+  private readonly IDialogService _dialogService;
+
   private Guid _projectId = Guid.Empty;
 
   private string _title = string.Empty;
@@ -137,7 +142,7 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     {
       return _showActivityIndicator;
     }
-    set
+    private set
     {
       _showActivityIndicator = value;
       OnProprtyChanged();
@@ -166,17 +171,23 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
   public IAsyncCommand CreateProjectCommand { get; init; }
 
   public MainPageViewModel(
+    ILogger<MainPageViewModel> logger,
     IServiceProvider serviceProvider,
     IProjectService projectService,
     IProjectListService projectListService,
     INavigationService navigationService,
-    ITapPlayerService tapPlayerService
+    ITapPlayerService tapPlayerService,
+    IAppSettingsService appSettingsService,
+    IDialogService dialogService
   )
   {
+    _logger = logger;
     _serviceProvider = serviceProvider;
     _projectService = projectService;
     _projectListService = projectListService;
     _tapPlayerService = tapPlayerService;
+    _appSettingsService = appSettingsService;
+    _dialogService = dialogService;
 
     InitCommand = new AsyncCommand(Init);
     LoadCommand = new AsyncCommand<Guid>(Load);
@@ -231,6 +242,11 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     _disposed = true;
   }
 
+  public void HideActivityIndicator()
+  {
+    ShowActivityIndicator = false;
+  }
+
   private async Task Init()
   {
     ShowStartLoading();
@@ -243,44 +259,54 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
 
     ProjectName = string.Empty;
     Tiles.Clear();
-
-    ShowActivityIndicator = false;
   }
 
   private async Task Load(Guid projectId)
   {
-    ShowStartLoading();
-
-    _tapPlayerService.DisposeAll();
-
-    Tiles.Clear();
-
-    var project = await _projectService.Get(projectId);
-
-    int size = project.Size.GetTotalCount();
-
-    for (int i = 0; i < size; ++i)
+    try
     {
-      var act = project.Acts.ElementAtOrDefault(i);
-      var tile = _serviceProvider.GetRequiredService<ITileViewModel>();
+      ShowStartLoading();
 
-      tile.Index = i;
-      tile.Name = act?.Name;
-      tile.File = new FileViewModel(act?.FilePath);
-      tile.Color = act?.Color ?? ColorPalette.Color1;
-      tile.IsBackground = act?.IsBackground == true;
-      tile.PlayType = act?.Play ?? PlayType.Once;
+      await _tapPlayerService.DisposeAll();
 
-      Tiles.Add(tile);
+      Tiles.Clear();
+
+      var project = await _projectService.Get(projectId);
+
+      int size = project.Size.GetTotalCount();
+
+      for (int i = 0; i < size; ++i)
+      {
+        var act = project.Acts.ElementAtOrDefault(i);
+        var tile = _serviceProvider.GetRequiredService<ITileViewModel>();
+
+        tile.Index = i;
+        tile.Name = act?.Name;
+        tile.File = new FileViewModel(act?.FilePath);
+        tile.Color = act?.Color ?? ColorPalette.Color1;
+        tile.IsBackground = act?.IsBackground == true;
+        tile.IsLooped = act?.Play == PlayType.Loop;
+
+        Tiles.Add(tile);
+      }
+
+      ProjectId = project.Id;
+      ProjectName = project.Name;
+      GridSize = project.Size;
+
+      await _tapPlayerService.Set(Tiles);
     }
-
-    ProjectId = project.Id;
-    ProjectName = project.Name;
-    GridSize = project.Size;
-
-    _tapPlayerService.Set(Tiles);
-
-    ShowLoadResult();
+    catch (Exception ex)
+    {
+      _logger.LogError(ex, "Error opening project {ProjectId}.", projectId);
+      _appSettingsService.LastProjectId = Guid.Empty;
+      // TODO: _dialogService.Error($"Failed to open project: \"{ex.Message}\"."); // <-- Does not work +Clicking the Back button may throw an exception.
+      HideActivityIndicator();
+    }
+    finally
+    {
+      ShowLoadResult();
+    }
   }
 
   private void ShowStartLoading()
@@ -293,6 +319,5 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
   {
     ShowCreateOrOpenProject = Tiles.Count == 0;
     ShowTiles = Tiles.Count > 0;
-    ShowActivityIndicator = false;
   }
 }

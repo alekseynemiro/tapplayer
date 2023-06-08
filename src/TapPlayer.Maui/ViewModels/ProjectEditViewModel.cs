@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TapPlayer.Core.Dto.Projects;
@@ -12,6 +13,7 @@ namespace TapPlayer.Maui.ViewModels;
 
 public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 {
+  private readonly ILogger _logger;
   private readonly IServiceProvider _serviceProvider;
   private readonly IProjectService _projectService;
   private readonly INavigationService _navigationService;
@@ -24,7 +26,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
   private ObservableCollection<ITileViewModel> _tiles = new ObservableCollection<ITileViewModel>();
   private double _tilesGridWidth = -1;
   private double _tilesGridHeight = -1;
-  private bool _showRefreshing = false;
+  private bool _showLoader = true;
+  private bool _canSetGridSize = true;
   private bool _isLoaded = false;
   private bool _isSaving = false;
   private bool _isCreated = false;
@@ -122,15 +125,28 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     }
   }
 
-  public bool ShowRefreshing
+  public bool ShowLoader
   {
     get
     {
-      return _showRefreshing;
+      return _showLoader;
     }
     set
     {
-      _showRefreshing = value;
+      _showLoader = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool CanSetGridSize
+  {
+    get
+    {
+      return _canSetGridSize;
+    }
+    set
+    {
+      _canSetGridSize = value;
       OnProprtyChanged();
     }
   }
@@ -203,12 +219,14 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
   public ICommand SelectGridSizeCommand { get; init; }
 
   public ProjectEditViewModel(
+    ILogger<ProjectEditViewModel> logger,
     IServiceProvider serviceProvider,
     IProjectService projectService,
     INavigationService navigationService,
     IDialogService dialogService
   )
   {
+    _logger = logger;
     _serviceProvider = serviceProvider;
     _projectService = projectService;
     _navigationService = navigationService;
@@ -224,6 +242,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 
   private async Task Load(Guid projectId)
   {
+    _logger.LogDebug(nameof(Load) + " {ProjectId}", projectId);
+
     if (projectId == Guid.Empty)
     {
       throw new ArgumentOutOfRangeException(
@@ -233,7 +253,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     }
 
     IsLoaded = false;
-    ShowRefreshing = true;
+    ShowLoader = true;
 
     WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
 
@@ -255,7 +275,9 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.File = new FileViewModel(act?.FilePath);
       tile.Color = act?.Color ?? ColorPalette.Color1;
       tile.IsBackground = act?.IsBackground == true;
-      tile.PlayType = act?.Play ?? PlayType.Once;
+      tile.IsLooped = act?.Play == PlayType.Loop;
+      tile.TapCommand = TileEditCommand;
+      tile.IsPlayable = false;
 
       Tiles.Add(tile);
     }
@@ -264,14 +286,16 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     ProjectName = project.Name;
     GridSize = project.Size;
 
-    ShowRefreshing = false;
     IsLoaded = true;
+    ShowLoader = false;
 
     WeakReferenceMessenger.Default.Send<IProjectEditViewModel>(this);
   }
 
   private async Task Save()
   {
+    _logger.LogDebug(nameof(Save));
+
     if (string.IsNullOrWhiteSpace(ProjectName))
     {
       // TODO: Localization Service
@@ -300,7 +324,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
             Color = x.Color,
             FilePath = x.File?.FullPath,
             IsBackground = x.IsBackground,
-            Play = x.PlayType,
+            Play = x.IsLooped ? PlayType.Loop : PlayType.Once,
           }).ToList(),
       });
 
@@ -321,7 +345,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
             Color = x.Color,
             FilePath = x.File?.FullPath,
             IsBackground = x.IsBackground,
-            Play = x.PlayType,
+            Play = x.IsLooped ? PlayType.Loop : PlayType.Once,
           })
           .ToList(),
       });
@@ -343,11 +367,15 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 
   private Task Cancel()
   {
+    _logger.LogDebug(nameof(Cancel));
+
     return _navigationService.CloseProjectEditor();
   }
 
   private async Task TileEdit(ITileViewModel tile)
   {
+    _logger.LogDebug(nameof(TileEdit) + " #{Index}", tile?.Index);
+
     var actEditPage = _serviceProvider.GetRequiredService<TileEditPage>();
 
     actEditPage.Model.SetCommand.Execute(tile);
@@ -356,23 +384,29 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     await _navigationService.PushModalAsync(actEditPage);
   }
 
-  private void TileSaved(ITileEditPageViewModel model)
+  private Task TileSaved(TileEditPageViewModelEventArgs e)
   {
-    var tile = Tiles[model.Index];
+    _logger.LogDebug(nameof(TileSaved) + " #{Index}", e.Index);
 
-    tile.Name = model.Name;
-    tile.File = new FileViewModel(model.File.FullPath);
-    tile.Color = model.Color;
-    tile.IsBackground = model.IsBackground;
-    tile.PlayType = model.PlayLoop ? PlayType.Loop : PlayType.Once;
+    var tile = Tiles[e.Index];
+
+    tile.Name = e.Name;
+    tile.File = new FileViewModel(e.FileFullPath);
+    tile.Color = e.Color;
+    tile.IsBackground = e.IsBackground;
+    tile.IsLooped = e.PlayLoop;
 
     Tiles.UpdateItem(tile);
+
+    return Task.CompletedTask;
   }
 
   private void InitDefault()
   {
+    _logger.LogDebug(nameof(InitDefault));
+
     IsLoaded = false;
-    ShowRefreshing = true;
+    ShowLoader = true;
 
     Tiles.Clear();
 
@@ -388,6 +422,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
       tile.Name = string.Empty;
       tile.File = null;
       tile.Color = ColorPalette.Color1;
+      tile.TapCommand = TileEditCommand;
+      tile.IsPlayable = false;
 
       Tiles.Add(tile);
     }
@@ -396,7 +432,7 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     ProjectName = string.Empty;
     GridSize = GridSize.Grid3x3;
 
-    ShowRefreshing = false;
     IsLoaded = true;
+    ShowLoader = false;
   }
 }

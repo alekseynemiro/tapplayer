@@ -5,11 +5,17 @@ namespace TapPlayer.Maui.Services;
 
 public class TapPlayerService : ITapPlayerService
 {
+  private readonly IDispatcherService _dispatcherService;
   private readonly ObservableCollection<ITileViewModel> _tiles = new ObservableCollection<ITileViewModel>();
 
-  public void Set(ObservableCollection<ITileViewModel> tiles)
+  public TapPlayerService(IDispatcherService dispatcherService)
   {
-    Clear();
+    _dispatcherService = dispatcherService;
+  }
+
+  public async Task Set(ObservableCollection<ITileViewModel> tiles)
+  {
+    await Clear();
 
     foreach (var tile in tiles)
     {
@@ -17,7 +23,7 @@ public class TapPlayerService : ITapPlayerService
     }
   }
 
-  public void StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions)
+  public async Task StopAllExcludingBackground(Func<ITileViewModel, bool> additionalConditions)
   {
     var activeTiles = _tiles
       .Where(x => x.Player != null && x.Player.IsPlaying)
@@ -27,11 +33,11 @@ public class TapPlayerService : ITapPlayerService
 
     foreach (var tile in activeTiles)
     {
-      tile.Player.Stop();
+      await _dispatcherService.DispatchAsync(tile.Player.Stop);
     }
   }
 
-  public void StopAll()
+  public async Task StopAll()
   {
     var activeTiles = _tiles
       .Where(x => x.Player != null && x.Player.IsPlaying)
@@ -39,26 +45,29 @@ public class TapPlayerService : ITapPlayerService
 
     foreach (var tile in activeTiles)
     {
-      tile.Player.Stop();
+      await _dispatcherService.DispatchAsync(tile.Player.Stop);
     }
   }
 
-  public void DisposeAll()
+  public async Task DisposeAll()
   {
     foreach (var tile in _tiles)
     {
-      if (tile.Player != null)
+      await _dispatcherService.DispatchAsync(() =>
       {
-        tile.Player.Stop();
-        tile.Player.Dispose();
-        tile.Player = null;
-      }
+        if (tile.Player != null)
+        {
+          tile.Player.Stop();
+          tile.Player.Dispose();
+          tile.Player = null;
+        }
+      });
     }
   }
 
-  public void Clear()
+  public async Task Clear()
   {
-    DisposeAll();
+    await DisposeAll();
     _tiles.Clear();
   }
 }

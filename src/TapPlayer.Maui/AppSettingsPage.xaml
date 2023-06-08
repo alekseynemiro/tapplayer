@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="TapPlayer.Maui.AppSettingsPage"
+  xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
+  Title="{markup:Localization Key=ApplicationSettings}"
+>
+  <ScrollView
+    HorizontalScrollBarVisibility="Never"
+    VerticalScrollBarVisibility="Default"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    StyleClass="WithPadding"
+  >
+    <VerticalStackLayout
+      Spacing="8"
+    >
+      <Label Text="{markup:Localization Key=LanguageField}" />
+      <Border StyleClass="FormField">
+        <Picker
+          ItemsSource="{Binding AvailableLanguages}"
+          ItemDisplayBinding="{Binding Name}"
+          SelectedItem="{Binding CurrentLanguage}"
+          SemanticProperties.Description="{markup:Localization Key=LanguageField}"
+        />
+      </Border>
+
+      <Label Text="{markup:Localization Key=RestartIsRequired}" />
+
+      <BoxView
+        StyleClass="Separator"
+      />
+
+      <HorizontalStackLayout
+        Margin="0"
+        Spacing="8"
+      >
+        <Button
+          Text="{markup:Localization Key=Save}"
+          Command="{Binding SaveCommand}"
+          SemanticProperties.Description="{markup:Localization Key=SaveAppSettings}"
+        />
+        <Button
+          Text="{markup:Localization Key=Cancel}"
+          StyleClass="SecondaryButton"
+          Command="{Binding CloseCommand}"
+          SemanticProperties.Description="{markup:Localization Key=CloseAppSettings}"
+        />
+      </HorizontalStackLayout>
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

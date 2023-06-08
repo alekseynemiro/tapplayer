@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using TapPlayer.Data.Enums;
+﻿using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Services;
 
 namespace TapPlayer.Maui.ViewModels;
@@ -11,10 +10,11 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   private int _index;
   private string _name;
   private FileViewModel _file;
-  private PlayType _playType;
   private bool _isBackground;
   private ColorPalette _color;
   private IMediaPlayerViewModel _player;
+  private bool _isPlayable = true;
+  private bool _isLooped = false;
 
   public int Index
   {
@@ -55,19 +55,6 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     }
   }
 
-  public PlayType PlayType
-  {
-    get
-    {
-      return _playType;
-    }
-    set
-    {
-      _playType = value;
-      OnProprtyChanged();
-    }
-  }
-
   public bool IsBackground
   {
     get
@@ -77,6 +64,19 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     set
     {
       _isBackground = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool IsLooped
+  {
+    get
+    {
+      return _isLooped;
+    }
+    set
+    {
+      _isLooped = value;
       OnProprtyChanged();
     }
   }
@@ -107,9 +107,20 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     }
   }
 
-  public ICommand<IProjectEditViewModel> EditCommand { get; init; }
+  public bool IsPlayable
+  {
+    get
+    {
+      return _isPlayable;
+    }
+    set
+    {
+      _isPlayable = value;
+      OnProprtyChanged();
+    }
+  }
 
-  public ICommand TapCommand { get; init; }
+  public IAsyncCommand<ITileViewModel> TapCommand { get; set; }
 
   public Action StopAllExcludingBackground { get; set; }
 
@@ -117,14 +128,12 @@ public class TileViewModel : ViewModelBase, ITileViewModel
   {
     _tapPlayerService = tapPlayerService;
 
-    TapCommand = new Command(Tap);
-    EditCommand = new Command<IProjectEditViewModel>(x =>
-    {
-      x.TileEditCommand.Execute(this);
-    });
+    // TODO: it's better to default to null
+    // now in the project editor this command is overridden and it's not obvious
+    TapCommand = new AsyncCommand<ITileViewModel>(Tap);
   }
 
-  private void Tap()
+  private Task Tap(ITileViewModel model)
   {
     if (!IsBackground)
     {
@@ -135,7 +144,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
 
     if (Player == null)
     {
-      return;
+      return Task.CompletedTask;
     }
 
     if (Player.IsPlaying)
@@ -146,5 +155,7 @@ public class TileViewModel : ViewModelBase, ITileViewModel
     {
       Player.Play();
     }
+
+    return Task.CompletedTask;
   }
 }

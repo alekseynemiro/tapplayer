@@ -3,6 +3,7 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+  xmlns:behaviors="clr-namespace:TapPlayer.Maui.Behaviors"
   xmlns:converters="clr-namespace:TapPlayer.Maui.Converters"
   xmlns:markup="clr-namespace:TapPlayer.Maui.MarkupExtensions"
   x:Class="TapPlayer.Maui.Components.TileView"
@@ -13,7 +14,7 @@
       <converters:ColorPaletteToTileStyleConverter x:Key="ColorPaletteToTileStyleConverter" />
       <converters:ColorPaletteToTileIndicatorTintColorConverter x:Key="ColorPaletteToTileIndicatorTintColorConverter" />
       <converters:EmptyValueToBoolConverter x:Key="EmptyValueToBoolConverter" />
-      <converters:FileViewModelConverter x:Key="FileViewModelConverter" />
+      <converters:TileViewModelToMediaElementSourceConverter x:Key="TileViewModelToMediaElementSourceConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
 
@@ -30,7 +31,10 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     <Grid.GestureRecognizers>
-      <TapGestureRecognizer Command="{Binding TapCommand}" />
+      <TapGestureRecognizer
+        Command="{Binding TapCommand}"
+        CommandParameter="{Binding .}"
+      />
     </Grid.GestureRecognizers>
     <Grid Grid.Row="0">
       <Grid.ColumnDefinitions>
@@ -52,10 +56,18 @@
           SemanticProperties.Description="{markup:Localization Key=NoSource}"
         >
           <Image.Behaviors>
-            <toolkit:IconTintColorBehavior
-              BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-              TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-            />
+            <OnPlatform x:TypeArguments="Behavior">
+              <On Platform="Android">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
+              <On Platform="WinUI">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
+            </OnPlatform>
           </Image.Behaviors>
         </Image>
         <Image
@@ -68,10 +80,18 @@
           SemanticProperties.Description="{markup:Localization Key=BackgroundPlayback}"
         >
           <Image.Behaviors>
-            <toolkit:IconTintColorBehavior
-              BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-              TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-            />
+            <OnPlatform x:TypeArguments="Behavior">
+              <On Platform="Android">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
+              <On Platform="WinUI">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
+            </OnPlatform>
           </Image.Behaviors>
         </Image>
         <Image
@@ -80,14 +100,22 @@
           VerticalOptions="Start"
           WidthRequest="18"
           HeightRequest="18"
-          IsVisible="{Binding Player.Loop}"
+          IsVisible="{Binding IsLooped}"
           SemanticProperties.Description="{markup:Localization Key=LoopedPlayback}"
         >
           <Image.Behaviors>
-            <toolkit:IconTintColorBehavior
-              BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-              TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-            />
+            <OnPlatform x:TypeArguments="Behavior">
+              <On Platform="Android">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
+              <On Platform="WinUI">
+                <On.Value>
+                  <behaviors:DummyBehavior />
+                </On.Value>
+              </On>
+            </OnPlatform>
           </Image.Behaviors>
         </Image>
       </HorizontalStackLayout>
@@ -102,10 +130,18 @@
         SemanticProperties.Description="{markup:Localization Key=IsPlaying}"
       >
         <Image.Behaviors>
-          <toolkit:IconTintColorBehavior
-            BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-            TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-          />
+          <OnPlatform x:TypeArguments="Behavior">
+            <On Platform="Android">
+              <On.Value>
+                <behaviors:DummyBehavior />
+              </On.Value>
+            </On>
+            <On Platform="WinUI">
+              <On.Value>
+                <behaviors:DummyBehavior />
+              </On.Value>
+            </On>
+          </OnPlatform>
         </Image.Behaviors>
       </Image>
       <Image
@@ -119,10 +155,18 @@
         SemanticProperties.Description="{markup:Localization Key=UnableToPlay}"
       >
         <Image.Behaviors>
-          <toolkit:IconTintColorBehavior
-            BindingContext="{Binding Source={x:Reference Me}, Path=BindingContext}"
-            TintColor="{Binding Color, Converter={StaticResource ColorPaletteToTileIndicatorTintColorConverter}}"
-          />
+          <OnPlatform x:TypeArguments="Behavior">
+            <On Platform="Android">
+              <On.Value>
+                <behaviors:DummyBehavior />
+              </On.Value>
+            </On>
+            <On Platform="WinUI">
+              <On.Value>
+                <behaviors:DummyBehavior />
+              </On.Value>
+            </On>
+          </OnPlatform>
         </Image.Behaviors>
       </Image>
     </Grid>
@@ -137,13 +181,19 @@
       LineBreakMode="CharacterWrap"
       Style="{StaticResource TileName}"
       Padding="4,0"
+      Margin="0,0,0,24"
       Grid.Row="1"
+      PropertyChanged="TileName_PropertyChanged"
     />
 
     <toolkit:MediaElement
       x:Name="MediaPlayer"
       IsVisible="False"
-      Source="{Binding File, Converter={StaticResource FileViewModelConverter}, ConverterParameter=True, Mode=OneWay}"
+      Source="{
+        Binding .,
+        Converter={StaticResource TileViewModelToMediaElementSourceConverter},
+        Mode=OneWay
+      }"
     />
   </Grid>
 </ContentView>

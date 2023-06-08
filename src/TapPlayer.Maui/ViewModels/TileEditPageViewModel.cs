@@ -99,7 +99,7 @@ public class TileEditPageViewModel : ViewModelBase, ITileEditPageViewModel
 
   public ICommand<TileViewModel> SetCommand { get; init; }
 
-  public Action<TileEditPageViewModel> Saved { get; set; }
+  public Func<TileEditPageViewModelEventArgs, Task> Saved { get; set; }
 
   public TileEditPageViewModel(
     INavigationService navigationService
@@ -110,8 +110,14 @@ public class TileEditPageViewModel : ViewModelBase, ITileEditPageViewModel
     SaveCommand = new AsyncCommand(async () =>
     {
       await navigationService.PopModalAsync();
-
-      Saved?.Invoke(this);
+      await Saved?.Invoke(new TileEditPageViewModelEventArgs(
+        Index,
+        Name,
+        File.FullPath,
+        Color,
+        IsBackground,
+        PlayLoop
+      ));
     });
 
     CancelCommand = new Command(async () =>
@@ -127,7 +133,7 @@ public class TileEditPageViewModel : ViewModelBase, ITileEditPageViewModel
     Color = tile.Color;
     File = new FileViewModel(tile.File?.FullPath);
     IsBackground = tile.IsBackground;
-    PlayLoop = tile.PlayType == PlayType.Loop;
-    PlayOnce = tile.PlayType == PlayType.Once;
+    PlayLoop = tile.IsLooped;
+    PlayOnce = !tile.IsLooped;
   }
 }

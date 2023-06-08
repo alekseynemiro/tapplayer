@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>О программе...</value>
   </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>Параметры программы</value>
+  </data>
   <data name="AreYouSureYouWantToDeleteTheProject" xml:space="preserve">
     <value>Вы действительно хотите удалить проект "{0}"?
 
@@ -136,6 +139,9 @@
   </data>
   <data name="ClickToColorForSelect" xml:space="preserve">
     <value>Кликните по цвету, чтобы выбрать его:</value>
+  </data>
+  <data name="CloseAppSettings" xml:space="preserve">
+    <value>Закрыть диалог без сохранения изменений настроек программы.</value>
   </data>
   <data name="CloseProjectEditor" xml:space="preserve">
     <value>Закрыть настройки проекта без сохранения изменений.</value>
@@ -275,6 +281,9 @@
   <data name="IsPlaying" xml:space="preserve">
     <value>Играет сейчас</value>
   </data>
+  <data name="LanguageField" xml:space="preserve">
+    <value>Язык интерфейса:</value>
+  </data>
   <data name="Loop" xml:space="preserve">
     <value>зациклить</value>
   </data>
@@ -321,8 +330,14 @@
   <data name="ProjectSettings" xml:space="preserve">
     <value>Настройка проекта</value>
   </data>
+  <data name="RestartIsRequired" xml:space="preserve">
+    <value>Некоторые настройки вступят в силу только после перезапуска программы.</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
+  </data>
+  <data name="SaveAppSettings" xml:space="preserve">
+    <value>Сохранить настройки программы и закрыть диалог.</value>
   </data>
   <data name="SaveProject" xml:space="preserve">
     <value>Сохранить изменения настроек проекта и закрыть диалог.</value>

@@ -1,5 +1,6 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Graphics.Skia;
-using TapPlayer.Data.Enums;
+using System.ComponentModel;
 using TapPlayer.Maui.ViewModels;
 using Font = Microsoft.Maui.Graphics.Font;
 
@@ -7,40 +8,61 @@ namespace TapPlayer.Maui.Components;
 
 public partial class TileView : ContentView
 {
+  private readonly ILogger _logger;
   public ITileViewModel Model => (ITileViewModel)BindingContext;
 
   public TileView()
   {
+    _logger = MauiProgram.ServiceProvider.GetRequiredService<ILogger<TileView>>();
+
+    _logger.LogDebug("Instance created.");
+
     InitializeComponent();
 
     BindingContextChanged += TileView_BindingContextChanged;
     SizeChanged += TileView_SizeChanged;
+    Unloaded += TileView_Unloaded;
+  }
+
+  protected void TileView_Unloaded(object sender, EventArgs e)
+  {
+    _logger.LogDebug(nameof(TileView_Unloaded));
+
+    Dispatcher.Dispatch(() =>
+    {
+      Model?.Player?.Dispose();
+    });
   }
 
   protected void TileView_BindingContextChanged(object sender, EventArgs e)
   {
+    _logger.LogDebug(nameof(TileView_BindingContextChanged) + " {Model}", Model == null ? "<NULL>" : "<NEW>");
+
     if (Model == null)
     {
       return;
     }
 
-    Model.Player?.Dispose();
-
-    Model.Player = new MediaPlayerViewModel(MediaPlayer)
+    Dispatcher.Dispatch(() =>
     {
-      Loop = Model.PlayType == PlayType.Loop,
-    };
+      Model.Player?.Dispose();
+
+      Model.Player = new MediaPlayerViewModel(MediaPlayer)
+      {
+        Loop = Model.IsLooped,
+      };
+    });
   }
 
   protected void TileView_SizeChanged(object sender, EventArgs e)
   {
-    if (string.IsNullOrWhiteSpace(TileName.Text))
+    if (string.IsNullOrWhiteSpace(Model?.Name))
     {
       return;
     }
 
-    double contentWidth = Width - Padding.HorizontalThickness - TileName.Padding.HorizontalThickness;
-    double contentHeight = Height - Padding.VerticalThickness - TileViewConainer.RowDefinitions[0].Height.Value - TileName.Padding.VerticalThickness;
+    double contentWidth = Width - Padding.HorizontalThickness - TileName.Padding.HorizontalThickness - TileName.Margin.HorizontalThickness;
+    double contentHeight = Height - Padding.VerticalThickness - TileViewConainer.RowDefinitions[0].Height.Value - TileName.Padding.VerticalThickness - TileName.Margin.VerticalThickness;
 
     if (Math.Min(contentWidth, contentHeight) <= 0)
     {
@@ -96,5 +118,13 @@ public partial class TileView : ContentView
     }
 
     TileName.FontSize = fontSize;
+  }
+
+  protected void TileName_PropertyChanged(object sender, PropertyChangedEventArgs e)
+  {
+    if (e.PropertyName.Equals(nameof(Label.Text)))
+    {
+      TileView_SizeChanged(default, default);
+    }
   }
 }

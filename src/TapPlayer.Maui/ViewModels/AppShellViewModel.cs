@@ -38,6 +38,8 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
 
   public IAsyncCommand ProjectSettingsCommand { get; }
 
+  public IAsyncCommand ApplicationSettingsCommand { get; }
+
   public IAsyncCommand AboutCommand { get; }
 
   public ICommand ExitCommand { get; }
@@ -60,7 +62,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
       () =>
       {
         // TODO: remove workaround if disabling menu item works
-        if (CanUseProjectSettings)
+        if (activeProjectService.HasProject)
         {
           return _navigationService.ProjectSettings(_activeProjectService.ProjectId);
         }
@@ -72,6 +74,8 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
       }
       // () => CanUseProjectSettings
     );
+
+    ApplicationSettingsCommand = new AsyncCommand(_navigationService.ApplicationSettings);
 
     AboutCommand = new AsyncCommand(_navigationService.About);
 

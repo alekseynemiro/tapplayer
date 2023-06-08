@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using TapPlayer.Data.Enums;
+﻿using TapPlayer.Data.Enums;
 
 namespace TapPlayer.Maui.ViewModels;
 
@@ -11,17 +10,17 @@ public interface ITileViewModel
 
   FileViewModel File { get; set; }
 
-  PlayType PlayType { get; set; }
-
   bool IsBackground { get; set; }
+
+  bool IsLooped { get; set; }
 
   ColorPalette Color { get; set; }
 
   IMediaPlayerViewModel Player { get; set; }
 
-  ICommand<IProjectEditViewModel> EditCommand { get; }
+  bool IsPlayable { get; set; }
 
-  ICommand TapCommand { get; }
+  IAsyncCommand<ITileViewModel> TapCommand { get; set; }
 
   Action StopAllExcludingBackground { get; }
 }

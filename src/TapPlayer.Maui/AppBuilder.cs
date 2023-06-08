@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using MetroLog.MicrosoftExtensions;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using TapPlayer.Core.Services;
 using TapPlayer.Core.Services.Projects;
 using TapPlayer.Data;
@@ -26,6 +28,29 @@ public static class AppBuilder
         fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
       });
 
+    // logging
+    builder.Logging
+      .SetMinimumLevel(LogLevel.Trace)
+      .AddTraceLogger(options =>
+      {
+        options.MinLevel = LogLevel.Trace;
+        options.MaxLevel = LogLevel.Critical;
+      })
+      .AddConsoleLogger(options =>
+      {
+#if DEBUG
+        options.MinLevel = LogLevel.Trace;
+#else
+        options.MinLevel = LogLevel.Information;
+#endif
+        options.MaxLevel = LogLevel.Critical;
+      }) // will write to the Console Output (logcat for android)
+      .AddStreamingFileLogger(options =>
+      {
+        options.RetainDays = 2;
+        options.FolderPath = Path.Combine(FileSystem.CacheDirectory, "logs");
+      });
+
     // localization
     builder.Services.AddLocalization();
     builder.Services.AddSingleton<IStringLocalizer<CommonStrings>, StringLocalizer<CommonStrings>>();
@@ -35,6 +60,8 @@ public static class AppBuilder
     builder.Services.AddSingleton<IJsonStorageConfig, JsonStorageConfig>();
 
     // common services
+    builder.Services.AddSingleton(Preferences.Default);
+    builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
     builder.Services.AddSingleton<IDateTimeService, DateTimeService>();
     builder.Services.AddSingleton<IProjectListService, ProjectListService>();
     builder.Services.AddSingleton<IProjectService, ProjectService>();
@@ -43,6 +70,7 @@ public static class AppBuilder
     builder.Services.AddSingleton<IActiveProjectService, ActiveProjectService>();
     builder.Services.AddSingleton<IAppInfo, Services.AppInfo>();
     builder.Services.AddSingleton<IDialogService, DialogService>();
+    builder.Services.AddSingleton<IDispatcherService, DispatcherService>();
     builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
     builder.Services.AddSingleton<INavigationService, NavigationService>();
     builder.Services.AddSingleton<ITapPlayerService, TapPlayerService>();
@@ -50,6 +78,7 @@ public static class AppBuilder
     // view models
     builder.Services.AddSingleton<IAppShellViewModel, AppShellViewModel>();
     builder.Services.AddTransient<IAboutPageViewModel, AboutPageViewModel>();
+    builder.Services.AddTransient<IAppSettingsPageViewModel, AppSettingsPageViewModel>();
     builder.Services.AddTransient<IMainPageViewModel, MainPageViewModel>();
     builder.Services.AddTransient<IProjectEditViewModel, ProjectEditViewModel>();
     builder.Services.AddTransient<IProjectListItemViewModel, ProjectListItemViewModel>();
@@ -62,6 +91,7 @@ public static class AppBuilder
 
     // pages
     builder.Services.AddPage<AboutPage>();
+    builder.Services.AddPage<AppSettingsPage>();
     builder.Services.AddPage<MainPage>();
     builder.Services.AddPage<ProjectEditPage>();
     builder.Services.AddPage<ProjectListPage>();

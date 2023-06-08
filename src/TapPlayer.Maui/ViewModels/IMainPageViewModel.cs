@@ -13,9 +13,12 @@ public interface IMainPageViewModel
   bool ShowCreateOrOpenProject { get; }
   bool ShowCreateProject { get; }
   bool ShowTiles { get; }
+  bool ShowActivityIndicator { get; }
 
   IAsyncCommand InitCommand { get; }
   IAsyncCommand<Guid> LoadCommand { get; }
   IAsyncCommand OpenProjectCommand { get; }
   IAsyncCommand CreateProjectCommand { get; }
+
+  void HideActivityIndicator();
 }

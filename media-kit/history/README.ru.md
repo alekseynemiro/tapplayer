@@ -6,6 +6,7 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.developer?w=wall-96983816_204 - Невозможное поведение UI от автоматического тестирования Google Play
 * https://vk.com/aleksey.developer?w=wall-96983816_203 - Коварный баг с копированием неправильного кода XAML в MAUI
 * https://vk.com/aleksey.developer?w=wall-96983816_201 - Проблема замены главной страницы и освобождения ресурсов
 * https://vk.com/aleksey.developer?w=wall-96983816_197 - Пробелмы производительности MAUI

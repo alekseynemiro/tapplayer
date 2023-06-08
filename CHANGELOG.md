@@ -1,5 +1,26 @@
 # Change Log
 
+## v1.4 (June 8, 2023)
+
+This release contains significant improvements, bug fixes and performance improvements.
+
+### Added
+
+* Added the ability to change the language of the application interface (https://github.com/alekseynemiro/tapplayer/issues/9).
+* Added automatic opening of the last project (https://github.com/alekseynemiro/tapplayer/issues/10).
+* Added logging (https://github.com/alekseynemiro/tapplayer/issues/6).
+
+### Changed
+
+* Tiles in the project editor now have state indicators (https://github.com/alekseynemiro/tapplayer/issues/58).
+* New versioning convention (https://github.com/alekseynemiro/tapplayer/issues/81).
+
+### Fixed
+
+* Fixed performance issues (https://github.com/alekseynemiro/tapplayer/issues/72).
+* Fixed issue with missing scrollbars (https://github.com/alekseynemiro/tapplayer/issues/61).
+* Fixed display position of labels on tiles (https://github.com/alekseynemiro/tapplayer/issues/65).
+
 ## v1.0.3 (May 27, 2023)
 
 This release contains critical fixes and improvements.

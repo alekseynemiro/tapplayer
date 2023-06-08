@@ -12,6 +12,7 @@ public class NavigationService : INavigationService
   private readonly IKeyboardService _keyboardService;
   private readonly IProjectListService _projectListService;
   private readonly ITapPlayerService _tapPlayerService;
+  private readonly IAppSettingsService _appSettingsService;
 
   private INavigation Navigation
   {
@@ -31,7 +32,8 @@ public class NavigationService : INavigationService
     IActiveProjectService activeProjectService,
     IKeyboardService keyboardService,
     IProjectListService projectListService,
-    ITapPlayerService tapPlayerService
+    ITapPlayerService tapPlayerService,
+    IAppSettingsService appSettingsService
   )
   {
     _logger = logger;
@@ -40,6 +42,7 @@ public class NavigationService : INavigationService
     _keyboardService = keyboardService;
     _projectListService = projectListService;
     _tapPlayerService = tapPlayerService;
+    _appSettingsService = appSettingsService;
   }
 
   public async Task CreateProject()
@@ -64,6 +67,8 @@ public class NavigationService : INavigationService
     IsNavigating = true;
 
     _activeProjectService.Set(projectId);
+    _appSettingsService.LastProjectId = projectId;
+
     RecreateMainPage();
 
     IsNavigating = false;
@@ -113,6 +118,7 @@ public class NavigationService : INavigationService
         if (projectList.Items.Count == 1)
         {
           _activeProjectService.Set(projectList.Items.Single().Id);
+          _appSettingsService.LastProjectId = _activeProjectService.ProjectId;
         }
         else
         {

@@ -10,9 +10,13 @@ This release contains significant improvements, bug fixes and performance improv
 * Added automatic opening of the last project (https://github.com/alekseynemiro/tapplayer/issues/10).
 * Added logging (https://github.com/alekseynemiro/tapplayer/issues/6).
 
+### Removed
+
+* Removed automatic adjustment of the color of the status indicators due to possible instability (https://github.com/alekseynemiro/tapplayer/issues/90).
+
 ### Changed
 
-* Tiles in the project editor now have state indicators (https://github.com/alekseynemiro/tapplayer/issues/58).
+* Tiles in the project editor now have status indicators (https://github.com/alekseynemiro/tapplayer/issues/58).
 * New versioning convention (https://github.com/alekseynemiro/tapplayer/issues/81).
 
 ### Fixed

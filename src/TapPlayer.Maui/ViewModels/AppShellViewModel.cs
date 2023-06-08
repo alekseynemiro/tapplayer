@@ -62,7 +62,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
       () =>
       {
         // TODO: remove workaround if disabling menu item works
-        if (CanUseProjectSettings)
+        if (activeProjectService.HasProject)
         {
           return _navigationService.ProjectSettings(_activeProjectService.ProjectId);
         }

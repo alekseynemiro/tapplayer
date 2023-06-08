@@ -22,7 +22,6 @@
     HorizontalOptions="Fill"
     VerticalOptions="Fill"
     StyleClass="WithPadding"
-    SizeChanged="MainScrollView_SizeChanged"
   >
     <VerticalStackLayout
       Spacing="16"

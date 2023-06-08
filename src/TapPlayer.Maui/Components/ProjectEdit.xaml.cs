@@ -27,16 +27,9 @@ public partial class ProjectEdit : ContentView
     InitializeComponent();
   }
 
-  protected void ProjectEdit_Loaded(object sender, EventArgs e)
-  {
-    _logger.LogDebug("Loaded");
-
-    GridSize.SelectedIndexChanged += GridSize_SelectedIndexChanged;
-  }
-
   protected void ProjectEdit_LayoutChanged(object sender, EventArgs e)
   {
-    _logger.LogDebug("LayoutChanged");
+    _logger.LogDebug(nameof(ProjectEdit_LayoutChanged));
 
     _isRendered = true;
 
@@ -48,7 +41,7 @@ public partial class ProjectEdit : ContentView
 
   protected void ProjectEdit_BindingContextChanged(object sender, EventArgs e)
   {
-    _logger.LogDebug("BindingContextChanged: {Model}.", Model == null ? "<NULL>" : "New model");
+    _logger.LogDebug(nameof(ProjectEdit_BindingContextChanged) + ": {Model}.", Model == null ? "<NULL>" : "New model");
 
     if (Model != null && Model.IsLoaded && _isRendered)
     {
@@ -58,7 +51,7 @@ public partial class ProjectEdit : ContentView
 
   protected void ProjectEdit_Unloaded(object sender, EventArgs e)
   {
-    _logger.LogDebug("Unloaded");
+    _logger.LogDebug(nameof(ProjectEdit_Unloaded));
     Dispose();
   }
 
@@ -67,14 +60,14 @@ public partial class ProjectEdit : ContentView
     if (Model?.IsLoaded != true)
     {
       _logger.LogDebug(
-        "GridSize_SelectedIndexChanged: SKIP, project loaded = {IsLoaded}.",
+        nameof(GridSize_SelectedIndexChanged) + ": SKIP, project loaded = {IsLoaded}.",
         Model?.IsLoaded
       );
       return;
     }
 
     _logger.LogDebug(
-      "GridSize_SelectedIndexChanged: IsCancellationRequested = {IsCancellationRequested}, Queue = {Queue}, SemaphoreCurrentCount = {SemaphoreCurrentCount}",
+      nameof(GridSize_SelectedIndexChanged) + ": IsCancellationRequested = {IsCancellationRequested}, Queue = {Queue}, SemaphoreCurrentCount = {SemaphoreCurrentCount}",
       _cancellationToken.IsCancellationRequested,
       _gridSizeSelectedIndexChangedQueue,
       _semaphore.CurrentCount
@@ -178,7 +171,7 @@ public partial class ProjectEdit : ContentView
           _semaphore.Release();
 
           _logger.LogDebug(
-            "GridSize_SelectedIndexChanged Finished: IsCancellationRequested = {IsCancellationRequested}, Queue = {Queue}, SemaphoreCurrentCount = {SemaphoreCurrentCount}",
+            nameof(GridSize_SelectedIndexChanged) + " Finished: IsCancellationRequested = {IsCancellationRequested}, Queue = {Queue}, SemaphoreCurrentCount = {SemaphoreCurrentCount}",
             _cancellationToken.IsCancellationRequested,
             _gridSizeSelectedIndexChangedQueue,
             _semaphore.CurrentCount
@@ -209,11 +202,18 @@ public partial class ProjectEdit : ContentView
 
   protected void Cancel_Clicked(object sender, EventArgs e)
   {
-    Model.CancelCommand.Execute(null);
+    Model?.CancelCommand?.Execute(null);
   }
 
   protected void MainScrollView_SizeChanged(object sender, EventArgs e)
   {
+    _logger.LogDebug(nameof(MainScrollView_SizeChanged));
+
+    if (Model == null)
+    {
+      return;
+    }
+
     var scrollView = (ScrollView)sender;
 
     double width = scrollView.Width;
@@ -238,8 +238,10 @@ public partial class ProjectEdit : ContentView
 
     BindingContextChanged += ProjectEdit_BindingContextChanged;
     LayoutChanged += ProjectEdit_LayoutChanged;
-    Loaded += ProjectEdit_Loaded;
     Unloaded += ProjectEdit_Unloaded;
+
+    GridSize.SelectedIndexChanged += GridSize_SelectedIndexChanged;
+    MainScrollView.SizeChanged += MainScrollView_SizeChanged;
 
     // TODO: I don't like this solution. Too confusing.
     // We need to find a way to update the Grid when the model changes, through binding.
@@ -269,8 +271,10 @@ public partial class ProjectEdit : ContentView
 
     BindingContextChanged -= ProjectEdit_BindingContextChanged;
     LayoutChanged -= ProjectEdit_LayoutChanged;
-    Loaded -= ProjectEdit_Loaded;
     Unloaded -= ProjectEdit_Unloaded;
+
+    GridSize.SelectedIndexChanged -= GridSize_SelectedIndexChanged;
+    MainScrollView.SizeChanged -= MainScrollView_SizeChanged;
 
     if (_cancellationToken != CancellationToken.None)
     {

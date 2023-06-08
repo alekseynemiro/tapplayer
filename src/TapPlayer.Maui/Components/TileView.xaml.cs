@@ -47,7 +47,7 @@ public partial class TileView : ContentView
 
   protected void TileView_SizeChanged(object sender, EventArgs e)
   {
-    if (string.IsNullOrWhiteSpace(Model.Name))
+    if (string.IsNullOrWhiteSpace(Model?.Name))
     {
       return;
     }

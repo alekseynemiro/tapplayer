@@ -10,6 +10,7 @@ public partial class App : Application
     InitializeComponent();
 
     var appSettings = serviceProvider.GetRequiredService<IAppSettingsService>();
+    var activeProjectService = serviceProvider.GetRequiredService<IActiveProjectService>();
 
     if (appSettings.Language != 0)
     {
@@ -17,6 +18,8 @@ public partial class App : Application
         Thread.CurrentThread.CurrentUICulture =
           CultureInfo.GetCultureInfo(appSettings.Language);
     }
+
+    activeProjectService.Set(appSettings.LastProjectId);
 
     Current.UserAppTheme = AppTheme.Light;
     MainPage = serviceProvider.GetRequiredService<AppShell>();

@@ -6,6 +6,20 @@ public class AppSettingsService : IAppSettingsService
 {
   private readonly IPreferences _preferences;
 
+  public Guid LastProjectId
+  {
+    get
+    {
+      return Guid.Parse(
+        _preferences.Get(nameof(LastProjectId), Guid.Empty.ToString())
+      );
+    }
+    set
+    {
+      _preferences.Set(nameof(LastProjectId), value.ToString());
+    }
+  }
+
   public int Language
   {
     get

@@ -25,5 +25,5 @@ public interface ITileEditPageViewModel
 
   ICommand<TileViewModel> SetCommand { get; }
 
-  Action<TileEditPageViewModel> Saved { get; set; }
+  Func<TileEditPageViewModelEventArgs, Task> Saved { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TapPlayer.Core.Dto.Projects;
@@ -7,11 +8,13 @@ using TapPlayer.Data.Enums;
 using TapPlayer.Maui.Extensions;
 using TapPlayer.Maui.Resources.Strings;
 using TapPlayer.Maui.Services;
+using static Android.Graphics.ColorSpace;
 
 namespace TapPlayer.Maui.ViewModels;
 
 public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 {
+  private readonly ILogger _logger;
   private readonly IServiceProvider _serviceProvider;
   private readonly IProjectService _projectService;
   private readonly INavigationService _navigationService;
@@ -217,12 +220,14 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
   public ICommand SelectGridSizeCommand { get; init; }
 
   public ProjectEditViewModel(
+    ILogger<ProjectEditViewModel> logger,
     IServiceProvider serviceProvider,
     IProjectService projectService,
     INavigationService navigationService,
     IDialogService dialogService
   )
   {
+    _logger = logger;
     _serviceProvider = serviceProvider;
     _projectService = projectService;
     _navigationService = navigationService;
@@ -238,6 +243,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 
   private async Task Load(Guid projectId)
   {
+    _logger.LogDebug(nameof(Load) + " {ProjectId}", projectId);
+
     if (projectId == Guid.Empty)
     {
       throw new ArgumentOutOfRangeException(
@@ -288,6 +295,8 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 
   private async Task Save()
   {
+    _logger.LogDebug(nameof(Save));
+
     if (string.IsNullOrWhiteSpace(ProjectName))
     {
       // TODO: Localization Service
@@ -359,11 +368,15 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
 
   private Task Cancel()
   {
+    _logger.LogDebug(nameof(Cancel));
+
     return _navigationService.CloseProjectEditor();
   }
 
   private async Task TileEdit(ITileViewModel tile)
   {
+    _logger.LogDebug(nameof(TileEdit) + " #{Index}", tile?.Index);
+
     var actEditPage = _serviceProvider.GetRequiredService<TileEditPage>();
 
     actEditPage.Model.SetCommand.Execute(tile);
@@ -372,21 +385,29 @@ public class ProjectEditViewModel : ViewModelBase, IProjectEditViewModel
     await _navigationService.PushModalAsync(actEditPage);
   }
 
-  private void TileSaved(ITileEditPageViewModel model)
+  private Task TileSaved(TileEditPageViewModelEventArgs e)
   {
-    var tile = Tiles[model.Index];
+    _logger.LogDebug(nameof(TileSaved) + " #{Index}", e.Index);
 
-    tile.Name = model.Name;
-    tile.File = new FileViewModel(model.File.FullPath);
-    tile.Color = model.Color;
-    tile.IsBackground = model.IsBackground;
-    tile.IsLooped = model.PlayLoop;
+    var tile = Tiles[e.Index];
+
+    tile.Name = e.Name;
+    tile.File = new FileViewModel(e.FileFullPath);
+    tile.Color = e.Color;
+    tile.IsBackground = e.IsBackground;
+    tile.IsLooped = e.PlayLoop;
+
+    _logger.LogDebug(nameof(Tiles) + "." + nameof(ObservableCollectionExtensions.UpdateItem) + " #{Index}", e?.Index);
 
     Tiles.UpdateItem(tile);
+
+    return Task.CompletedTask;
   }
 
   private void InitDefault()
   {
+    _logger.LogDebug(nameof(InitDefault));
+
     IsLoaded = false;
     ShowLoader = true;
 

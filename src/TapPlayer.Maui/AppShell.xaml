@@ -39,6 +39,10 @@
     Command="{Binding ProjectSettingsCommand}"
   />
   <MenuItem
+    Text="{markup:Localization Key=ApplicationSettings}"
+    Command="{Binding ApplicationSettingsCommand}"
+  />
+  <MenuItem
     Text="{markup:Localization Key=About}"
     Command="{Binding AboutCommand}"
   />

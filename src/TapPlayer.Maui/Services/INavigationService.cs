@@ -16,6 +16,8 @@ public interface INavigationService
 
   Task CloseProjectEditor();
 
+  Task ApplicationSettings();
+
   Task About();
 
   Task PushAsync(Page page);

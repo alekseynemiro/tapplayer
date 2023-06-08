@@ -70,6 +70,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Application settings.
+        /// </summary>
+        internal static string ApplicationSettings {
+            get {
+                return ResourceManager.GetString("ApplicationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Are you sure you want to delete the project &quot;{0}&quot;?.
         /// </summary>
         internal static string AreYouSureYouWantToDeleteTheProject {
@@ -111,6 +120,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         internal static string ClickToColorForSelect {
             get {
                 return ResourceManager.GetString("ClickToColorForSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Close the application settings dialog without saving changes..
+        /// </summary>
+        internal static string CloseAppSettings {
+            get {
+                return ResourceManager.GetString("CloseAppSettings", resourceCulture);
             }
         }
         
@@ -529,6 +547,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Language:.
+        /// </summary>
+        internal static string LanguageField {
+            get {
+                return ResourceManager.GetString("LanguageField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Loop.
         /// </summary>
         internal static string Loop {
@@ -665,11 +692,29 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Some settings will only take effect after restarting the application..
+        /// </summary>
+        internal static string RestartIsRequired {
+            get {
+                return ResourceManager.GetString("RestartIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Save.
         /// </summary>
         internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save application settings and close the dialog..
+        /// </summary>
+        internal static string SaveAppSettings {
+            get {
+                return ResourceManager.GetString("SaveAppSettings", resourceCulture);
             }
         }
         

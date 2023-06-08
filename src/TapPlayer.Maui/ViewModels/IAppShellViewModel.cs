@@ -14,6 +14,8 @@ public interface IAppShellViewModel
 
   IAsyncCommand ProjectSettingsCommand { get; }
 
+  IAsyncCommand ApplicationSettingsCommand { get; }
+
   IAsyncCommand AboutCommand { get; }
 
   ICommand ExitCommand { get; }

@@ -60,6 +60,8 @@ public static class AppBuilder
     builder.Services.AddSingleton<IJsonStorageConfig, JsonStorageConfig>();
 
     // common services
+    builder.Services.AddSingleton(Preferences.Default);
+    builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
     builder.Services.AddSingleton<IDateTimeService, DateTimeService>();
     builder.Services.AddSingleton<IProjectListService, ProjectListService>();
     builder.Services.AddSingleton<IProjectService, ProjectService>();
@@ -76,6 +78,7 @@ public static class AppBuilder
     // view models
     builder.Services.AddSingleton<IAppShellViewModel, AppShellViewModel>();
     builder.Services.AddTransient<IAboutPageViewModel, AboutPageViewModel>();
+    builder.Services.AddTransient<IAppSettingsPageViewModel, AppSettingsPageViewModel>();
     builder.Services.AddTransient<IMainPageViewModel, MainPageViewModel>();
     builder.Services.AddTransient<IProjectEditViewModel, ProjectEditViewModel>();
     builder.Services.AddTransient<IProjectListItemViewModel, ProjectListItemViewModel>();
@@ -88,6 +91,7 @@ public static class AppBuilder
 
     // pages
     builder.Services.AddPage<AboutPage>();
+    builder.Services.AddPage<AppSettingsPage>();
     builder.Services.AddPage<MainPage>();
     builder.Services.AddPage<ProjectEditPage>();
     builder.Services.AddPage<ProjectListPage>();

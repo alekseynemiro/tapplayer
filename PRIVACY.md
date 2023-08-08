@@ -48,4 +48,4 @@ This policy is effective as of 2023-05-17.
 
 **Contact Us**
 
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to [contact me](https://github.com/alekseynemiro/TapPlayer/issues/new).
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to [contact me](https://github.com/alekseynemiro/tapplayer/issues/new).

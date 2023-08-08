@@ -6,6 +6,9 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://medium.com/maui-stories/word-wrapping-issue-in-horizontalstacklayout-component-in-maui-projects-9df559e041b - Word wrapping issue in HorizontalStackLayout component in MAUI projects
+* https://vk.com/aleksey.developer?w=wall-96983816_211 - Интересный факт про частоту обновления backend-части проекта :)
+* https://vk.com/aleksey.developer?w=wall-96983816_206_r207 - Маленький анонс TapPlayer v1.4 и планы на будущее
 * https://vk.com/aleksey.developer?w=wall-96983816_204 - Невозможное поведение UI от автоматического тестирования Google Play
 * https://vk.com/aleksey.developer?w=wall-96983816_203 - Коварный баг с копированием неправильного кода XAML в MAUI
 * https://vk.com/aleksey.developer?w=wall-96983816_201 - Проблема замены главной страницы и освобождения ресурсов

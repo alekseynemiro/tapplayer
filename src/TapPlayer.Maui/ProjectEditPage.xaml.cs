@@ -9,13 +9,20 @@ public partial class ProjectEditPage : ContentPage
 {
   private readonly ILogger _logger;
 
+  private readonly IActiveProjectService _activeProjectService;
+
+  private readonly IAppSettingsService _appSettingsService;
+
   public ProjectEditPage(
     ILogger<ProjectEditPage> logger,
     IActiveProjectService activeProjectService,
+    IAppSettingsService appSettingsService,
     IProjectEditViewModel model
   )
   {
     _logger = logger;
+    _activeProjectService = activeProjectService;
+    _appSettingsService = appSettingsService;
 
     _logger.LogDebug("Instance created.");
 
@@ -44,5 +51,7 @@ public partial class ProjectEditPage : ContentPage
     _logger.LogDebug(nameof(OnDisappearing));
     base.OnDisappearing();
     ProjectEdit.Dispose();
+
+    _activeProjectService.Set(_appSettingsService.LastProjectId);
   }
 }

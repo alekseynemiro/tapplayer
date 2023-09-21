@@ -76,6 +76,21 @@ public class NavigationService : INavigationService
     return Task.CompletedTask;
   }
 
+  public async Task EditProject(Guid projectId)
+  {
+    _logger.LogDebug(nameof(EditProject) + " {ProjectId}", projectId);
+
+    IsNavigating = true;
+
+    _activeProjectService.Set(projectId);
+
+    var projectEditPage = _serviceProvider.GetRequiredService<ProjectEditPage>();
+
+    await PushAsync(projectEditPage);
+
+    IsNavigating = false;
+  }
+
   public async Task ProjectSettings(Guid projectId)
   {
     _logger.LogDebug(nameof(ProjectSettings) + " {ProjectId}", projectId);

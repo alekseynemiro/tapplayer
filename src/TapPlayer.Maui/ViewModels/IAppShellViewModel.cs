@@ -8,6 +8,8 @@ public interface IAppShellViewModel
 
   bool CanUseProjectSettings { get; set; }
 
+  bool ShowCloseProjectItem { get; set; }
+
   IAsyncCommand CreateProjectCommand { get; }
 
   IAsyncCommand OpenProjectCommand { get; }

@@ -17,6 +17,7 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
   private readonly ITapPlayerService _tapPlayerService;
   private readonly IAppSettingsService _appSettingsService;
   private readonly IDialogService _dialogService;
+  private readonly IToastNotificationService _toastNotificationService;
 
   private Guid _projectId = Guid.Empty;
 
@@ -178,7 +179,8 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     INavigationService navigationService,
     ITapPlayerService tapPlayerService,
     IAppSettingsService appSettingsService,
-    IDialogService dialogService
+    IDialogService dialogService,
+    IToastNotificationService toastNotificationService
   )
   {
     _logger = logger;
@@ -188,6 +190,7 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     _tapPlayerService = tapPlayerService;
     _appSettingsService = appSettingsService;
     _dialogService = dialogService;
+    _toastNotificationService = toastNotificationService;
 
     InitCommand = new AsyncCommand(Init);
     LoadCommand = new AsyncCommand<Guid>(Load);
@@ -307,8 +310,8 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
     {
       _logger.LogError(ex, "Error opening project {ProjectId}.", projectId);
       _appSettingsService.LastProjectId = Guid.Empty;
-      // TODO: _dialogService.Error($"Failed to open project: \"{ex.Message}\"."); // <-- Does not work +Clicking the Back button may throw an exception.
       HideActivityIndicator();
+      await _toastNotificationService.Error($"Failed to open project: \"{ex.Message}\".");
     }
     finally
     {

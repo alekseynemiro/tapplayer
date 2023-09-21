@@ -6,6 +6,7 @@
 
 Записи, которые были сделаны в процессе работы над проектом:
 
+* https://vk.com/aleksey.nemiro?w=wall103639273_382 - Анонс на персональной странице VK
 * https://medium.com/maui-stories/word-wrapping-issue-in-horizontalstacklayout-component-in-maui-projects-9df559e041b - Word wrapping issue in HorizontalStackLayout component in MAUI projects
 * https://vk.com/aleksey.developer?w=wall-96983816_211 - Интересный факт про частоту обновления backend-части проекта :)
 * https://vk.com/aleksey.developer?w=wall-96983816_206_r207 - Маленький анонс TapPlayer v1.4 и планы на будущее

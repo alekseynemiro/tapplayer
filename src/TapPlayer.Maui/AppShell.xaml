@@ -41,6 +41,7 @@
   <MenuItem
     Text="{markup:Localization Key=CloseProject}"
     Command="{Binding CloseProjectCommand}"
+    Shell.FlyoutItemIsVisible="{Binding ShowCloseProjectItem}"
   />
   <MenuItem
     Text="{markup:Localization Key=ApplicationSettings}"

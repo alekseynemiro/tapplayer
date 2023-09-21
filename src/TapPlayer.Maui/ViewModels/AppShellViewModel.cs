@@ -10,6 +10,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
   private readonly INavigationService _navigationService;
   private readonly IActiveProjectService _activeProjectService;
   private bool _canUseProjectSettings = false;
+  private bool _showCloseProjectItem = false;
 
   public string Title
   {
@@ -28,6 +29,19 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
     set
     {
       _canUseProjectSettings = value;
+      OnProprtyChanged();
+    }
+  }
+
+  public bool ShowCloseProjectItem
+  {
+    get
+    {
+      return _showCloseProjectItem;
+    }
+    set
+    {
+      _showCloseProjectItem = value;
       OnProprtyChanged();
     }
   }
@@ -89,6 +103,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
       {
         activeProjectService.Reset();
         appSettingsService.LastProjectId = Guid.Empty;
+        ShowCloseProjectItem = false;
         Shell.Current.FlyoutIsPresented = false;
       }
     );
@@ -98,6 +113,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
       (r, m) =>
       {
         CanUseProjectSettings = m.HasProject;
+        ShowCloseProjectItem = m.HasProject;
       }
     );
   }

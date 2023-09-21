@@ -9,7 +9,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
   private readonly IAppInfo _appInfo;
   private readonly INavigationService _navigationService;
   private readonly IActiveProjectService _activeProjectService;
-  private bool _canUseProjectSettings = false;
+  private bool _showProjectSettingsItem = false;
   private bool _showCloseProjectItem = false;
 
   public string Title
@@ -20,15 +20,15 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
     }
   }
 
-  public bool CanUseProjectSettings
+  public bool ShowProjectSettingsItem
   {
     get
     {
-      return _canUseProjectSettings;
+      return _showProjectSettingsItem;
     }
     set
     {
-      _canUseProjectSettings = value;
+      _showProjectSettingsItem = value;
       OnProprtyChanged();
     }
   }
@@ -78,18 +78,8 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
     ProjectSettingsCommand = new AsyncCommand(
       () =>
       {
-        // TODO: remove workaround if disabling menu item works
-        if (activeProjectService.HasProject)
-        {
-          return _navigationService.ProjectSettings(_activeProjectService.ProjectId);
-        }
-        // workaroud, because the menu item disabling does not work
-        else
-        {
-          return _navigationService.ProjectList();
-        }
+        return _navigationService.ProjectSettings(_activeProjectService.ProjectId);
       }
-      // () => CanUseProjectSettings
     );
 
     ApplicationSettingsCommand = new AsyncCommand(_navigationService.ApplicationSettings);
@@ -112,7 +102,7 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
       this,
       (r, m) =>
       {
-        CanUseProjectSettings = m.HasProject;
+        ShowProjectSettingsItem = m.HasProject;
         ShowCloseProjectItem = m.HasProject;
       }
     );

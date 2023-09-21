@@ -12,6 +12,8 @@ public interface INavigationService
 
   Task OpenProject(Guid projectId);
 
+  Task EditProject(Guid projectId);
+
   Task ProjectSettings(Guid projectId);
 
   Task CloseProjectEditor();

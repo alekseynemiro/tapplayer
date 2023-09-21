@@ -36,6 +36,8 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
 
   public IAsyncCommand OpenProjectCommand { get; }
 
+  public ICommand CloseProjectCommand { get; }
+
   public IAsyncCommand ProjectSettingsCommand { get; }
 
   public IAsyncCommand ApplicationSettingsCommand { get; }
@@ -47,7 +49,8 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
   public AppShellViewModel(
     IAppInfo appInfo,
     INavigationService navigationService,
-    IActiveProjectService activeProjectService
+    IActiveProjectService activeProjectService,
+    IAppSettingsService appSettingsService
   )
   {
     _appInfo = appInfo;
@@ -80,6 +83,15 @@ public class AppShellViewModel : ViewModelBase, IAppShellViewModel
     AboutCommand = new AsyncCommand(_navigationService.About);
 
     ExitCommand = new Command(Application.Current.Quit);
+
+    CloseProjectCommand = new Command(
+      () =>
+      {
+        activeProjectService.Reset();
+        appSettingsService.LastProjectId = Guid.Empty;
+        Shell.Current.FlyoutIsPresented = false;
+      }
+    );
 
     WeakReferenceMessenger.Default.Register<IActiveProjectService>(
       this,

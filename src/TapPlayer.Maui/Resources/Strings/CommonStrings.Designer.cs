@@ -133,6 +133,15 @@ namespace TapPlayer.Maui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Close project.
+        /// </summary>
+        internal static string CloseProject {
+            get {
+                return ResourceManager.GetString("CloseProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Close the project editor without saving changes..
         /// </summary>
         internal static string CloseProjectEditor {

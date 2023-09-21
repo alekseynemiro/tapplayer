@@ -6,7 +6,9 @@ public interface IAppShellViewModel
 {
   string Title { get; }
 
-  bool CanUseProjectSettings { get; set; }
+  bool ShowProjectSettingsItem { get; set; }
+
+  bool ShowCloseProjectItem { get; set; }
 
   IAsyncCommand CreateProjectCommand { get; }
 

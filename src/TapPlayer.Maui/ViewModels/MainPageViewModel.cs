@@ -249,16 +249,23 @@ public class MainPageViewModel : ViewModelBase, IMainPageViewModel, IDisposable
 
   private async Task Init()
   {
-    ShowStartLoading();
+    try
+    {
+      ShowStartLoading();
 
-    var projects = await _projectListService.GetAll();
+      var projects = await _projectListService.GetAll();
 
-    ProjectCount = projects.Items.Count;
-    ShowCreateProject = projects.Items.Count == 0;
-    ShowCreateOrOpenProject = !ShowCreateProject && projects.Items.Count > 0;
+      ProjectCount = projects.Items.Count;
+      ShowCreateProject = projects.Items.Count == 0;
+      ShowCreateOrOpenProject = !ShowCreateProject && projects.Items.Count > 0;
 
-    ProjectName = string.Empty;
-    Tiles.Clear();
+      ProjectName = string.Empty;
+      Tiles.Clear();
+    }
+    finally
+    {
+      HideActivityIndicator();
+    }
   }
 
   private async Task Load(Guid projectId)

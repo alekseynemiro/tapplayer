@@ -148,6 +148,10 @@
     <value>Close the application settings dialog without saving changes.</value>
     <comment>Semantic</comment>
   </data>
+  <data name="CloseProject" xml:space="preserve">
+    <value>Close project</value>
+    <comment>Menu</comment>
+  </data>
   <data name="CloseProjectEditor" xml:space="preserve">
     <value>Close the project editor without saving changes.</value>
   </data>

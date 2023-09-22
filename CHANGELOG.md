@@ -1,5 +1,14 @@
 # Change Log
 
+## v1.5 (September 22, 2023)
+
+### Fixed
+
+* Fixed UI bugs in dark theme (https://github.com/alekseynemiro/tapplayer/issues/94).
+* Fixed bug with unwanted project opening (https://github.com/alekseynemiro/tapplayer/issues/82).
+* Fixed problems with the menu (https://github.com/alekseynemiro/tapplayer/issues/26, https://github.com/alekseynemiro/tapplayer/issues/5).
+* Fixed display of errors when opening projects (https://github.com/alekseynemiro/tapplayer/issues/88).
+
 ## v1.4 (June 8, 2023)
 
 This release contains significant improvements, bug fixes and performance improvements.

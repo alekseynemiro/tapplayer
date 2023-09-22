@@ -52,7 +52,7 @@ public class ProjectListItemViewModel : ViewModelBase, IProjectListItemViewModel
 
   protected Task Edit()
   {
-    return _navigationService.ProjectSettings(Id);
+    return _navigationService.EditProject(Id);
   }
 
   protected async Task Delete()

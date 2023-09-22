@@ -74,6 +74,7 @@ public static class AppBuilder
     builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
     builder.Services.AddSingleton<INavigationService, NavigationService>();
     builder.Services.AddSingleton<ITapPlayerService, TapPlayerService>();
+    builder.Services.AddSingleton<IToastNotificationService, ToastNotificationService>();
 
     // view models
     builder.Services.AddSingleton<IAppShellViewModel, AppShellViewModel>();

@@ -143,6 +143,9 @@
   <data name="CloseAppSettings" xml:space="preserve">
     <value>Закрыть диалог без сохранения изменений настроек программы.</value>
   </data>
+  <data name="CloseProject" xml:space="preserve">
+    <value>Закрыть проект</value>
+  </data>
   <data name="CloseProjectEditor" xml:space="preserve">
     <value>Закрыть настройки проекта без сохранения изменений.</value>
   </data>

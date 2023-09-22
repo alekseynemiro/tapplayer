@@ -12,7 +12,7 @@ internal class AppInfo : IAppInfo
 
   public string VersionString => $"{Version.Major}.{Version.Minor} (build {Version.Build})";
 
-  public Version Version => new Version(1, 4, 202306081);
+  public Version Version => new Version(1, 5, 20230922);
 
   public string BuildString => "0";
 
